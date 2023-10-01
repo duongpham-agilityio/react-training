@@ -23,5 +23,5 @@ jobs:
         run: yarn --frozen-lockfile
        
       - name: Install Vercel CLI
-        run: yarn add --global vercel
+        run: yarn global add vercel
         working-directory: practices/practice-three
