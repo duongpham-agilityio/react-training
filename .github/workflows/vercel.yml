@@ -22,10 +22,7 @@ jobs:
           node-version: '16.x'
           cache: 'yarn'
           cache-dependency-path: "practices/practice-three"
-
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
-       
+      
       - name: Install Vercel CLI 
         run: yarn global add vercel
         working-directory: practices/practice-three
