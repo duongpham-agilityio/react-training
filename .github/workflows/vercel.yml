@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: practices/practice-three
+        working-directory: ./practices/practice-three
     steps:
      - name: Checkout code
        uses: actions/checkout@v3
@@ -19,7 +19,7 @@ jobs:
        with:
          node-version: '16'
          cache: 'yarn'
-         cache-dependency-path: "practices/practice-three/yarn.lock"
+         cache-dependency-path: "./practices/practice-three/yarn.lock"
          
      - name: Install dependencies
        run: yarn
