@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./practices/practice-three
+        working-directory: practices/practice-three
     steps:
      - name: Checkout code
        uses: actions/checkout@v3
@@ -17,13 +17,11 @@ jobs:
      - name: Use Node.js
        uses: actions/setup-node@v3
        with:
-         node-version: '18.x'
+         node-version: '16.x'
          cache: 'yarn'
          
      - name: Install dependencies
        run: yarn
-       working-directory: ./practices/practice-three
        
      - name: Install Vercel CLI
        run: yarn add --global vercel@latest
-       working-directory: ./practices/practice-three
