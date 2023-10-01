@@ -3,26 +3,26 @@ name: Vercel Preview Deployment
 'on':
   push:
     branches: feature/practice-three
+  defaults: 
+    run:
+      working-directory: practices/practice-three
 
 jobs:
-  Deploy-Preview:
+  build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./practices/practice-three
+
     steps:
-     - name: Checkout code
-       uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
        
-     - name: Use Node.js
-       uses: actions/setup-node@v3
-       with:
-         node-version: 16
-         cache: 'yarn'
-         cache-dependency-path: "./practices/practice-three/yarn.lock"
-         
-     - name: Install dependencies
-       run: yarn
-       
-     - name: Install Vercel CLI
-       run: yarn add --global vercel@latest
+      - name: Install Vercel CLI
+        run: yarn add --global vercel@latest
