@@ -3,13 +3,13 @@ name: Vercel Preview Deployment
 'on':
   push:
     branches: feature/practice-three
-  defaults: 
-    run:
-      working-directory: practices/practice-three
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults: 
+      run:
+       working-directory: practices/practice-three
 
     steps:
       - name: Checkout code
