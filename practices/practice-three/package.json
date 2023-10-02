@@ -11,6 +11,10 @@
     "prepare": "cd ../.. && husky install practices/practice-three/.husky"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -27,7 +31,8 @@
     "lint-staged": "^14.0.1",
     "prettier": "3.0.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-tsconfig-paths": "^4.2.1"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
