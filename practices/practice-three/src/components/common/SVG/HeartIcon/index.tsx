@@ -43,15 +43,15 @@ const Heart = ({
           <path
             d="M18.4171 9C13.3321 9 9 12.8718 9 17.9003C9 21.3693 10.5951 24.2898 12.7092 26.7091C14.8161 29.12 17.5342 31.1437 19.9915 32.8375L24.2312 35.76C24.6956 36.08 25.3044 36.08 25.7688 35.76L30.0085 32.8375C32.4658 31.1437 35.1839 29.12 37.2908 26.7091C39.4049 24.2898 41 21.3693 41 17.9003C41 12.8718 36.6679 9 31.5829 9C28.9617 9 26.6551 10.2516 25 11.871C23.3449 10.2516 21.0383 9 18.4171 9Z"
             fill="#E86F6F"
-            shape-rendering="crispEdges"
+            shapeRendering="crispEdges"
           />
           <path
             d="M18.4171 9C13.3321 9 9 12.8718 9 17.9003C9 21.3693 10.5951 24.2898 12.7092 26.7091C14.8161 29.12 17.5342 31.1437 19.9915 32.8375L24.2312 35.76C24.6956 36.08 25.3044 36.08 25.7688 35.76L30.0085 32.8375C32.4658 31.1437 35.1839 29.12 37.2908 26.7091C39.4049 24.2898 41 21.3693 41 17.9003C41 12.8718 36.6679 9 31.5829 9C28.9617 9 26.6551 10.2516 25 11.871C23.3449 10.2516 21.0383 9 18.4171 9Z"
             stroke="#FF8181"
-            stroke-opacity="0.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            shape-rendering="crispEdges"
+            strokeOpacity="0.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            shapeRendering="crispEdges"
           />
         </g>
         <defs>
@@ -62,9 +62,9 @@ const Heart = ({
             width="53"
             height="48"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"

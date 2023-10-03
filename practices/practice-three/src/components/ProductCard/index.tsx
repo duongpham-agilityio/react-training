@@ -11,21 +11,31 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import isEqual from 'react-fast-compare';
 
 import { CartIcon, HeartIcon } from '@/components';
 
+// Todo: Update to later
 export interface IProductCard {
   id: number;
   imageURL: string;
   title: string;
   description: string;
-  status: string;
+  status: boolean;
   statusMessage?: string;
   price: number;
-  saleOff?: number;
   isLike?: boolean;
+}
+
+interface BadgeData {
+  color: string;
+  message: string;
+}
+
+interface IBadge {
+  available: BadgeData;
+  other: BadgeData;
 }
 
 export interface ProductCardProps {
@@ -36,10 +46,34 @@ export interface ProductCardProps {
 
 const ProductCard = (props: ProductCardProps) => {
   const {
-    info: { imageURL, title, description, price, id },
+    info: {
+      imageURL,
+      title,
+      description,
+      price,
+      id,
+      isLike,
+      status,
+      statusMessage,
+    },
     onAddToCard,
     onLike,
   } = props;
+
+  const badge: BadgeData = useMemo(() => {
+    const obj: IBadge = {
+      available: {
+        color: 'green.10',
+        message: 'available',
+      },
+      other: {
+        color: 'yellow.20',
+        message: statusMessage ?? '',
+      },
+    };
+
+    return obj[status ? 'available' : 'other'];
+  }, [status, statusMessage]);
 
   const onClickOnCart = useCallback(() => {
     onAddToCard(id);
@@ -51,8 +85,8 @@ const ProductCard = (props: ProductCardProps) => {
 
   return (
     <Card
-      as={Link} // Update to later when I install react-router-dom
-      href={`${id}`} // Update when the task above complete
+      as={Link} // Todo: Update to later when I install react-router-dom
+      href={`${id}`} // Todo: Update when the task above complete
       w={518}
       h={327}
       borderRadius={25}
@@ -74,7 +108,7 @@ const ProductCard = (props: ProductCardProps) => {
               <Text fontWeight="regular" py={3} fontSize={16}>
                 {description}
               </Text>
-              <Badge w={98} h={6} borderRadius={50} bg="green.10" my={2}>
+              <Badge w={98} h={6} borderRadius={50} bg={badge.color} my={2}>
                 <Center
                   h="full"
                   color="white"
@@ -82,7 +116,7 @@ const ProductCard = (props: ProductCardProps) => {
                   textTransform="capitalize"
                   fontSize={14}
                 >
-                  Available
+                  {badge.message}
                 </Center>
               </Badge>
             </Box>
@@ -93,7 +127,10 @@ const ProductCard = (props: ProductCardProps) => {
               </Text>
               <HStack flex={1} justifyContent="space-between">
                 <CartIcon onClick={onClickOnCart} />
-                <HeartIcon onClick={onClickHeart} />
+                <HeartIcon
+                  onClick={onClickHeart}
+                  varian={isLike ? 'fill' : 'outline'}
+                />
               </HStack>
             </HStack>
           </VStack>
