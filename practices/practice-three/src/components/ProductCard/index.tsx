@@ -6,16 +6,17 @@ import {
   Center,
   HStack,
   Heading,
+  IconButton,
   Image,
   Link,
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, MouseEvent } from 'react';
 import isEqual from 'react-fast-compare';
+import { CartOutline, HeartFill, HeartOutline } from '@/assets/icons';
 
 // Components
-import { CartIcon, HeartIcon } from '@/components';
 
 // Todo: Update to later
 export interface IProductCard {
@@ -76,13 +77,23 @@ const Component = (props: ProductCardProps) => {
     return obj[status ? 'available' : 'other'];
   }, [status, statusMessage]);
 
-  const handleAddToCart = useCallback(() => {
-    onAddToCard(id);
-  }, [id, onAddToCard]);
+  const handleAddToCart = useCallback(
+    (e: MouseEvent) => {
+      e.preventDefault();
 
-  const handleAddToFavorite = useCallback(() => {
-    onLike(id);
-  }, [id, onLike]);
+      onAddToCard(id);
+    },
+    [id, onAddToCard],
+  );
+
+  const handleAddToFavorite = useCallback(
+    (e: MouseEvent) => {
+      e.preventDefault();
+
+      onLike(id);
+    },
+    [id, onLike],
+  );
 
   return (
     <Card
@@ -98,7 +109,7 @@ const Component = (props: ProductCardProps) => {
         textDecoration: 'none',
       }}
     >
-      <HStack h="full" gap={0} borderRadius="inherit" overflow="hidden">
+      <HStack h="full" gap="unset" borderRadius="inherit" overflow="hidden">
         <Image src={imageURL} alt={title} bg="gray.10" flex={1} h="full" />
         <CardBody flex={1} px={6} py={7} h="full">
           <VStack h="full" justifyContent="space-between">
@@ -127,10 +138,15 @@ const Component = (props: ProductCardProps) => {
                 ${price}
               </Text>
               <HStack flex={1} justifyContent="space-between">
-                <CartIcon onClick={handleAddToCart} />
-                <HeartIcon
+                <IconButton
+                  aria-label="Button add to cart"
+                  icon={<CartOutline />}
+                  onClick={handleAddToCart}
+                />
+                <IconButton
+                  aria-label="Button add to favorite"
+                  icon={isLike ? <HeartFill /> : <HeartOutline />}
                   onClick={handleAddToFavorite}
-                  variant={isLike ? 'fill' : 'outline'}
                 />
               </HStack>
             </HStack>
