@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filteroptions Match to snapshot 1`] = `
+<div>
+  <ul
+    class="css-1c8ne0r"
+    role="list"
+  >
+    <li
+      class="css-0"
+    >
+      <a
+        class="chakra-link chakra-button css-99bvj6"
+        href="all"
+      >
+        All
+      </a>
+    </li>
+    <li
+      class="css-0"
+    >
+      <a
+        class="chakra-link chakra-button css-99bvj6"
+        href="fashion"
+      >
+        Fashion
+      </a>
+    </li>
+    <li
+      class="css-0"
+    >
+      <a
+        class="chakra-link chakra-button css-99bvj6"
+        href="electrics"
+      >
+        Electrics
+      </a>
+    </li>
+    <li
+      class="css-0"
+    >
+      <a
+        class="chakra-link chakra-button css-99bvj6"
+        href="books"
+      >
+        Books
+      </a>
+    </li>
+  </ul>
+</div>
+`;
