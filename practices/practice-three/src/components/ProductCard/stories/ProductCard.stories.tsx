@@ -24,7 +24,7 @@ export const LightModeIsLike: Story = {
     ...productCardProps,
     info: {
       ...productCardProps.info,
-      isLike: true,
+      isLiked: true,
     },
   },
 };

@@ -27,7 +27,7 @@ export interface IProductCard {
   status: boolean;
   statusMessage?: string;
   price: number;
-  isLike?: boolean;
+  isLiked?: boolean;
 }
 
 interface BadgeData {

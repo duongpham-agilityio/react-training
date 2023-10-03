@@ -9,7 +9,7 @@ export const productCardProps: ProductCardProps = {
     id: 1,
     price: 1000,
     status: false,
-    isLike: false,
+    isLiked: false,
     statusMessage: 'Only 5 left',
   },
   onAddToCard: () => {},
