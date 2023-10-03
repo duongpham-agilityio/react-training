@@ -10,15 +10,9 @@
     "plugin:react-hooks/recommended",
     "plugin:storybook/recommended"
   ],
-  "ignorePatterns": [
-    "dist",
-    ".eslintrc.cjs"
-  ],
+  "ignorePatterns": ["dist", ".eslintrc.cjs"],
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "react-refresh",
-    "react-hooks"
-  ],
+  "plugins": ["react-refresh", "react-hooks"],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",
@@ -28,13 +22,8 @@
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "semi": [
-      "error"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
+    "semi": ["error"],
+    "quotes": ["error", "single"],
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-unused-vars": "error"
