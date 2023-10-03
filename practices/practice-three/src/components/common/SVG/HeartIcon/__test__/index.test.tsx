@@ -18,7 +18,7 @@ describe('HeartIcon', () => {
   });
 
   it('Render with props', () => {
-    setup({ ...defaultProps, color: 'red', varian: 'fill' });
+    setup({ ...defaultProps, color: 'red', variant: 'fill' });
   });
 
   it('Click', () => {

@@ -3,17 +3,17 @@ import { MouseEvent, memo, useMemo } from 'react';
 
 export interface HeartIconProps {
   onClick: (e: MouseEvent) => void;
-  varian?: 'outline' | 'fill';
+  variant?: 'outline' | 'fill';
   color?: string;
 }
 
 const Heart = ({
   color = '#979797',
-  varian = 'outline',
+  variant = 'outline',
   onClick,
 }: HeartIconProps) => {
   const icon = useMemo(() => {
-    if (varian === 'outline')
+    if (variant === 'outline')
       return (
         <svg
           width="32"
@@ -93,7 +93,7 @@ const Heart = ({
         </defs>
       </svg>
     );
-  }, [varian]);
+  }, [color, variant]);
 
   return (
     <Button

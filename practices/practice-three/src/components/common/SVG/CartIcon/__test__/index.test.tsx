@@ -18,7 +18,7 @@ describe('CartIcon', () => {
   });
 
   it('Render with props', () => {
-    setup({ ...defaultProps, color: 'white', border: 'red', varian: 'fill' });
+    setup({ ...defaultProps, color: 'white', border: 'red', variant: 'fill' });
   });
 
   it('Click', () => {

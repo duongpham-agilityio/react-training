@@ -14,6 +14,7 @@ import {
 import { memo, useCallback, useMemo } from 'react';
 import isEqual from 'react-fast-compare';
 
+// Components
 import { CartIcon, HeartIcon } from '@/components';
 
 // Todo: Update to later
@@ -75,11 +76,11 @@ const Component = (props: ProductCardProps) => {
     return obj[status ? 'available' : 'other'];
   }, [status, statusMessage]);
 
-  const onClickOnCart = useCallback(() => {
+  const handleAddToCart = useCallback(() => {
     onAddToCard(id);
   }, [id, onAddToCard]);
 
-  const onClickHeart = useCallback(() => {
+  const handleAddToFavorite = useCallback(() => {
     onLike(id);
   }, [id, onLike]);
 
@@ -126,10 +127,10 @@ const Component = (props: ProductCardProps) => {
                 ${price}
               </Text>
               <HStack flex={1} justifyContent="space-between">
-                <CartIcon onClick={onClickOnCart} />
+                <CartIcon onClick={handleAddToCart} />
                 <HeartIcon
-                  onClick={onClickHeart}
-                  varian={isLike ? 'fill' : 'outline'}
+                  onClick={handleAddToFavorite}
+                  variant={isLike ? 'fill' : 'outline'}
                 />
               </HStack>
             </HStack>
@@ -140,7 +141,7 @@ const Component = (props: ProductCardProps) => {
   );
 };
 
-const areCompare = (current: ProductCardProps, next: ProductCardProps) =>
-  isEqual(current.info, next.info);
+const areCompare = (prevProps: ProductCardProps, nextProps: ProductCardProps) =>
+  isEqual(prevProps.info, nextProps.info);
 
 export const ProductCard = memo(Component, areCompare);

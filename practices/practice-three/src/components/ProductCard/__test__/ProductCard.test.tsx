@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 
 // Components
-import ProductCard, { ProductCardProps } from '@/components/ProductCard';
+import { ProductCard, ProductCardProps } from '@/components/ProductCard';
 
 const onAddToCard = jest.fn();
 const onLike = jest.fn();

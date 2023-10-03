@@ -3,7 +3,7 @@ import { MouseEvent, memo, useMemo } from 'react';
 
 export interface CartIconProps {
   onClick: (e: MouseEvent) => void;
-  varian?: 'outline' | 'fill';
+  variant?: 'outline' | 'fill';
   color?: string;
   border?: string;
 }
@@ -11,11 +11,11 @@ export interface CartIconProps {
 const Cart = ({
   color = '#979797',
   border = '#8F8F8F',
-  varian = 'outline',
+  variant = 'outline',
   onClick,
 }: CartIconProps) => {
   const icon = useMemo(() => {
-    if (varian === 'outline')
+    if (variant === 'outline')
       return (
         <svg
           width="28"
@@ -84,7 +84,7 @@ const Cart = ({
         />
       </svg>
     );
-  }, [varian]);
+  }, [border, color, variant]);
 
   return (
     <Button
