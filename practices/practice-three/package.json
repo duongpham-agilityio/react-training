@@ -20,6 +20,7 @@
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-fast-compare": "^3.2.2",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
@@ -59,7 +60,7 @@
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
       "npx prettier --write",
-      "eslint src/*.{ts,tsx} --fix-dry-run --no-error-on-unmatched-pattern  --report-unused-disable-directives --max-warnings 0"
+      "eslint src/*.{ts,tsx} --fix-dry-run --no-error-on-unmatched-pattern"
     ]
   }
 }

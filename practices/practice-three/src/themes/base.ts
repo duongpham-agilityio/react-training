@@ -6,7 +6,8 @@ export const colors: ThemeOverride['colors'] = {
     10: '#E86F6F',
   },
   green: {
-    10: '#02660C',
+    10: '#00A711',
+    20: '#02660C',
   },
   gray: {
     10: '#E0E0E0',
