@@ -44,7 +44,7 @@ export interface ProductCardProps {
   onLike: (id: number) => void | Promise<void>;
 }
 
-const ProductCard = (props: ProductCardProps) => {
+const Component = (props: ProductCardProps) => {
   const {
     info: {
       imageURL,
@@ -77,11 +77,11 @@ const ProductCard = (props: ProductCardProps) => {
 
   const onClickOnCart = useCallback(() => {
     onAddToCard(id);
-  }, [id]);
+  }, [id, onAddToCard]);
 
   const onClickHeart = useCallback(() => {
     onLike(id);
-  }, [id]);
+  }, [id, onLike]);
 
   return (
     <Card
@@ -143,4 +143,4 @@ const ProductCard = (props: ProductCardProps) => {
 const areCompare = (current: ProductCardProps, next: ProductCardProps) =>
   isEqual(current.info, next.info);
 
-export default memo(ProductCard, areCompare);
+export const ProductCard = memo(Component, areCompare);
