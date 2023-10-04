@@ -1,5 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FilterBar Match to snapshot 1`] = `
+<div>
+  <div
+    class="chakra-stack css-1ey9w6j"
+  >
+    <div
+      class="chakra-input__group css-y1t468"
+      data-group="true"
+    >
+      <input
+        class="chakra-input css-a7r4yx"
+        placeholder="Search"
+        value=""
+      />
+      <div
+        class="css-1q3ec5g"
+      >
+        <svg
+          fill="none"
+          height="30"
+          width="42"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M25.507 7.2H1.8a1.8 1.8 0 0 1 0-3.6h23.707a5.402 5.402 0 0 1 10.186 0H40.2a1.8 1.8 0 0 1 0 3.6h-4.507a5.402 5.402 0 0 1-10.186 0ZM40.2 26.4a1.8 1.8 0 0 0 0-3.6H16.493a5.402 5.402 0 0 0-10.186 0H1.8a1.8 1.8 0 0 0 0 3.6h4.507a5.402 5.402 0 0 0 10.186 0H40.2Z"
+            fill="#6A6A6A"
+          />
+        </svg>
+      </div>
+    </div>
+    <ul
+      class="css-1c8ne0r"
+      role="list"
+    >
+      <li
+        class="css-0"
+      >
+        <a
+          class="chakra-link chakra-button css-99bvj6"
+          href="?filter_option=all"
+        >
+          All
+        </a>
+      </li>
+      <li
+        class="css-0"
+      >
+        <a
+          class="chakra-link chakra-button css-99bvj6"
+          href="?filter_option=fashion"
+        >
+          Fashion
+        </a>
+      </li>
+      <li
+        class="css-0"
+      >
+        <a
+          class="chakra-link chakra-button css-99bvj6"
+          href="?filter_option=electrics"
+        >
+          Electrics
+        </a>
+      </li>
+      <li
+        class="css-0"
+      >
+        <a
+          class="chakra-link chakra-button css-99bvj6"
+          href="?filter_option=books"
+        >
+          Books
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
 exports[`Filteroptions Match to snapshot 1`] = `
 <div>
   <ul
