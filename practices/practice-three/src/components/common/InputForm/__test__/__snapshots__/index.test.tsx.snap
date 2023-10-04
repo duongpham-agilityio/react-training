@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputForm Match to snapshot 1`] = `
+<div>
+  <div
+    class="chakra-form-control css-0"
+    role="group"
+  >
+    <label
+      class="chakra-form__label css-uvho5g"
+      for="field-:r0:"
+      id="field-:r0:-label"
+    >
+      Email
+    </label>
+    <input
+      class="chakra-input css-0"
+      id="field-:r0:"
+      placeholder="Please enter email"
+      value=""
+    />
+  </div>
+</div>
+`;
