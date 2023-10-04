@@ -7,7 +7,7 @@ import { SideBar } from '@/components';
 // Todo: Change children to <Outlet /> when I setup router
 export const MainLayout = memo(({ children }: { children?: ReactNode }) => {
   return (
-    <Container minH="100vh">
+    <Container minH="100vh" bg="gray.100">
       <Flex>
         <Box w={1024} py={10}>
           {children}
