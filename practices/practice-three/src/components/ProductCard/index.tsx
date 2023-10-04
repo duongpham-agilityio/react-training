@@ -54,7 +54,7 @@ const Component = (props: ProductCardProps) => {
       description,
       price,
       id,
-      isLike,
+      isLiked,
       status,
       statusMessage,
     },
@@ -145,7 +145,7 @@ const Component = (props: ProductCardProps) => {
                 />
                 <IconButton
                   aria-label="Button add to favorite"
-                  icon={isLike ? <HeartFill /> : <HeartOutline />}
+                  icon={isLiked ? <HeartFill /> : <HeartOutline />}
                   onClick={handleAddToFavorite}
                 />
               </HStack>
