@@ -99,7 +99,6 @@ const Component = (props: ProductCardProps) => {
     <Card
       as={Link} // Todo: Update to later when I install react-router-dom
       href={`${id}`} // Todo: Update when the task above complete
-      w={518}
       h={327}
       borderRadius={25}
       boxShadow="lg"
