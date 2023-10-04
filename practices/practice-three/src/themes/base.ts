@@ -4,6 +4,7 @@ import { ThemeOverride } from '@chakra-ui/react';
 export const colors: ThemeOverride['colors'] = {
   red: {
     10: '#E86F6F',
+    20: '#FF7979',
   },
   green: {
     10: '#00A711',
@@ -18,6 +19,11 @@ export const colors: ThemeOverride['colors'] = {
   yellow: {
     10: '#F8D442',
     20: '#FEAF00',
+  },
+  blue: {
+    alpha: {
+      10: 'rgba(0, 133, 255, 0.7)',
+    },
   },
 };
 
