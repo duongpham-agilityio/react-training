@@ -43,7 +43,7 @@ const Component = () => {
         alignItems="unset"
       >
         {/* Heading */}
-        <Center h="fit-content" gap={2} py="24px">
+        <Center h="fit-content" gap={2} py={6}>
           <Box w="1.5" h={39} bg="yellow.10" />
           <Heading fontSize={32}>CRUD OPERATIONS</Heading>
         </Center>
