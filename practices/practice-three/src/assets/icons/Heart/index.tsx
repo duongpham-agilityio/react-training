@@ -70,3 +70,22 @@ export const HeartFill = memo((props: SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 ));
+
+export const HeartSideBarFill = memo((props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={53}
+    height={45}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="#E86F6F"
+      stroke="#FF5E5E"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeOpacity={0.5}
+      d="M16.009 1C7.904 1 1 7.166 1 15.175c0 5.524 2.542 10.175 5.912 14.028 3.357 3.84 7.69 7.063 11.606 9.76l6.757 4.655c.74.51 1.71.51 2.45 0l6.757-4.654c3.917-2.698 8.249-5.921 11.606-9.76C49.458 25.35 52 20.698 52 15.173 52 7.167 45.096 1 36.991 1 32.814 1 29.138 2.993 26.5 5.572 23.862 2.993 20.186 1 16.009 1Z"
+    />
+  </svg>
+));
