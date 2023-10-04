@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn Match to snapshot 1`] = `
+<div>
+  <div
+    class="css-1ydyyj0"
+  >
+    <div
+      class="css-wclwv"
+    >
+      <div
+        class="css-kegwvj"
+      >
+        <div
+          class="css-1icsamv"
+        />
+        <h2
+          class="chakra-heading css-idm3bz"
+        >
+          CRUD OPERATIONS
+        </h2>
+      </div>
+      <div
+        class="css-2gduyd"
+      >
+        <h2
+          class="chakra-heading css-cm18fo"
+        >
+          Sign In
+        </h2>
+        <p
+          class="chakra-text css-pyoze2"
+        >
+          Enter your credentials to access your account
+        </p>
+      </div>
+      <div
+        class="chakra-stack css-14wdlxi"
+      >
+        <div
+          class="chakra-form-control css-0"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r0:"
+            id="field-:r0:-label"
+          >
+            Email
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r0:"
+            name="email"
+            placeholder="Please enter your email"
+            value=""
+          />
+        </div>
+        <div
+          class="chakra-form-control css-0"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="field-:r1:"
+            id="field-:r1:-label"
+          >
+            Password
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="field-:r1:"
+            name="password"
+            placeholder="Please enter your password"
+            type="password"
+            value=""
+          />
+        </div>
+      </div>
+      <button
+        class="chakra-button css-1yxhbnk"
+        type="button"
+      >
+        Sign in
+      </button>
+    </div>
+  </div>
+</div>
+`;
