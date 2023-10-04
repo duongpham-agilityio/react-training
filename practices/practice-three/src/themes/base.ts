@@ -36,3 +36,8 @@ export const fontWeights: ThemeOverride['fontWeights'] = {
   bold: 700,
   extrabold: 800,
 };
+
+// Custom boxShadow
+export const shadows: ThemeOverride['shadows'] = {
+  base: '5px 5px 20px 0px rgba(133, 133, 133, 0.20)',
+};
