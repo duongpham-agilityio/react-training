@@ -19,16 +19,16 @@ export const Products = memo(
   (): JSX.Element => (
     <Grid
       templateColumns={{
-        xl: 'repeat(2, 1fr)',
-        md: '1fr',
+        base: '1fr',
+        xl: '1fr 1fr',
       }}
       gap={6}
     >
       {Array.from({ length: 10 }).map(
         (
           _,
-          index, // Todo: Update when apply BE
-        ) => (
+          index: number, // Todo: Update when apply BE
+        ): JSX.Element => (
           <GridItem key={index}>
             <ProductCard {...productCardProps} />
           </GridItem>
