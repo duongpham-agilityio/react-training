@@ -4,3 +4,5 @@ export * from './Search';
 export * from './Arrow';
 export * from './Person';
 export * from './Mode';
+export * from './Control';
+export * from './Trash';
