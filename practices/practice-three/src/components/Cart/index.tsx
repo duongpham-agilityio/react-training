@@ -7,7 +7,9 @@ import { CartItem, Checkout } from './components';
 // Mocks
 import { cartItemProps } from '@/mocks';
 
+//  Todo: Call API get data from cart
 const Component = (): JSX.Element => {
+  //  Todo: Add handle when I apply BE
   const onCheckout = useCallback((): void => {}, []);
 
   const onChangeQuantity = useCallback((): void => {}, []);
@@ -32,7 +34,7 @@ const Component = (): JSX.Element => {
         overflowY={{ base: 'unset', '2xl': 'scroll' }}
       >
         <VStack>
-          {Array.from({ length: 7 }).map(() => (
+          {Array.from({ length: 1 }).map(() => (
             <CartItem
               {...cartItemProps}
               onChangeQuantity={onChangeQuantity}
