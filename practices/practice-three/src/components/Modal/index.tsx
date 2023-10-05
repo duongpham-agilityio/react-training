@@ -35,7 +35,7 @@ const Component = (props: ModalProps): JSX.Element => {
       >
         <ModalHeader
           fontSize={{
-            base: '20',
+            base: 20,
             lg: 30,
           }}
         >
