@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkout Match to snapshot 1`] = `
+<div>
+  <div
+    class="css-0"
+  >
+    <h2
+      class="chakra-heading css-3nulb2"
+    >
+      Checkout
+    </h2>
+    <hr
+      aria-orientation="horizontal"
+      class="chakra-divider css-1upb9tn"
+    />
+    <div
+      class="css-1lx593h"
+    >
+      <p
+        class="chakra-text css-0"
+      >
+        Total: 
+        200
+      </p>
+      <button
+        class="chakra-button css-12nodq4"
+        type="button"
+      >
+        Checkout
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Checkout onCheckout 1`] = `
+[MockFunction] {
+  "calls": [
+    [
+      SyntheticBaseEvent {
+        "_reactName": "onClick",
+        "_targetInst": null,
+        "altKey": false,
+        "bubbles": true,
+        "button": 0,
+        "buttons": 0,
+        "cancelable": true,
+        "clientX": 0,
+        "clientY": 0,
+        "ctrlKey": false,
+        "currentTarget": null,
+        "defaultPrevented": false,
+        "detail": 0,
+        "eventPhase": 3,
+        "getModifierState": [Function],
+        "isDefaultPrevented": [Function],
+        "isPropagationStopped": [Function],
+        "isTrusted": false,
+        "metaKey": false,
+        "movementX": 0,
+        "movementY": 0,
+        "nativeEvent": MouseEvent {
+          "isTrusted": false,
+        },
+        "pageX": undefined,
+        "pageY": undefined,
+        "relatedTarget": null,
+        "screenX": 0,
+        "screenY": 0,
+        "shiftKey": false,
+        "target": <button
+          class="chakra-button css-12nodq4"
+          type="button"
+        >
+          Checkout
+        </button>,
+        "timeStamp": 1696527642698,
+        "type": "click",
+        "view": null,
+      },
+    ],
+  ],
+  "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
