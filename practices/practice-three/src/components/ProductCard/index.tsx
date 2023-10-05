@@ -109,8 +109,10 @@ const Component = (props: ProductCardProps) => {
       }}
     >
       <HStack h="full" gap="unset" borderRadius="inherit" overflow="hidden">
-        <Image src={imageURL} alt={title} bg="gray.10" flex={1} h="full" />
-        <CardBody flex={1} px={6} py={7} h="full">
+        <Center w="50%" h="full" bg="gray.10">
+          <Image src={imageURL} w="full" alt={title} />
+        </Center>
+        <CardBody w="50%" px={6} py={7} h="full">
           <VStack h="full" justifyContent="space-between">
             <Box>
               <Heading fontSize={22} color="gray.40">
