@@ -18,7 +18,7 @@ const areCompare = (
   nextProps: PaginationProps,
 ): boolean => isEqual(prevProps.data, nextProps.data);
 
-export const Pagination = memo((props: PaginationProps) => {
+export const Pagination = memo((props: PaginationProps): JSX.Element => {
   const {
     data,
     currentPage,
@@ -29,11 +29,11 @@ export const Pagination = memo((props: PaginationProps) => {
     onPreviousPage,
   } = props;
 
-  const handlePrevPage = useCallback(() => {
+  const handlePrevPage = useCallback((): void => {
     onPreviousPage(currentPage - 1);
   }, [currentPage, onPreviousPage]);
 
-  const handleNextPage = useCallback(() => {
+  const handleNextPage = useCallback((): void => {
     onNextPage(currentPage + 1);
   }, [currentPage, onNextPage]);
 
@@ -47,7 +47,7 @@ export const Pagination = memo((props: PaginationProps) => {
       >
         Prev
       </Button>
-      {data.map((page: number) => {
+      {data.map((page: number): JSX.Element => {
         const isActive = page === currentPage;
         const handleChangePage = () => {
           onChangePage(page);

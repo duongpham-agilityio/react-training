@@ -14,9 +14,9 @@ import {
 } from '@chakra-ui/react';
 import { memo, useCallback, useMemo, MouseEvent } from 'react';
 import isEqual from 'react-fast-compare';
-import { CartOutline, HeartFill, HeartOutline } from '@/assets/icons';
 
-// Components
+// Icons
+import { CartOutline, HeartFill, HeartOutline } from '@/assets/icons';
 
 // Todo: Update to later
 export interface IProductCard {
@@ -46,7 +46,7 @@ export interface ProductCardProps {
   onLike: (id: number) => void | Promise<void>;
 }
 
-const Component = (props: ProductCardProps) => {
+const Component = (props: ProductCardProps): JSX.Element => {
   const {
     info: {
       imageURL,
@@ -62,7 +62,7 @@ const Component = (props: ProductCardProps) => {
     onLike,
   } = props;
 
-  const badge: BadgeData = useMemo(() => {
+  const badge: BadgeData = useMemo((): BadgeData => {
     const obj: IBadge = {
       available: {
         color: 'green.10',
@@ -78,7 +78,7 @@ const Component = (props: ProductCardProps) => {
   }, [status, statusMessage]);
 
   const handleAddToCart = useCallback(
-    (e: MouseEvent) => {
+    (e: MouseEvent): void => {
       e.preventDefault();
 
       onAddToCard(id);
@@ -87,7 +87,7 @@ const Component = (props: ProductCardProps) => {
   );
 
   const handleAddToFavorite = useCallback(
-    (e: MouseEvent) => {
+    (e: MouseEvent): void => {
       e.preventDefault();
 
       onLike(id);

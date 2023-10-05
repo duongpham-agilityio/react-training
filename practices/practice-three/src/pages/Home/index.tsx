@@ -5,10 +5,10 @@ import { Heading } from '@chakra-ui/react';
 import { FilterBar } from '@/components';
 import { Products } from '@/pages/Home/components';
 
-const Component = () => {
-  const [filter, setFilter] = useState('');
+const Component = (): JSX.Element => {
+  const [filter, setFilter] = useState<string>('');
 
-  const onChangeFilter = useCallback((value: string) => {
+  const onChangeFilter = useCallback((value: string): void => {
     setFilter(value);
   }, []);
 

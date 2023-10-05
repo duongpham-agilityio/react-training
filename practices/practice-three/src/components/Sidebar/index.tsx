@@ -33,7 +33,7 @@ export interface ISideBarOption {
   pseudoValue?: number | string;
 }
 
-export const SideBar = memo(() => {
+export const SideBar = memo((): JSX.Element => {
   const { isOpen, onToggle } = useDisclosure();
 
   // Todo: Update when integrate BE
@@ -64,8 +64,8 @@ export const SideBar = memo(() => {
     [],
   );
 
-  const renderOptions = useMemo(() => {
-    return sidebarOptions.map((option) => {
+  const renderOptions: JSX.Element[] = useMemo(() => {
+    return sidebarOptions.map((option): JSX.Element => {
       const {
         isShowPseudo,
         pseudoColor,

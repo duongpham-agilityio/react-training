@@ -11,8 +11,8 @@ export interface ProductsProps {
   data: string[];
 }
 
-export const Products = memo(() => {
-  return (
+export const Products = memo(
+  (): JSX.Element => (
     <Grid
       templateColumns={{
         xl: 'repeat(2, 1fr)',
@@ -31,5 +31,5 @@ export const Products = memo(() => {
         ),
       )}
     </Grid>
-  );
-});
+  ),
+);
