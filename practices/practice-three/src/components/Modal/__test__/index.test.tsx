@@ -16,12 +16,20 @@ describe('Modal', () => {
   });
 
   it('Render with children', () => {
-    const { getByText } = setup({
+    const { getByText, rerender } = setup({
       ...defaultModalProps,
       children: <p>children</p>,
     });
 
     expect(getByText('children')).toBeDefined();
+
+    rerender(
+      <ModalCustom {...defaultModalProps}>
+        <p>update</p>
+      </ModalCustom>,
+    );
+
+    expect(getByText('update')).toBeDefined();
   });
 
   it('Close modal', () => {
