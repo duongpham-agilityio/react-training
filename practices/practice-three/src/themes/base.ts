@@ -47,3 +47,12 @@ export const fontWeights: ThemeOverride['fontWeights'] = {
 export const shadows: ThemeOverride['shadows'] = {
   base: '5px 5px 20px 0px rgba(133, 133, 133, 0.20)',
 };
+
+// Breakpoint
+export const breakpoints: ThemeOverride['breakpoints'] = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px,',
+  xl: '1200px',
+  '2xl': '1600px',
+};
