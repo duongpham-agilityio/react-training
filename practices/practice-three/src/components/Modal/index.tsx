@@ -7,6 +7,7 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 import { ReactNode, memo } from 'react';
+import isEqual from 'react-fast-compare';
 
 export interface ModalProps {
   children?: ReactNode;
@@ -51,6 +52,9 @@ const Component = (props: ModalProps): JSX.Element => {
   );
 };
 
-const ModalCustom = memo(Component);
+const areCompare = (prevProps: ModalProps, nextProps: ModalProps): boolean =>
+  isEqual(prevProps.children, nextProps.children);
+
+const ModalCustom = memo(Component, areCompare);
 
 export default ModalCustom;
