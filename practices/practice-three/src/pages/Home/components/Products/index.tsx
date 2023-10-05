@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import isEqual from 'react-fast-compare';
 import { Grid, GridItem } from '@chakra-ui/react';
 
 // Components
@@ -10,6 +11,9 @@ import { productCardProps } from '@/mocks';
 export interface ProductsProps {
   data: string[];
 }
+
+const areCompare = (prevProps: ProductsProps, nextProps: ProductsProps) =>
+  isEqual(prevProps.data, nextProps.data);
 
 export const Products = memo(
   (): JSX.Element => (
@@ -32,4 +36,5 @@ export const Products = memo(
       )}
     </Grid>
   ),
+  areCompare,
 );
