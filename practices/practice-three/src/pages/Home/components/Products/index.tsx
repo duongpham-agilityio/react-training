@@ -13,7 +13,13 @@ export interface ProductsProps {
 
 export const Products = memo(() => {
   return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+    <Grid
+      templateColumns={{
+        xl: 'repeat(2, 1fr)',
+        md: '1fr',
+      }}
+      gap={6}
+    >
       {Array.from({ length: 10 }).map(
         (
           _,
