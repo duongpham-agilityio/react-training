@@ -1,4 +1,4 @@
-import { CartItemProps, ShowCartProps } from '@/components/Cart/components';
+import { CartItemProps } from '@/components/Cart/components';
 
 export const cartItemProps: CartItemProps = {
   data: {
@@ -10,12 +10,6 @@ export const cartItemProps: CartItemProps = {
     price: 200,
     quantity: 2,
   },
-  onChangeQuantity: () => {},
-  onRemove: () => {},
-};
-
-export const showCartProps: ShowCartProps = {
-  data: Array.from({ length: 3 }).map(() => cartItemProps.data),
   onChangeQuantity: () => {},
   onRemove: () => {},
 };
