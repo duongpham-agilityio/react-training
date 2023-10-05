@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination Match to snapshot 1`] = `
+<div>
+  <div
+    class="chakra-stack css-1q7jsje"
+  >
+    <button
+      class="chakra-button css-1hp9g1x"
+      disabled=""
+      type="button"
+    >
+      Prev
+    </button>
+    <button
+      class="chakra-button css-1qnxh0p"
+      type="button"
+    >
+      1
+    </button>
+    <button
+      class="chakra-button css-1hp9g1x"
+      type="button"
+    >
+      2
+    </button>
+    <button
+      class="chakra-button css-1hp9g1x"
+      type="button"
+    >
+      3
+    </button>
+    <button
+      class="chakra-button css-1hp9g1x"
+      type="button"
+    >
+      4
+    </button>
+    <button
+      class="chakra-button css-1hp9g1x"
+      type="button"
+    >
+      5
+    </button>
+    <button
+      class="chakra-button css-1hp9g1x"
+      type="button"
+    >
+      6
+    </button>
+    <button
+      class="chakra-button css-1hp9g1x"
+      type="button"
+    >
+      7
+    </button>
+    <button
+      class="chakra-button css-1hp9g1x"
+      type="button"
+    >
+      Next
+    </button>
+  </div>
+</div>
+`;
