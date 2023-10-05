@@ -44,7 +44,7 @@ const Component = (props: ModalProps): JSX.Element => {
 
         <ModalCloseButton />
 
-        <ModalBody overflow="scroll" py={5}>
+        <ModalBody overflow="hidden" py={5}>
           {children}
         </ModalBody>
       </ModalContent>
