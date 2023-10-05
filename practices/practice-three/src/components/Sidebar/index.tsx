@@ -100,7 +100,10 @@ export const SideBar = memo(() => {
             justifyContent={isOpen ? 'flex-start' : 'center'}
             gap={5}
             mt={88}
-            fontSize={30}
+            fontSize={{
+              '2xl': 30,
+              xl: 18,
+            }}
           >
             <Icon />
 
@@ -113,7 +116,6 @@ export const SideBar = memo(() => {
 
   return (
     <VStack
-      h={826}
       minW={104}
       borderRadius={30}
       px={5}
@@ -131,8 +133,14 @@ export const SideBar = memo(() => {
             as={Link}
             justifyContent={isOpen ? 'flex-start' : 'center'}
             gap={5}
-            mt={88}
-            fontSize={24}
+            mt={{
+              '2xl': 88,
+              xl: 38,
+            }}
+            fontSize={{
+              '2xl': 24,
+              xl: 16,
+            }}
           >
             {/*
              Mode Icon
