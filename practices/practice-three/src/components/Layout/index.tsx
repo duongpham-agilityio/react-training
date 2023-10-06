@@ -8,15 +8,13 @@ import { SideBar } from '@/components';
 export const MainLayout = memo(({ children }: { children?: ReactNode }) => (
   <Container minH="100vh" py={51}>
     <Flex justifyContent="space-between">
-      <Box flex={1} py={10}>
-        {children}
-      </Box>
+      <Box flex={1}>{children}</Box>
 
       <Box
         w={{
           base: 100,
-          md: 250,
-          '2xl': 350,
+          md: 230,
+          '2xl': 280,
         }}
         h="calc(100vh - 110px)"
       ></Box>
