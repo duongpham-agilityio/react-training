@@ -33,8 +33,7 @@ const Component = (): JSX.Element => {
       alignItems="unset"
     >
       {/* Info */}
-      <Flex flex={1} minH={250}>
-        <Box flex={1}></Box>
+      <Flex flex={1} minH={250} justifyContent="flex-end">
         <Box maxW={448}>
           <Heading
             fontSize={50}

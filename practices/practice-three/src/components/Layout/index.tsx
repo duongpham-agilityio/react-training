@@ -15,7 +15,7 @@ export const MainLayout = memo(({ children }: { children?: ReactNode }) => (
       <Box
         w={{
           base: 100,
-          md: 200,
+          md: 250,
           '2xl': 350,
         }}
         h="calc(100vh - 110px)"
