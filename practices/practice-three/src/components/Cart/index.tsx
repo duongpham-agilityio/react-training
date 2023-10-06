@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { Box, Grid, VStack } from '@chakra-ui/react';
+import { Box, Flex, VStack } from '@chakra-ui/react';
 
 // Components
 import { CartItem, Checkout } from './components';
@@ -17,24 +17,17 @@ const Component = (): JSX.Element => {
   const onRemoveFromCart = useCallback((): void => {}, []);
 
   return (
-    <Grid
+    <Flex
       h="full"
-      gridTemplateColumns={{
-        base: '1fr',
-        '2xl': '2fr 1fr',
+      gap={7}
+      flexDirection={{
+        base: 'column',
+        '2xl': 'row',
       }}
-      gap={5}
-      overflowY={{ base: 'scroll', '2xl': 'unset' }}
     >
-      <Box
-        w={{
-          base: 'full',
-        }}
-        h="full"
-        overflowY={{ base: 'unset', '2xl': 'scroll' }}
-      >
+      <Box flex={1} h="full" overflowY={{ base: 'scroll' }}>
         <VStack>
-          {Array.from({ length: 1 }).map(() => (
+          {Array.from({ length: 9 }).map(() => (
             <CartItem
               {...cartItemProps}
               onChangeQuantity={onChangeQuantity}
@@ -45,7 +38,7 @@ const Component = (): JSX.Element => {
       </Box>
 
       <Checkout total={0} onCheckout={onCheckout} />
-    </Grid>
+    </Flex>
   );
 };
 

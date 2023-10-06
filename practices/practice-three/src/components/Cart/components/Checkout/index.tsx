@@ -9,7 +9,16 @@ export interface CheckoutProps {
 export const Checkout = memo(
   ({ total, onCheckout }: CheckoutProps): JSX.Element => {
     return (
-      <Box>
+      <Box
+        h={{
+          base: 'fit-content',
+        }}
+        w={{
+          base: 'full',
+          '2xl': 300,
+        }}
+        bg="white"
+      >
         <Heading
           textAlign="center"
           fontSize={{
