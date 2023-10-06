@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details page Match to snapshot 1`] = `
+<div>
+  <div
+    class="chakra-stack css-f25ded"
+  >
+    <div
+      class="css-t3y40c"
+    >
+      <div
+        class="css-1rr4qq7"
+      />
+      <div
+        class="css-13n95wf"
+      >
+        <h2
+          class="chakra-heading css-46oz1i"
+        >
+          HUNK - Toffee
+        </h2>
+        <p
+          class="chakra-text css-1gsq3tq"
+        >
+          Add a spring to your step with this elegant and sleek pair of footwear! With its heavily padded ankle straps for secure footing and matted steel buckles that add flair, support and style go hand in hand with these hunk sandals
+        </p>
+      </div>
+    </div>
+    <div
+      class="css-1sy0xge"
+    >
+      <div
+        class="css-1lekzkb"
+      >
+        <p
+          class="chakra-text css-gbfwt9"
+        >
+          Scroll down
+        </p>
+        <img
+          class="chakra-image css-0"
+          src="@/assets/images/social.png"
+        />
+      </div>
+      <div
+        class="css-22016z"
+      >
+        <button
+          class="chakra-button css-sgrhzz"
+          type="button"
+        >
+          add to cart — $1599
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
