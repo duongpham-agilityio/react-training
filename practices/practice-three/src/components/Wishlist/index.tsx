@@ -7,7 +7,7 @@ import { ProductCard } from '@/components';
 // Mocks
 import { productCardProps } from '@/mocks';
 
-const Component = () => (
+const Component = (): JSX.Element => (
   <Box overflowY="scroll" h="full" py={5}>
     <Grid
       gridTemplateColumns={{
