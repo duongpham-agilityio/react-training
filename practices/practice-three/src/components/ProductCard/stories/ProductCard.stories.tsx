@@ -1,3 +1,4 @@
+import { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Components
@@ -5,13 +6,20 @@ import { ProductCard } from '@/components';
 
 // Mocks
 import { productCardProps } from '@/mocks';
+import { Box } from '@chakra-ui/react';
 
-const meta: Meta<typeof ProductCard> = {
-  component: ProductCard,
+const Component = (args: ComponentProps<typeof ProductCard>) => (
+  <Box w={525}>
+    <ProductCard {...args} />
+  </Box>
+);
+
+const meta: Meta<typeof Component> = {
+  component: Component,
 };
 
 export default meta;
-type Story = StoryObj<typeof ProductCard>;
+type Story = StoryObj<typeof Component>;
 
 export const LightMode: Story = {
   args: {

@@ -134,11 +134,11 @@ const Component = (props: ProductCardProps): JSX.Element => {
               </Badge>
             </Box>
 
-            <HStack w="full">
-              <Text flex={1} fontSize={20} fontWeight="bold">
+            <HStack w="full" justifyContent="space-between">
+              <Text fontSize={20} fontWeight="bold">
                 ${price}
               </Text>
-              <HStack flex={1} justifyContent="space-between">
+              <HStack justifyContent="space-between">
                 <IconButton
                   aria-label="Button add to cart"
                   icon={<CartOutline />}
