@@ -3,7 +3,9 @@ import {
   Button,
   Center,
   Flex,
+  HStack,
   Heading,
+  IconButton,
   Image,
   Text,
   VStack,
@@ -13,6 +15,9 @@ import { memo } from 'react';
 // Images
 import ShoesImage from '@/assets/images/shoes.png';
 import SocialImage from '@/assets/images/social.png';
+
+// Icons
+import { ArrowLeftOutline, ArrowRightOutline, Increase } from '@/assets/icons';
 
 const Component = (): JSX.Element => {
   // Todo: Update handle to late
@@ -77,27 +82,68 @@ const Component = (): JSX.Element => {
         </Center>
 
         {/* Add to cart */}
-        <Flex
+        <HStack
           py={{
-            base: 8,
+            base: 9,
             '2xl': 16,
           }}
           px={{
             base: 'unset',
             '2xl': 20,
           }}
-          justifyContent="flex-end"
+          justifyContent="space-between"
         >
+          {/* Slide control */}
+          <Center>
+            <Button
+              height="fit-content"
+              color="black"
+              display="flex"
+              flexDirection="column"
+            >
+              <Text fontSize={18} py={2} fontWeight="regular">
+                Prev
+              </Text>
+              <ArrowLeftOutline />
+            </Button>
+
+            <Button
+              height="fit-content"
+              color="black"
+              display="flex"
+              flexDirection="column"
+            >
+              <Text fontSize={18} py={2} fontWeight="regular">
+                Next
+              </Text>
+              <ArrowRightOutline />
+            </Button>
+          </Center>
+
+          <Flex alignItems="center" gap={5}>
+            <IconButton
+              aria-label="Button play video"
+              bg="gray.100"
+              borderRadius="full"
+              size="lg"
+              icon={<Increase />}
+            />
+            <Text fontSize={18} fontWeight="regular" color="gray.30">
+              Play video
+            </Text>
+          </Flex>
+
           <Button
             color="black"
             textTransform="uppercase"
             _hover={{
               color: 'gray.20',
             }}
+            p="unset"
           >
             add to cart — $1599
           </Button>
-        </Flex>
+        </HStack>
       </Box>
     </VStack>
   );
