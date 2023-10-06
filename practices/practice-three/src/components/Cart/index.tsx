@@ -10,11 +10,11 @@ import { cartItemProps } from '@/mocks';
 //  Todo: Call API get data from cart
 const Component = (): JSX.Element => {
   //  Todo: Add handle when I apply BE
-  const onCheckout = useCallback((): void => {}, []);
+  const handleCheckout = useCallback((): void => {}, []);
 
-  const onChangeQuantity = useCallback((): void => {}, []);
+  const handleChangeQuantity = useCallback((): void => {}, []);
 
-  const onRemoveFromCart = useCallback((): void => {}, []);
+  const handleRemoveFromCart = useCallback((): void => {}, []);
 
   return (
     <Flex
@@ -30,14 +30,14 @@ const Component = (): JSX.Element => {
           {Array.from({ length: 9 }).map(() => (
             <CartItem
               {...cartItemProps}
-              onChangeQuantity={onChangeQuantity}
-              onRemove={onRemoveFromCart}
+              onChangeQuantity={handleChangeQuantity}
+              onRemove={handleRemoveFromCart}
             />
           ))}
         </VStack>
       </Box>
 
-      <Checkout total={0} onCheckout={onCheckout} />
+      <Checkout total={0} onCheckout={handleCheckout} />
     </Flex>
   );
 };
