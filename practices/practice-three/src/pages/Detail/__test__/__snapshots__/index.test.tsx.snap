@@ -43,10 +43,94 @@ exports[`Details page Match to snapshot 1`] = `
         />
       </div>
       <div
-        class="css-22016z"
+        class="chakra-stack css-32h9xz"
       >
+        <div
+          class="css-gmuwbf"
+        >
+          <button
+            class="chakra-button css-1qqt8hf"
+            type="button"
+          >
+            <p
+              class="chakra-text css-s9vxsi"
+            >
+              Prev
+            </p>
+            <svg
+              fill="none"
+              height="12"
+              width="59"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M59 6H5"
+                stroke="#000"
+                stroke-width="2"
+              />
+              <path
+                d="M6 0v12L0 6l6-6Z"
+                fill="#000"
+              />
+            </svg>
+          </button>
+          <button
+            class="chakra-button css-1qqt8hf"
+            type="button"
+          >
+            <p
+              class="chakra-text css-s9vxsi"
+            >
+              Next
+            </p>
+            <svg
+              fill="none"
+              height="12"
+              width="59"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 6h54"
+                stroke="#000"
+                stroke-width="2"
+              />
+              <path
+                d="M53 12V0l6 6-6 6Z"
+                fill="#000"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="css-1dnaxzp"
+        >
+          <button
+            aria-label="Button play video"
+            class="chakra-button css-14144jg"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              fill="#000"
+              focusable="false"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"
+              />
+            </svg>
+          </button>
+          <p
+            class="chakra-text css-11kk9eu"
+          >
+            Play video
+          </p>
+        </div>
         <button
-          class="chakra-button css-sgrhzz"
+          class="chakra-button css-64vxoc"
           type="button"
         >
           add to cart — $1599
