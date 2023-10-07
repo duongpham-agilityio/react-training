@@ -1,14 +1,20 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ChakraProvider } from '@chakra-ui/react';
+import { RouterProvider } from 'react-router-dom';
 
 // Themes
 import { customTheme } from '@/themes';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// Routes
+import { routes } from '@/routes';
 
 const queryClient: QueryClient = new QueryClient();
 
-const App = () => (
+const App = (): JSX.Element => (
   <ChakraProvider theme={customTheme}>
-    <QueryClientProvider client={queryClient}></QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={routes} />
+    </QueryClientProvider>
   </ChakraProvider>
 );
 
