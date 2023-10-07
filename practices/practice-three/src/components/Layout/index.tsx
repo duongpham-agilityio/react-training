@@ -6,19 +6,20 @@ import {
   Flex,
   Image,
   Link,
+  Spinner,
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { ReactNode, memo } from 'react';
+import { Suspense, memo } from 'react';
 
 // Components
 import { SideBar } from '@/components';
 
 // Images
 import Logo from '@/assets/images/logo.png';
+import { Outlet } from 'react-router-dom';
 
-// Todo: Change children to <Outlet /> when I setup router
-export const MainLayout = memo(({ children }: { children?: ReactNode }) => (
+export const MainLayout = memo(() => (
   <Container>
     <VStack>
       <Center
@@ -43,7 +44,17 @@ export const MainLayout = memo(({ children }: { children?: ReactNode }) => (
       </Center>
       <Divider />
       <Flex w="full" justifyContent="space-between">
-        <Box flex={1}>{children}</Box>
+        <Box flex={1}>
+          <Suspense
+            fallback={
+              <Center>
+                <Spinner />
+              </Center>
+            }
+          >
+            <Outlet />
+          </Suspense>
+        </Box>
 
         <Box
           w={{
