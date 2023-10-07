@@ -2,11 +2,14 @@ import { Center, Spinner } from '@chakra-ui/react';
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet, RouteObject } from 'react-router-dom';
 
+// Constants
+import { ENDPOINT } from '@/constants';
+
 // Pages
 const SignIn = lazy(() => import('@/pages/SignIn'));
 
 export const authRoutes: RouteObject = {
-  path: 'auth',
+  path: ENDPOINT.Auth,
   element: (
     <Suspense
       fallback={
@@ -21,10 +24,10 @@ export const authRoutes: RouteObject = {
   children: [
     {
       index: true,
-      element: <Navigate to="sign-in" />,
+      element: <Navigate to={ENDPOINT.SignIn} />,
     },
     {
-      path: 'sign-in',
+      path: ENDPOINT.SignIn,
       Component: SignIn,
     },
   ],
