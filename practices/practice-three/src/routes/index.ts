@@ -4,6 +4,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import { privateRoutes } from './private';
 import { publicRoutes } from './public';
 
+// Constants
+import { ENDPOINT } from '@/constants';
+
 export const routes = createBrowserRouter([...privateRoutes, ...publicRoutes], {
-  basename: '/',
+  basename: ENDPOINT.Root,
 });
