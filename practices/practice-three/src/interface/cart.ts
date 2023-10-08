@@ -1,9 +1,15 @@
-// Todo: Later it will be integrated with the type of IProduct
+import { IProduct } from './product';
+
+export interface ICartData
+  extends Pick<
+    IProduct,
+    'imageURL' | 'name' | 'description' | 'price' | 'quantity'
+  > {
+  productId: number;
+}
+
 export interface ICart {
-  imageURL: string;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
+  id: number;
+  userId: number;
   productId: number;
 }
