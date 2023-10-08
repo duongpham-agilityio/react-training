@@ -42,7 +42,7 @@ interface IBadge {
 
 export interface ProductCardProps {
   info: IProductCard;
-  onAddToCard: (id: number) => void | Promise<void>;
+  onAddToCart: (id: number) => void | Promise<void>;
   onLike: (id: number) => void | Promise<void>;
 }
 
@@ -58,7 +58,7 @@ const Component = (props: ProductCardProps): JSX.Element => {
       status,
       statusMessage,
     },
-    onAddToCard,
+    onAddToCart,
     onLike,
   } = props;
 
@@ -81,9 +81,9 @@ const Component = (props: ProductCardProps): JSX.Element => {
     (e: MouseEvent): void => {
       e.preventDefault();
 
-      onAddToCard(id);
+      onAddToCart(id);
     },
-    [id, onAddToCard],
+    [id, onAddToCart],
   );
 
   const handleAddToFavorite = useCallback(
