@@ -1,40 +1,59 @@
 import { memo } from 'react';
 import isEqual from 'react-fast-compare';
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Center, Grid, GridItem, Text } from '@chakra-ui/react';
 
 // Components
-import { ProductCard } from '@/components';
+import { IProductCard, ProductCard, ProductCardProps } from '@/components';
 
-// Mocks
-import { productCardProps } from '@/mocks';
+// Types
+import { IProduct } from '@/interface';
 
-export interface ProductsProps {
-  data: string[];
+// Constants
+import { LIMIT_QUANTITY } from '@/constants';
+import { MESSAGES } from '@/constants/message';
+
+export interface ProductsProps extends Omit<ProductCardProps, 'info'> {
+  data: IProduct[];
 }
 
 const areCompare = (prevProps: ProductsProps, nextProps: ProductsProps) =>
   isEqual(prevProps.data, nextProps.data);
 
 export const Products = memo(
-  (): JSX.Element => (
-    <Grid
-      templateColumns={{
-        base: '1fr',
-        xl: '1fr 1fr',
-      }}
-      gap={6}
-    >
-      {Array.from({ length: 10 }).map(
-        (
-          _,
-          index: number, // Todo: Update when apply BE
-        ): JSX.Element => (
-          <GridItem key={index}>
-            <ProductCard {...productCardProps} />
-          </GridItem>
-        ),
-      )}
-    </Grid>
-  ),
+  ({ data, ...rest }: ProductsProps): JSX.Element =>
+    data.length ? (
+      <Grid
+        templateColumns={{
+          base: '1fr',
+          xl: '1fr 1fr',
+        }}
+        gap={6}
+      >
+        {data.map((product: IProduct): JSX.Element => {
+          const { id, imageURL, name, description, price, quantity } = product;
+          const info: IProductCard = {
+            id,
+            imageURL,
+            price,
+            description,
+            title: name,
+            status: quantity <= LIMIT_QUANTITY,
+            statusMessage: `Only ${quantity} left`,
+          };
+
+          return (
+            <GridItem key={id}>
+              <ProductCard info={info} {...rest} />
+            </GridItem>
+          );
+        })}
+      </Grid>
+    ) : (
+      <Center>
+        <Text fontSize={18} fontWeight="bold">
+          {MESSAGES.Empty}
+        </Text>
+      </Center>
+    ),
   areCompare,
 );
