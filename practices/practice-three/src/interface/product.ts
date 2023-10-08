@@ -9,5 +9,5 @@ export interface IProduct {
   isLiked: boolean;
   updatedAt: Date;
   createdAt: Date;
-  deletedAt: Date;
+  deletedAt: Date | null;
 }
