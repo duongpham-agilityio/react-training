@@ -8,16 +8,16 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
+import isEqual from 'react-fast-compare';
 
 // Types
-import { ICart } from '@/interface';
+import { ICartData } from '@/interface';
 
 // Icons
 import { Decrease, Increase, Trash } from '@/assets/icons';
-import isEqual from 'react-fast-compare';
 
 export interface CartItemProps {
-  data: ICart;
+  data: ICartData;
   onRemove: (productId: number) => void;
   onChangeQuantity: (productId: number, currentQuantity: number) => void;
 }
