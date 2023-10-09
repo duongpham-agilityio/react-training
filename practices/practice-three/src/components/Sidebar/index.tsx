@@ -26,6 +26,8 @@ import {
 
 // Components
 import Modal from '@/components/Modal';
+
+// Lazy components
 const Cart = lazy(() => import('@/components/Cart'));
 const Wishlist = lazy(() => import('@/components/Wishlist'));
 
@@ -55,7 +57,8 @@ const Lazy = ({ children }: { children: ReactNode }): JSX.Element => (
 );
 
 export const SideBar = memo((): JSX.Element => {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen: isShowFullSidebar, onToggle: onShowFullSideBar } =
+    useDisclosure();
   const { isOpen: isOpenWishlist, onToggle: onToggleWishlist } =
     useDisclosure();
   const { isOpen: isOpenCart, onToggle: onToggleCart } = useDisclosure();
@@ -129,7 +132,7 @@ export const SideBar = memo((): JSX.Element => {
             p={0}
             color="black"
             fontWeight="regular"
-            justifyContent={isOpen ? 'flex-start' : 'center'}
+            justifyContent={isShowFullSidebar ? 'flex-start' : 'center'}
             fontSize={{
               '2xl': 26,
               xl: 18,
@@ -138,12 +141,12 @@ export const SideBar = memo((): JSX.Element => {
           >
             <Icon />
 
-            {isOpen && title}
+            {isShowFullSidebar && title}
           </Square>
         </ListItem>
       );
     });
-  }, [isOpen, sidebarOptions]);
+  }, [isShowFullSidebar, sidebarOptions]);
 
   return (
     <>
@@ -163,7 +166,7 @@ export const SideBar = memo((): JSX.Element => {
           <ListItem position="relative" h={20}>
             <Square
               as={Link}
-              justifyContent={isOpen ? 'flex-start' : 'center'}
+              justifyContent={isShowFullSidebar ? 'flex-start' : 'center'}
               gap={5}
               mt={{
                 xl: 38,
@@ -180,7 +183,7 @@ export const SideBar = memo((): JSX.Element => {
             // Todo: Update when apply change mode   
             */}
               <LightMode />
-              {isOpen && (
+              {isShowFullSidebar && (
                 <>
                   Light
                   <Switch size="lg" />
@@ -198,8 +201,8 @@ export const SideBar = memo((): JSX.Element => {
             borderColor="blackAlpha.300"
             boxShadow="base"
             aria-label="Search database"
-            icon={isOpen ? <ArrowRight /> : <ArrowLeft />}
-            onClick={onToggle}
+            icon={isShowFullSidebar ? <ArrowRight /> : <ArrowLeft />}
+            onClick={onShowFullSideBar}
           />
         </Square>
       </VStack>
