@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 // Constants
-import { RECORDS_PER_PAGE } from '@/constants';
+import { RECORDS_PER_PAGE, SEARCH_PARAMS } from '@/constants';
 
 export interface IUsePagination<T> {
   data: T[];
@@ -20,7 +20,9 @@ export const usePagination = <T>(
   const [searchParam, setSearchParam] = useSearchParams({
     page: '1',
   });
-  const currentPage = Number(searchParam.get('page'));
+
+  //  Get current page
+  const currentPage: number = Number(searchParam.get(SEARCH_PARAMS.page));
 
   /**
    * Calculate the number of pages to RECORDS_PER_PAGE
@@ -60,18 +62,28 @@ export const usePagination = <T>(
   // Change page
   const onChangePage = useCallback(
     (page: number) => {
-      setSearchParam((prev) => ({
-        ...prev,
-        page: `${page}`,
-      }));
+      setSearchParam((prev) => {
+        prev.set(SEARCH_PARAMS.page, `${page}`);
+
+        return prev;
+      });
     },
     [setSearchParam],
   );
 
+  const paginationSize = pagination.length;
+
+  // Should we change the next page or not?
+  const isNextPage: boolean = currentPage < paginationSize;
+
+  // Should we change the next page or not?
+  const isPrevPage: boolean =
+    currentPage >= paginationSize && paginationSize !== 1 && !!paginationSize;
+
   return {
     data: dataShow,
-    isNextPage: currentPage < pagination.length,
-    isPrevPage: currentPage >= pagination.length,
+    isNextPage,
+    isPrevPage,
     currentPage,
     pagination,
     onChangePage,
