@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 // Constants
-import { RECORD } from '@/constants';
+import { RECORDS_PER_PAGE } from '@/constants';
 
 export interface IUsePagination<T> {
   data: T[];
@@ -15,7 +15,7 @@ export interface IUsePagination<T> {
 
 export const usePagination = <T>(
   data: T[],
-  record = RECORD,
+  record = RECORDS_PER_PAGE,
 ): IUsePagination<T> => {
   const [searchParam, setSearchParam] = useSearchParams({
     page: '1',
@@ -23,11 +23,11 @@ export const usePagination = <T>(
   const currentPage = Number(searchParam.get('page'));
 
   /**
-   * Calculate the number of pages to RECORD
+   * Calculate the number of pages to RECORDS_PER_PAGE
    */
   const pagination = useMemo(() => {
     const filtersLength = data.length;
-    const isSizePage = filtersLength % RECORD;
+    const isSizePage = filtersLength % RECORDS_PER_PAGE;
     const sizePage = Math.floor(filtersLength / record);
 
     if (!isSizePage) {
@@ -47,8 +47,8 @@ export const usePagination = <T>(
   const dataShow: T[] = useMemo((): T[] => {
     const result = data.filter((item) => {
       const index = data.indexOf(item);
-      const isStartIndex = index >= (currentPage - 1) * RECORD;
-      const isEndIndex = index < currentPage * RECORD;
+      const isStartIndex = index >= (currentPage - 1) * RECORDS_PER_PAGE;
+      const isEndIndex = index < currentPage * RECORDS_PER_PAGE;
       const condition = isStartIndex && isEndIndex;
 
       return condition;
