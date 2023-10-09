@@ -2,14 +2,16 @@ import { RouteObject } from 'react-router-dom';
 import { lazy } from 'react';
 
 // Constants
-import { ENDPOINT } from '@/constants';
+import { ROUTES } from '@/constants';
 
 // Components
 import { MainLayout } from '@/components/Layout';
+
+// Lazy components
 const HomePage = lazy(() => import('@/pages/Home'));
 
 export const homeRoutes: RouteObject = {
-  path: ENDPOINT.Root,
+  path: ROUTES.Root,
   element: <MainLayout />,
   children: [
     {
@@ -18,7 +20,7 @@ export const homeRoutes: RouteObject = {
     },
 
     {
-      path: ENDPOINT.Home,
+      path: ROUTES.Home,
       Component: HomePage,
     },
   ],

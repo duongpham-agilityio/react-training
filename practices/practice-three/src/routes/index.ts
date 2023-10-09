@@ -5,8 +5,8 @@ import { privateRoutes } from './private';
 import { publicRoutes } from './public';
 
 // Constants
-import { ENDPOINT } from '@/constants';
+import { ROUTES } from '@/constants';
 
 export const routes = createBrowserRouter([...privateRoutes, ...publicRoutes], {
-  basename: ENDPOINT.Root,
+  basename: ROUTES.Root,
 });

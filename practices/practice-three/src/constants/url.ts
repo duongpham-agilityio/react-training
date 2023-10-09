@@ -1,4 +1,4 @@
-export interface IEndpoint {
+export interface IRoutes {
   Root: string;
   Home: string;
   Detail: string;
@@ -6,7 +6,7 @@ export interface IEndpoint {
   SignIn: string;
 }
 
-export const ENDPOINT: Readonly<IEndpoint> = {
+export const ROUTES: Readonly<IRoutes> = {
   Root: '/',
   Home: 'home',
   Detail: 'detail',

@@ -3,13 +3,13 @@ import { Suspense, lazy } from 'react';
 import { Navigate, Outlet, RouteObject } from 'react-router-dom';
 
 // Constants
-import { ENDPOINT } from '@/constants';
+import { ROUTES } from '@/constants';
 
 // Pages
 const SignIn = lazy(() => import('@/pages/SignIn'));
 
 export const authRoutes: RouteObject = {
-  path: ENDPOINT.Auth,
+  path: ROUTES.Auth,
   element: (
     <Suspense
       fallback={
@@ -24,10 +24,10 @@ export const authRoutes: RouteObject = {
   children: [
     {
       index: true,
-      element: <Navigate to={ENDPOINT.SignIn} />,
+      element: <Navigate to={ROUTES.SignIn} />,
     },
     {
-      path: ENDPOINT.SignIn,
+      path: ROUTES.SignIn,
       Component: SignIn,
     },
   ],
