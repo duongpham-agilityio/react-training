@@ -1,8 +1,12 @@
 import { memo } from 'react';
-import { Button, Link, List, ListItem } from '@chakra-ui/react';
+import { Button, List, ListItem } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 // Mocks
 import { IFilterOption, filterOptions } from '@/mocks';
+
+// Constants
+import { SEARCH_PARAMS } from '@/constants';
 
 export const FilterOptions = memo(
   (): JSX.Element => (
@@ -13,8 +17,8 @@ export const FilterOptions = memo(
         return (
           <ListItem key={value}>
             <Button
-              as={Link} // Todo: Update to later
-              href={`?filter_option=${value}`} // Todo: Update to later
+              as={Link}
+              to={`?${SEARCH_PARAMS.category}=${value}`}
               border="1px solid"
               borderColor="blackAlpha.300"
               borderRadius={25}
