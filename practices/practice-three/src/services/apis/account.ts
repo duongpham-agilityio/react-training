@@ -27,7 +27,7 @@ const get: AccountAPI['get'] = async (email: string, password: string) => {
 
     return account;
   } catch (error) {
-    throw new Error(MESSAGES.FailToFetch);
+    throw new Error(MESSAGES.failToFetch);
   }
 };
 

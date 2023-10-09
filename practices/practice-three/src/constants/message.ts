@@ -1,9 +1,9 @@
 interface IMessages {
-  Empty: string;
-  FailToFetch: string;
+  empty: string;
+  failToFetch: string;
 }
 
 export const MESSAGES: IMessages = {
-  Empty: 'No data',
-  FailToFetch: 'Something went wrong!! Please reload page.',
+  empty: 'No data',
+  failToFetch: 'Something went wrong!! Please reload page.',
 };

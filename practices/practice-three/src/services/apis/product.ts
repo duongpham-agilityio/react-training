@@ -45,7 +45,7 @@ const getAll: IProductAPI['getAll'] = async () => {
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.FailToFetch);
+    throw new Error(MESSAGES.failToFetch);
   }
 };
 
@@ -62,7 +62,7 @@ const getById: IProductAPI['getById'] = async (id: number) => {
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.FailToFetch);
+    throw new Error(MESSAGES.failToFetch);
   }
 };
 
@@ -79,7 +79,7 @@ const getByName: IProductAPI['getByName'] = async (name: string) => {
 
     return res.data;
   } catch (err) {
-    throw new Error(MESSAGES.FailToFetch);
+    throw new Error(MESSAGES.failToFetch);
   }
 };
 
@@ -98,7 +98,7 @@ const getByCategory: IProductAPI['getByCategory'] = async (
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.FailToFetch);
+    throw new Error(MESSAGES.failToFetch);
   }
 };
 
@@ -123,7 +123,7 @@ const add: IProductAPI['add'] = async (payload: ProductPayload) => {
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.FailToFetch);
+    throw new Error(MESSAGES.failToFetch);
   }
 };
 
@@ -145,7 +145,7 @@ const update: IProductAPI['update'] = async (
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.FailToFetch);
+    throw new Error(MESSAGES.failToFetch);
   }
 };
 
@@ -166,7 +166,7 @@ const removeById: IProductAPI['removeById'] = async (
 
     return false;
   } catch (error) {
-    throw new Error(MESSAGES.FailToFetch);
+    throw new Error(MESSAGES.failToFetch);
   }
 };
 
