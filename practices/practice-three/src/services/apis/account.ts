@@ -2,7 +2,7 @@
 import { IAccount } from '@/interface';
 
 // Constants
-import { ENDPOINT_SERVICES, MESSAGES_FETCHING } from '@/constants';
+import { ENDPOINT_SERVICES, MESSAGES } from '@/constants';
 
 // Services
 import { apiRequest } from '@/services/configs';
@@ -27,7 +27,7 @@ const get: AccountAPI['get'] = async (email: string, password: string) => {
 
     return account;
   } catch (error) {
-    throw new Error(MESSAGES_FETCHING.FailToFetch);
+    throw new Error(MESSAGES.FailToFetch);
   }
 };
 

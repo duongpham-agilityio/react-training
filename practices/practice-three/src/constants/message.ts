@@ -1,7 +1,9 @@
-interface IFetching {
+interface IMessages {
+  Empty: string;
   FailToFetch: string;
 }
 
-export const MESSAGES_FETCHING: IFetching = {
-  FailToFetch: 'Something went wrong!!!',
+export const MESSAGES: IMessages = {
+  Empty: 'No data',
+  FailToFetch: 'Something went wrong!! Please reload page.',
 };
