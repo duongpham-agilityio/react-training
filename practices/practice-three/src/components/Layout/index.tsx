@@ -15,7 +15,7 @@ import { ReactNode, memo } from 'react';
 import { SideBar } from '@/components';
 
 // Images
-import Logo from '@/assets/images/logo.png';
+import { Logo } from '@/assets/images';
 
 // Todo: Change children to <Outlet /> when I setup router
 export const MainLayout = memo(({ children }: { children?: ReactNode }) => (

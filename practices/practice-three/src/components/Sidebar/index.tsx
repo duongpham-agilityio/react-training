@@ -154,7 +154,7 @@ export const SideBar = memo((): JSX.Element => {
         py={7}
         w="fit-content"
         border="1px solid"
-        borderColor="blackAlpha.300"
+        borderColor="gray.alpha.10"
         boxShadow="base"
         justifyContent="space-between"
       >

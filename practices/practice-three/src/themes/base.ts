@@ -15,6 +15,9 @@ export const colors: ThemeOverride['colors'] = {
     20: '#979797',
     30: '#585858',
     40: '#474747',
+    alpha: {
+      10: 'rgba(164, 164, 164, 0.30)',
+    },
   },
   yellow: {
     10: '#F8D442',
