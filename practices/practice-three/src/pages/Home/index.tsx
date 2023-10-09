@@ -3,16 +3,20 @@ import { Heading, Spinner, Square, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 
 // Components
-import { FilterBar } from '@/components';
+import { FilterBar, Pagination } from '@/components';
 import { Products } from '@/pages/Home/components';
 
 // Hooks
-import { useProduct } from '@/hooks';
-import { ENDPOINT_SERVICES } from '@/constants';
+import { usePagination, useProduct } from '@/hooks';
 
 // Services
 import { productAPI } from '@/services/apis';
-import { MESSAGES } from '@/constants/message';
+
+// Constants
+import { MESSAGES, ENDPOINT_SERVICES } from '@/constants';
+
+// Types
+import { IProduct } from '@/interface';
 
 const Component = (): JSX.Element => {
   // Search
@@ -26,7 +30,17 @@ const Component = (): JSX.Element => {
   } = useQuery({
     queryKey: [ENDPOINT_SERVICES.Products],
     queryFn: productAPI.getAll,
+    notifyOnChangeProps: ['data'],
   });
+
+  const {
+    data: products,
+    pagination,
+    currentPage,
+    isNextPage,
+    isPrevPage,
+    onChangePage,
+  } = usePagination<IProduct>(data);
 
   //  Handle with product
   const { onAddFavorite, onAddToCart } = useProduct();
@@ -46,7 +60,7 @@ const Component = (): JSX.Element => {
   if (isError)
     return (
       <Square size="full">
-        <Text>{MESSAGES.FailToFetch}</Text>
+        <Text>{MESSAGES.failToFetch}</Text>
       </Square>
     );
 
@@ -60,7 +74,22 @@ const Component = (): JSX.Element => {
       </Heading>
 
       {/* Render products */}
-      <Products data={data} onLike={onAddFavorite} onAddToCart={onAddToCart} />
+      <Products
+        data={products}
+        onLike={onAddFavorite}
+        onAddToCart={onAddToCart}
+      />
+
+      {/* Pagination */}
+      <Pagination
+        data={pagination}
+        currentPage={currentPage}
+        isNextPage={isNextPage}
+        isPrevPage={isPrevPage}
+        onChangePage={onChangePage}
+        onNextPage={onChangePage}
+        onPreviousPage={onChangePage}
+      />
     </>
   );
 };

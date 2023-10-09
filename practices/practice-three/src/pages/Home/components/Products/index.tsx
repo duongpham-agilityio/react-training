@@ -51,7 +51,7 @@ export const Products = memo(
     ) : (
       <Center>
         <Text fontSize={18} fontWeight="bold">
-          {MESSAGES.Empty}
+          {MESSAGES.empty}
         </Text>
       </Center>
     ),

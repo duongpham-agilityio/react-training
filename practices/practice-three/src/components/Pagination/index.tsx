@@ -12,12 +12,6 @@ export interface PaginationProps {
   onPreviousPage: (prevPage: number) => void;
 }
 
-// Control re-render
-const areCompare = (
-  prevProps: PaginationProps,
-  nextProps: PaginationProps,
-): boolean => isEqual(prevProps.data, nextProps.data);
-
 export const Pagination = memo((props: PaginationProps): JSX.Element => {
   const {
     data,
@@ -38,7 +32,7 @@ export const Pagination = memo((props: PaginationProps): JSX.Element => {
   }, [currentPage, onNextPage]);
 
   return (
-    <HStack justifyContent="center">
+    <HStack justifyContent="center" py={10}>
       <Button
         bg="gray.400"
         boxShadow="base"
@@ -49,6 +43,7 @@ export const Pagination = memo((props: PaginationProps): JSX.Element => {
       </Button>
       {data.map((page: number): JSX.Element => {
         const isActive = page === currentPage;
+
         const handleChangePage = () => {
           onChangePage(page);
         };
@@ -74,4 +69,4 @@ export const Pagination = memo((props: PaginationProps): JSX.Element => {
       </Button>
     </HStack>
   );
-}, areCompare);
+}, isEqual);
