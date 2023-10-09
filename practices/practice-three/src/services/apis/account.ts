@@ -1,6 +1,8 @@
 // Types
-import { ENDPOINT_SERVICES } from '@/constants';
 import { IAccount } from '@/interface';
+
+// Constants
+import { ENDPOINT_SERVICES, MESSAGES_FETCHING } from '@/constants';
 
 // Services
 import { apiRequest } from '@/services/configs';
@@ -15,17 +17,18 @@ interface AccountAPI {
  * @param password your password
  * @returns your account
  */
-const get: AccountAPI['get'] = async (
-  email: string,
-  password: string,
-): Promise<IAccount> => {
-  const account: IAccount = (
-    await apiRequest.get(
-      `${ENDPOINT_SERVICES.Users}?email=${email}&password=${password}`,
-    )
-  ).data;
+const get: AccountAPI['get'] = async (email: string, password: string) => {
+  try {
+    const account: IAccount = (
+      await apiRequest.get(
+        `${ENDPOINT_SERVICES.Users}?email=${email}&password=${password}`,
+      )
+    ).data;
 
-  return account;
+    return account;
+  } catch (error) {
+    throw new Error(MESSAGES_FETCHING.FailToFetch);
+  }
 };
 
 export const accountAPI = {

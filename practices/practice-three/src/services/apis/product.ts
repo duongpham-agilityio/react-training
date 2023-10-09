@@ -7,7 +7,7 @@ import { IProduct } from '@/interface';
 import { apiRequest } from '../configs';
 
 // Constants
-import { ENDPOINT_SERVICES } from '@/constants';
+import { ENDPOINT_SERVICES, MESSAGES_FETCHING } from '@/constants';
 
 type ProductPayload = Pick<
   IProduct,
@@ -21,25 +21,32 @@ type ProductPayload = Pick<
 >;
 
 interface IProductAPI {
-  getAll: () => Promise<IProduct[]>;
-  getById: (id: number) => Promise<IProduct>;
-  getByName: (name: string) => Promise<IProduct[]>;
-  getByCategory: (category: string) => Promise<IProduct[]>;
-  add: (product: ProductPayload) => Promise<IProduct>;
-  update: (id: number, payload: Partial<ProductPayload>) => Promise<IProduct>;
-  removeById: (id: number) => Promise<boolean>;
+  getAll: () => Promise<IProduct[]> | undefined;
+  getById: (id: number) => Promise<IProduct> | undefined;
+  getByName: (name: string) => Promise<IProduct[]> | undefined;
+  getByCategory: (category: string) => Promise<IProduct[]> | undefined;
+  add: (product: ProductPayload) => Promise<IProduct> | undefined;
+  update: (
+    id: number,
+    payload: Partial<ProductPayload>,
+  ) => Promise<IProduct> | undefined;
+  removeById: (id: number) => Promise<boolean> | undefined;
 }
 
 /**
  *   Get all products from db
  * @returns
  */
-const getAll: IProductAPI['getAll'] = async (): Promise<IProduct[]> => {
-  const res: AxiosResponse<IProduct[]> = await apiRequest.get<IProduct[]>(
-    ENDPOINT_SERVICES.Products,
-  );
+const getAll: IProductAPI['getAll'] = async () => {
+  try {
+    const res: AxiosResponse<IProduct[]> = await apiRequest.get<IProduct[]>(
+      ENDPOINT_SERVICES.Products,
+    );
 
-  return res.data;
+    return res.data;
+  } catch (error) {
+    throw new Error(MESSAGES_FETCHING.FailToFetch);
+  }
 };
 
 /**
@@ -47,14 +54,16 @@ const getAll: IProductAPI['getAll'] = async (): Promise<IProduct[]> => {
  * @param id
  * @returns
  */
-const getById: IProductAPI['getById'] = async (
-  id: number,
-): Promise<IProduct> => {
-  const res: AxiosResponse<IProduct> = await apiRequest.get(
-    `${ENDPOINT_SERVICES.Products}/${id}`,
-  );
+const getById: IProductAPI['getById'] = async (id: number) => {
+  try {
+    const res: AxiosResponse<IProduct> = await apiRequest.get(
+      `${ENDPOINT_SERVICES.Products}/${id}`,
+    );
 
-  return res.data;
+    return res.data;
+  } catch (error) {
+    throw new Error(MESSAGES_FETCHING.FailToFetch);
+  }
 };
 
 /**
@@ -62,14 +71,16 @@ const getById: IProductAPI['getById'] = async (
  * @param name
  * @returns
  */
-const getByName: IProductAPI['getByName'] = async (
-  name: string,
-): Promise<IProduct[]> => {
-  const res: AxiosResponse<IProduct[]> = await apiRequest.get(
-    `${ENDPOINT_SERVICES.Products}?name=${name}`,
-  );
+const getByName: IProductAPI['getByName'] = async (name: string) => {
+  try {
+    const res: AxiosResponse<IProduct[]> = await apiRequest.get(
+      `${ENDPOINT_SERVICES.Products}?name=${name}`,
+    );
 
-  return res.data;
+    return res.data;
+  } catch (err) {
+    throw new Error(MESSAGES_FETCHING.FailToFetch);
+  }
 };
 
 /**
@@ -79,12 +90,16 @@ const getByName: IProductAPI['getByName'] = async (
  */
 const getByCategory: IProductAPI['getByCategory'] = async (
   category: string,
-): Promise<IProduct[]> => {
-  const res: AxiosResponse<IProduct[]> = await apiRequest.get(
-    `${ENDPOINT_SERVICES.Products}?category=${category}`,
-  );
+) => {
+  try {
+    const res: AxiosResponse<IProduct[]> = await apiRequest.get(
+      `${ENDPOINT_SERVICES.Products}?category=${category}`,
+    );
 
-  return res.data;
+    return res.data;
+  } catch (error) {
+    throw new Error(MESSAGES_FETCHING.FailToFetch);
+  }
 };
 
 /**
@@ -92,23 +107,24 @@ const getByCategory: IProductAPI['getByCategory'] = async (
  * @param payload
  * @returns
  */
-const add: IProductAPI['add'] = async (
-  payload: ProductPayload,
-): Promise<IProduct> => {
-  // Define new product
-  const newProduct: Omit<IProduct, 'id'> = {
-    ...payload,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    deletedAt: null,
-  };
+const add: IProductAPI['add'] = async (payload: ProductPayload) => {
+  try {
+    // Define new product
+    const newProduct: Omit<IProduct, 'id'> = {
+      ...payload,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
 
-  const res: AxiosResponse<IProduct> = await apiRequest.post(
-    ENDPOINT_SERVICES.Products,
-    newProduct,
-  );
+    const res: AxiosResponse<IProduct> = await apiRequest.post(
+      ENDPOINT_SERVICES.Products,
+      newProduct,
+    );
 
-  return res.data;
+    return res.data;
+  } catch (error) {
+    throw new Error(MESSAGES_FETCHING.FailToFetch);
+  }
 };
 
 /**
@@ -121,12 +137,16 @@ const update: IProductAPI['update'] = async (
   id: number,
   payload: Partial<ProductPayload>,
 ): Promise<IProduct> => {
-  const res: AxiosResponse<IProduct> = await apiRequest.patch(
-    `${ENDPOINT_SERVICES.Products}/${id}`,
-    payload,
-  );
+  try {
+    const res: AxiosResponse<IProduct> = await apiRequest.patch(
+      `${ENDPOINT_SERVICES.Products}/${id}`,
+      payload,
+    );
 
-  return res.data;
+    return res.data;
+  } catch (error) {
+    throw new Error(MESSAGES_FETCHING.FailToFetch);
+  }
 };
 
 /**
@@ -137,13 +157,17 @@ const update: IProductAPI['update'] = async (
 const removeById: IProductAPI['removeById'] = async (
   id: number,
 ): Promise<boolean> => {
-  const res: AxiosResponse = await apiRequest.delete(
-    `${ENDPOINT_SERVICES.Products}/${id}`,
-  );
+  try {
+    const res: AxiosResponse = await apiRequest.delete(
+      `${ENDPOINT_SERVICES.Products}/${id}`,
+    );
 
-  if (+`${res.status}`[0] === 200) return true;
+    if (+`${res.status}`[0] === 200) return true;
 
-  return false;
+    return false;
+  } catch (error) {
+    throw new Error(MESSAGES_FETCHING.FailToFetch);
+  }
 };
 
 export const productAPI: IProductAPI = {
