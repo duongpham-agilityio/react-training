@@ -47,7 +47,8 @@ export const useSearch = (data: IProduct[]): IUseSearch => {
       data.filter((product: IProduct): boolean => {
         const { category } = product;
 
-        if (!currentCategory) return isIncludeName(currentSearchValue, product);
+        if (!currentCategory || currentCategory === 'all')
+          return isIncludeName(currentSearchValue, product);
 
         return (
           isIncludeName(currentSearchValue, product) &&
