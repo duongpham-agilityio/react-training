@@ -118,7 +118,7 @@ const Component = (props: ProductCardProps): JSX.Element => {
               <Heading fontSize={22} color="gray.40">
                 {title}
               </Heading>
-              <Text fontWeight="regular" py={3} fontSize={16}>
+              <Text fontWeight="regular" fontSize={16} noOfLines={3}>
                 {description}
               </Text>
               <Badge w={98} h={6} borderRadius={50} bg={badge.color} my={2}>
