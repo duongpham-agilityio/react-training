@@ -11,7 +11,7 @@ import { MainLayout } from '@/components/Layout';
 const HomePage = lazy(() => import('@/pages/Home'));
 
 export const homeRoutes: RouteObject = {
-  path: ROUTES.Root,
+  path: ROUTES.root,
   element: <MainLayout />,
   children: [
     {

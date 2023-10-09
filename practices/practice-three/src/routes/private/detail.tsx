@@ -11,16 +11,16 @@ import { MainLayout } from '@/components/Layout';
 const DetailPage = lazy(() => import('@/pages/Detail'));
 
 export const detailRoutes: RouteObject = {
-  path: ROUTES.Detail,
+  path: ROUTES.detail,
   Component: MainLayout,
   children: [
     {
       index: true,
-      element: <Navigate to={ROUTES.Root} />,
+      element: <Navigate to={ROUTES.root} />,
     },
 
     {
-      path: PARAM.Product,
+      path: PARAM.product,
       Component: DetailPage,
     },
   ],

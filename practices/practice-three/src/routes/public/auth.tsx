@@ -9,7 +9,7 @@ import { ROUTES } from '@/constants';
 const SignIn = lazy(() => import('@/pages/SignIn'));
 
 export const authRoutes: RouteObject = {
-  path: ROUTES.Auth,
+  path: ROUTES.auth,
   element: (
     <Suspense
       fallback={
@@ -24,10 +24,10 @@ export const authRoutes: RouteObject = {
   children: [
     {
       index: true,
-      element: <Navigate to={ROUTES.SignIn} />,
+      element: <Navigate to={ROUTES.signIn} />,
     },
     {
-      path: ROUTES.SignIn,
+      path: ROUTES.signIn,
       Component: SignIn,
     },
   ],

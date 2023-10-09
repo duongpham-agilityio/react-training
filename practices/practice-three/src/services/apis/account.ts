@@ -21,7 +21,7 @@ const get: AccountAPI['get'] = async (email: string, password: string) => {
   try {
     const account: IAccount = (
       await apiRequest.get(
-        `${ENDPOINT_SERVICES.Users}?email=${email}&password=${password}`,
+        `${ENDPOINT_SERVICES.users}?email=${email}&password=${password}`,
       )
     ).data;
 

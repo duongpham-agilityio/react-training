@@ -40,7 +40,7 @@ interface IProductAPI {
 const getAll: IProductAPI['getAll'] = async () => {
   try {
     const res: AxiosResponse<IProduct[]> = await apiRequest.get<IProduct[]>(
-      ENDPOINT_SERVICES.Products,
+      ENDPOINT_SERVICES.products,
     );
 
     return res.data;
@@ -57,7 +57,7 @@ const getAll: IProductAPI['getAll'] = async () => {
 const getById: IProductAPI['getById'] = async (id: number) => {
   try {
     const res: AxiosResponse<IProduct> = await apiRequest.get(
-      `${ENDPOINT_SERVICES.Products}/${id}`,
+      `${ENDPOINT_SERVICES.products}/${id}`,
     );
 
     return res.data;
@@ -74,7 +74,7 @@ const getById: IProductAPI['getById'] = async (id: number) => {
 const getByName: IProductAPI['getByName'] = async (name: string) => {
   try {
     const res: AxiosResponse<IProduct[]> = await apiRequest.get(
-      `${ENDPOINT_SERVICES.Products}?name=${name}`,
+      `${ENDPOINT_SERVICES.products}?name=${name}`,
     );
 
     return res.data;
@@ -93,7 +93,7 @@ const getByCategory: IProductAPI['getByCategory'] = async (
 ) => {
   try {
     const res: AxiosResponse<IProduct[]> = await apiRequest.get(
-      `${ENDPOINT_SERVICES.Products}?category=${category}`,
+      `${ENDPOINT_SERVICES.products}?category=${category}`,
     );
 
     return res.data;
@@ -117,7 +117,7 @@ const add: IProductAPI['add'] = async (payload: ProductPayload) => {
     };
 
     const res: AxiosResponse<IProduct> = await apiRequest.post(
-      ENDPOINT_SERVICES.Products,
+      ENDPOINT_SERVICES.products,
       newProduct,
     );
 
@@ -139,7 +139,7 @@ const update: IProductAPI['update'] = async (
 ): Promise<IProduct> => {
   try {
     const res: AxiosResponse<IProduct> = await apiRequest.patch(
-      `${ENDPOINT_SERVICES.Products}/${id}`,
+      `${ENDPOINT_SERVICES.products}/${id}`,
       payload,
     );
 
@@ -159,7 +159,7 @@ const removeById: IProductAPI['removeById'] = async (
 ): Promise<boolean> => {
   try {
     const res: AxiosResponse = await apiRequest.delete(
-      `${ENDPOINT_SERVICES.Products}/${id}`,
+      `${ENDPOINT_SERVICES.products}/${id}`,
     );
 
     if (+`${res.status}`[0] === 200) return true;
