@@ -39,7 +39,7 @@ export const MainLayout = memo(() => {
             borderRadius={5}
             alt="Logo for website"
           />
-          <Text fontSize="18" letterSpacing={2}>
+          <Text fontSize={18} letterSpacing={2}>
             Agility
           </Text>
         </Center>
