@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Heading, Spinner, Square, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 
@@ -7,7 +7,13 @@ import { FilterBar, Pagination } from '@/components';
 import { Products } from '@/pages/Home/components';
 
 // Hooks
-import { usePagination, useProduct, useSearch } from '@/hooks';
+import {
+  IUseFavorite,
+  useFavorite,
+  usePagination,
+  useProduct,
+  useSearch,
+} from '@/hooks';
 
 // Services
 import { productAPI } from '@/services/apis';
@@ -30,6 +36,11 @@ const Component = (): JSX.Element => {
     notifyOnChangeProps: ['data'],
   });
 
+  // Get handler from favorite store
+  const onToggleFavorite = useFavorite(
+    (state: IUseFavorite) => state.handleToggleFavorite,
+  );
+
   // Calling useSearch hook
   const {
     data: filterProducts,
@@ -37,6 +48,7 @@ const Component = (): JSX.Element => {
     onChangeSearchInput,
   } = useSearch(data);
 
+  // Pagination
   const {
     data: products,
     pagination,
@@ -47,7 +59,16 @@ const Component = (): JSX.Element => {
   } = usePagination<IProduct>(filterProducts);
 
   //  Handle with product
-  const { onAddFavorite, onAddToCart } = useProduct();
+  const { onAddToCart } = useProduct();
+
+  const handleSelectFavorite = useCallback(
+    (id: number): void => {
+      const product = data.find((item) => item.id === id);
+
+      onToggleFavorite(product);
+    },
+    [data, onToggleFavorite],
+  );
 
   if (isLoading)
     return (
@@ -75,7 +96,7 @@ const Component = (): JSX.Element => {
       {/* Render products */}
       <Products
         data={products}
-        onLike={onAddFavorite}
+        onLike={handleSelectFavorite}
         onAddToCart={onAddToCart}
       />
 

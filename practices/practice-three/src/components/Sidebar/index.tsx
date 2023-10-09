@@ -14,6 +14,12 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
+// Hooks
+import { IUseFavorite, useFavorite } from '@/hooks';
+
+// Components
+import Modal from '@/components/Modal';
+
 // Icons
 import {
   ArrowLeft,
@@ -23,9 +29,6 @@ import {
   LightMode,
   PersonCircle,
 } from '@/assets/icons';
-
-// Components
-import Modal from '@/components/Modal';
 
 // Lazy components
 const Cart = lazy(() => import('@/components/Cart'));
@@ -65,7 +68,9 @@ export const SideBar = memo((): JSX.Element => {
 
   // Todo: Update when integrate BE
   const quantityCart = 8;
-  const quantityFavorite = 9;
+
+  // Quantity favorite product
+  const favoriteSize = useFavorite((state: IUseFavorite) => state.data.length);
 
   const sidebarOptions: ISideBarOption[] = useMemo(
     (): ISideBarOption[] => [
@@ -74,7 +79,7 @@ export const SideBar = memo((): JSX.Element => {
         title: 'Wishlist',
         isShowPseudo: true,
         pseudoColor: 'red.20',
-        pseudoValue: quantityCart,
+        pseudoValue: favoriteSize,
         onClick: onToggleWishlist,
       },
       {
@@ -82,7 +87,7 @@ export const SideBar = memo((): JSX.Element => {
         title: 'Cart',
         isShowPseudo: true,
         pseudoColor: 'blue.alpha.10',
-        pseudoValue: quantityFavorite,
+        pseudoValue: quantityCart,
         onClick: onToggleCart,
       },
       {
@@ -90,7 +95,7 @@ export const SideBar = memo((): JSX.Element => {
         title: 'Join',
       },
     ],
-    [onToggleCart, onToggleWishlist],
+    [onToggleCart, onToggleWishlist, favoriteSize],
   );
 
   const renderOptions: JSX.Element[] = useMemo(() => {
