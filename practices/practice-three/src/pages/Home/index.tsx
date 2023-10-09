@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { memo } from 'react';
 import { Heading, Spinner, Square, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 
@@ -7,7 +7,7 @@ import { FilterBar, Pagination } from '@/components';
 import { Products } from '@/pages/Home/components';
 
 // Hooks
-import { usePagination, useProduct } from '@/hooks';
+import { usePagination, useProduct, useSearch } from '@/hooks';
 
 // Services
 import { productAPI } from '@/services/apis';
@@ -19,19 +19,23 @@ import { MESSAGES, ENDPOINT_SERVICES } from '@/constants';
 import { IProduct } from '@/interface';
 
 const Component = (): JSX.Element => {
-  // Search
-  const [filter, setFilter] = useState<string>('');
-
   // Get products
   const {
     isLoading,
     isError,
     data = [],
   } = useQuery({
-    queryKey: [ENDPOINT_SERVICES.Products],
+    queryKey: [ENDPOINT_SERVICES.products],
     queryFn: productAPI.getAll,
     notifyOnChangeProps: ['data'],
   });
+
+  // Calling useSearch hook
+  const {
+    data: filterProducts,
+    searchValue,
+    onChangeSearchInput,
+  } = useSearch(data);
 
   const {
     data: products,
@@ -40,15 +44,10 @@ const Component = (): JSX.Element => {
     isNextPage,
     isPrevPage,
     onChangePage,
-  } = usePagination<IProduct>(data);
+  } = usePagination<IProduct>(filterProducts);
 
   //  Handle with product
   const { onAddFavorite, onAddToCart } = useProduct();
-
-  //  Handle change search value
-  const onChangeFilter = useCallback((value: string): void => {
-    setFilter(value);
-  }, []);
 
   if (isLoading)
     return (
@@ -66,7 +65,7 @@ const Component = (): JSX.Element => {
 
   return (
     <>
-      <FilterBar value={filter} onChange={onChangeFilter} />
+      <FilterBar value={searchValue} onChange={onChangeSearchInput} />
 
       {/* Title for filter by option */}
       <Heading fontSize={32} py={10} color="gray.40">
