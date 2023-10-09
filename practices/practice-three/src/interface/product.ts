@@ -7,7 +7,7 @@ export interface IProduct {
   price: number;
   quantity: number;
   isLiked: boolean;
-  updatedAt: Date;
+  updatedAt?: Date;
   createdAt: Date;
-  deletedAt: Date | null;
+  deletedAt?: Date;
 }
