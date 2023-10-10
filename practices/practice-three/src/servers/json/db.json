@@ -6,7 +6,7 @@
       "description": "Quos tempora adipisci quidem ipsum.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "430.00",
-      "quantity": "2",
+      "quantity": 5,
       "isLiked": true,
       "id": 1
     },
@@ -15,7 +15,7 @@
       "description": "Ab repellat ullam autem. Esse facere facere debitis dicta quidem nihil. Saepe suscipit ex.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "373.00",
-      "quantity": "5",
+      "quantity": 6,
       "isLiked": false,
       "id": 2
     },
@@ -24,7 +24,7 @@
       "description": "Eum quo porro doloribus nesciunt enim accusamus odio impedit.\nExplicabo doloremque ea non minima assumenda in explicabo.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "269.00",
-      "quantity": "8",
+      "quantity": 8,
       "isLiked": true,
       "id": 3
     },
@@ -33,7 +33,7 @@
       "description": "saepe consectetur tempora",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "29.00",
-      "quantity": "8",
+      "quantity": 8,
       "isLiked": false,
       "id": 4
     },
@@ -42,7 +42,7 @@
       "description": "Libero rerum enim debitis inventore excepturi.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "653.00",
-      "quantity": "2",
+      "quantity": 1,
       "isLiked": false,
       "id": 5
     },
@@ -51,7 +51,7 @@
       "description": "Praesentium explicabo dolores itaque nobis vel. Dolor tempore laudantium culpa quas odit harum.\nPariatur iure nemo vel temporibus delectus adipisci consectetur harum quibusdam. Dolorum officiis eum in est. Placeat accusantium cum molestias corrupti possimus perspiciatis quod. Nam eveniet aperiam illum placeat quasi saepe necessitatibus esse eligendi. Nostrum nulla delectus illum in neque at.\nVel magni minima nemo libero voluptatum veniam architecto. Vero possimus dolor fugiat repudiandae. Unde corporis perspiciatis occaecati corrupti cupiditate ab dicta deleniti. Odio nisi dolores maxime soluta dicta nihil.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "519.00",
-      "quantity": "4",
+      "quantity": 4,
       "isLiked": true,
       "id": 6
     },
@@ -60,7 +60,7 @@
       "description": "Nam corrupti ipsam molestiae nisi repudiandae dolorem consequuntur. Tempora sequi deleniti quo.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "505.00",
-      "quantity": "4",
+      "quantity": 4,
       "isLiked": false,
       "id": 7
     },
@@ -69,7 +69,7 @@
       "description": "Dicta amet beatae doloremque asperiores consectetur nulla ipsum iste nemo. Error ut vel distinctio eum quos.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "733.00",
-      "quantity": "4",
+      "quantity": 4,
       "isLiked": false,
       "id": 12
     },
@@ -78,7 +78,7 @@
       "description": "Facilis vel reprehenderit.\nId iure aspernatur illum at consequuntur repellendus.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "894.00",
-      "quantity": "7",
+      "quantity": 7,
       "isLiked": false,
       "id": 8
     },
@@ -87,7 +87,7 @@
       "description": "Eligendi nulla explicabo veritatis suscipit suscipit molestiae labore nemo amet.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "111.00",
-      "quantity": "7",
+      "quantity": 7,
       "isLiked": false,
       "id": 9
     },
@@ -96,7 +96,7 @@
       "description": "harum",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "649.00",
-      "quantity": "2",
+      "quantity": 2,
       "isLiked": false,
       "id": 10
     },
@@ -105,7 +105,7 @@
       "description": "Enim fuga vitae.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "988.00",
-      "quantity": "7",
+      "quantity": 7,
       "isLiked": true,
       "id": 11
     }

@@ -9,9 +9,9 @@ import { Products } from '@/pages/Home/components';
 // Hooks
 import {
   IUseFavorite,
+  useCart,
   useFavorite,
   usePagination,
-  useProduct,
   useSearch,
 } from '@/hooks';
 
@@ -58,9 +58,6 @@ const Component = (): JSX.Element => {
     onChangePage,
   } = usePagination<IProduct>(filterProducts);
 
-  //  Handle with product
-  const { onAddToCart } = useProduct();
-
   const handleSelectFavorite = useCallback(
     (id: number): void => {
       const product = data.find((item) => item.id === id);
@@ -69,6 +66,26 @@ const Component = (): JSX.Element => {
     },
     [data, onToggleFavorite],
   );
+
+  const { onAddToCart } = useCart();
+
+  const handleAddToCart = (id: number): void => {
+    const product: IProduct | undefined = products.find(
+      (product) => product.id === id,
+    );
+
+    if (!product) return;
+
+    const isAddSuccess: boolean = onAddToCart(product);
+
+    if (isAddSuccess) {
+      console.log('Success');
+
+      return;
+    }
+
+    console.log('Failed');
+  };
 
   if (isLoading)
     return (
@@ -97,7 +114,7 @@ const Component = (): JSX.Element => {
       <Products
         data={products}
         onLike={handleSelectFavorite}
-        onAddToCart={onAddToCart}
+        onAddToCart={handleAddToCart}
       />
 
       {/* Pagination */}
