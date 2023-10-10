@@ -32,13 +32,7 @@ export const usePagination = <T>(
     const isSizePage = filtersLength % RECORDS_PER_PAGE;
     const sizePage = Math.floor(filtersLength / record);
 
-    if (!isSizePage) {
-      return Array.from({ length: sizePage }).map(
-        (_, index: number): number => index + 1,
-      );
-    }
-
-    return Array.from({ length: sizePage + 1 }).map(
+    return Array.from({ length: isSizePage ? sizePage + 1 : sizePage }).map(
       (_, index: number): number => index + 1,
     );
   }, [data.length, record]);
