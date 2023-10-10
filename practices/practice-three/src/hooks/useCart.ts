@@ -37,18 +37,26 @@ export const useCartStore = create(
 );
 
 export const useHandleCart = (): IUseCart => {
+  //  Get handle add to cart from store
   const addNewProduct = useCartStore(
     (state: IUseCartStore): IUseCartStore['addNewProduct'] =>
       state.addNewProduct,
   );
 
+  //  Get handle update cart
   const updateCart = useCartStore(
     (state: IUseCartStore): IUseCartStore['updateCart'] => state.updateCart,
   );
 
+  //  Handle check quantity
   const isValidQuantity = useCallback(
-    (quantityInCart: number, quantityInStock: number): boolean =>
-      quantityInCart <= quantityInStock && !!quantityInCart,
+    (quantityInCart: number, quantityInStock: number): boolean => {
+      return (
+        quantityInCart <= quantityInStock &&
+        !!quantityInCart &&
+        !!quantityInStock
+      );
+    },
     [],
   );
 
@@ -56,6 +64,7 @@ export const useHandleCart = (): IUseCart => {
   const handleAddProductToCart = useCallback(
     (product: IProduct): boolean => {
       try {
+        //  Get data from cart store
         const { data: carts } = useCartStore.getState();
         const { id, description, imageURL, name, price, quantity } = product;
 
@@ -63,6 +72,11 @@ export const useHandleCart = (): IUseCart => {
         const isExist: ICartData | undefined = carts.find(
           (item) => item.productId === id,
         );
+
+        //  Check quantity in stock is valid
+        let isValid: boolean = isValidQuantity(quantity, quantity);
+
+        if ((!isExist || isExist) && !isValid) return false;
 
         if (!isExist) {
           const newRecord: ICartData = {
@@ -79,18 +93,17 @@ export const useHandleCart = (): IUseCart => {
           return true;
         }
 
-        const isQuantityValid = isValidQuantity(isExist.quantity, quantity);
+        //  Check quantity between in stock and cart
+        isValid = isValidQuantity(isExist.quantity, quantity);
 
-        if (isQuantityValid) {
-          isExist.quantity += 1;
-          isExist.price = price * isExist.quantity;
+        if (!isValid) return false;
 
-          updateCart([...carts]);
+        isExist.quantity += 1;
+        isExist.price = price * isExist.quantity;
 
-          return true;
-        }
+        updateCart([...carts]);
 
-        return false;
+        return true;
       } catch (error) {
         return false;
       }
@@ -98,6 +111,7 @@ export const useHandleCart = (): IUseCart => {
     [addNewProduct, isValidQuantity, updateCart],
   );
 
+  //  Handle remove product from cart
   const handleRemove = useCallback(
     (productId: number): void => {
       const carts: ICartData[] = useCartStore.getState().data;
@@ -110,6 +124,7 @@ export const useHandleCart = (): IUseCart => {
     [updateCart],
   );
 
+  //  Handle change quantity from cart
   const handleQuantity = useCallback(
     async (productId: number, quantity: number): Promise<void> => {
       try {
@@ -145,6 +160,7 @@ export const useHandleCart = (): IUseCart => {
     [isValidQuantity, updateCart],
   );
 
+  //  Handle checkout
   const handleCheckout = useCallback(async () => {
     // Get products from DB
     const products: IProduct[] = (await productAPI.getAll()) || [];
