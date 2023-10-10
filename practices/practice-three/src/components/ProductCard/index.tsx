@@ -74,7 +74,7 @@ const Component = (props: ProductCardProps): JSX.Element => {
       },
     };
 
-    return obj[status ? 'available' : 'other'];
+    return obj[!status ? 'available' : 'other'];
   }, [status, statusMessage]);
 
   const handleAddToCart = useCallback(
@@ -158,7 +158,4 @@ const Component = (props: ProductCardProps): JSX.Element => {
   );
 };
 
-const areCompare = (prevProps: ProductCardProps, nextProps: ProductCardProps) =>
-  isEqual(prevProps.info, nextProps.info);
-
-export const ProductCard = memo(Component, areCompare);
+export const ProductCard = memo(Component, isEqual);

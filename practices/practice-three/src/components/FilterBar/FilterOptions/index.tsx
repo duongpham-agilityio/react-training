@@ -18,7 +18,7 @@ export const FilterOptions = memo(
           <ListItem key={value}>
             <Button
               as={Link}
-              to={`?${SEARCH_PARAMS.category}=${value}`}
+              to={`?${SEARCH_PARAMS.CATEGORY}=${value}`}
               border="1px solid"
               borderColor="blackAlpha.300"
               borderRadius={25}

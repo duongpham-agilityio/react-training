@@ -8,7 +8,6 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 
 // Types
 import { ICartData } from '@/interface';
@@ -22,12 +21,7 @@ export interface CartItemProps {
   onChangeQuantity: (productId: number, currentQuantity: number) => void;
 }
 
-const areCompare = (
-  prevProps: CartItemProps,
-  nextProps: CartItemProps,
-): boolean => isEqual(prevProps.data, nextProps.data);
-
-export const CartItem = memo((props: CartItemProps): JSX.Element => {
+const CartItemComponent = (props: CartItemProps): JSX.Element => {
   const { data, onChangeQuantity, onRemove } = props;
   const { name, description, imageURL, productId, price, quantity } = data;
 
@@ -114,4 +108,6 @@ export const CartItem = memo((props: CartItemProps): JSX.Element => {
       </Center>
     </Flex>
   );
-}, areCompare);
+};
+
+export const CartItem = memo(CartItemComponent);

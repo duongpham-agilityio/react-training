@@ -16,7 +16,7 @@ import { IProduct } from '@/interface';
 const Component = (): JSX.Element => {
   const favorites = useFavorite((state: IUseFavorite) => state.data);
   const onAddToFavorite = useFavorite(
-    (state: IUseFavorite) => state.handleToggleFavorite,
+    (state: IUseFavorite) => state.onToggleFavorite,
   );
 
   // Check for product is liked

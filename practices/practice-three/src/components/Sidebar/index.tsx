@@ -15,7 +15,12 @@ import {
 } from '@chakra-ui/react';
 
 // Hooks
-import { IUseFavorite, useFavorite } from '@/hooks';
+import {
+  IUseCartStore,
+  IUseFavorite,
+  useCartStore,
+  useFavorite,
+} from '@/hooks';
 
 // Components
 import Modal from '@/components/Modal';
@@ -66,8 +71,10 @@ export const SideBar = memo((): JSX.Element => {
     useDisclosure();
   const { isOpen: isOpenCart, onToggle: onToggleCart } = useDisclosure();
 
-  // Todo: Update when integrate BE
-  const quantityCart = 8;
+  // Quantity product in cart
+  const quantityCart = useCartStore(
+    (state: IUseCartStore) => state.data.length,
+  );
 
   // Quantity favorite product
   const favoriteSize = useFavorite((state: IUseFavorite) => state.data.length);
@@ -95,7 +102,7 @@ export const SideBar = memo((): JSX.Element => {
         title: 'Join',
       },
     ],
-    [onToggleCart, onToggleWishlist, favoriteSize],
+    [favoriteSize, onToggleWishlist, quantityCart, onToggleCart],
   );
 
   const renderOptions: JSX.Element[] = useMemo(() => {

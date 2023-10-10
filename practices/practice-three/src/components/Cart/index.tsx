@@ -1,20 +1,93 @@
 import { memo, useCallback } from 'react';
-import { Box, Flex, VStack } from '@chakra-ui/react';
+import { Box, Flex, Spinner, Square, VStack, useToast } from '@chakra-ui/react';
+
+// Hooks
+import { IUseCartStore, useCartStore, useHandleCart } from '@/hooks';
+
+// Constants
+import {
+  ENDPOINT_SERVICES,
+  MESSAGES,
+  TITLES,
+  TOAST_TIME_OUT,
+} from '@/constants';
 
 // Components
 import { CartItem, Checkout } from './components';
 
-// Mocks
-import { cartItemProps } from '@/mocks';
+// Types
+import { ICartData } from '@/interface';
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 
-//  Todo: Call API get data from cart
 const Component = (): JSX.Element => {
-  //  Todo: Add handle when I apply BE
-  const handleCheckout = useCallback((): void => {}, []);
+  const queryClient: QueryClient = useQueryClient();
 
-  const handleChangeQuantity = useCallback((): void => {}, []);
+  // Toast
+  const toast = useToast({
+    duration: TOAST_TIME_OUT,
+  });
 
-  const handleRemoveFromCart = useCallback((): void => {}, []);
+  //  Get data from cart
+  const carts = useCartStore((state: IUseCartStore): ICartData[] => state.data);
+
+  // Get method clearCart
+  const clearCart = useCartStore((state: IUseCartStore) => state.updateCart);
+
+  // Destructure to get the handler
+  const { handleRemove, handleQuantity, handleCheckout } = useHandleCart();
+
+  const { isLoading, mutate } = useMutation({
+    mutationFn: handleCheckout,
+    onSuccess: () => {
+      //  Remove all product from cart
+      clearCart([]);
+
+      // Trigger data refetch request
+      queryClient.invalidateQueries([ENDPOINT_SERVICES.PRODUCTS]);
+
+      // Show notification
+      toast({
+        title: TITLES.SUCCESS,
+        description: MESSAGES.REMOVE_FORM_CART_SUCCESS,
+        status: 'success',
+      });
+    },
+    onError: (error: Error) => {
+      const message: string = error.message;
+
+      toast({
+        title: TITLES.ERROR,
+        description: message,
+        status: 'error',
+      });
+    },
+  });
+
+  // Handle remove  product from cart
+  const handleRemoveProductFromCart = useCallback(
+    (id: number) => {
+      try {
+        handleRemove(id);
+
+        toast({
+          title: TITLES.SUCCESS,
+          description: MESSAGES.REMOVE_FORM_CART_SUCCESS,
+          status: 'success',
+        });
+      } catch (error) {
+        toast({
+          title: TITLES.ERROR,
+          description: MESSAGES.REMOVE_FORM_CART_FAIL,
+          status: 'error',
+        });
+      }
+    },
+    [handleRemove, toast],
+  );
 
   return (
     <Flex
@@ -26,18 +99,28 @@ const Component = (): JSX.Element => {
       }}
     >
       <Box flex={1} h="full" overflowY={{ base: 'scroll' }}>
-        <VStack>
-          {Array.from({ length: 9 }).map(() => (
-            <CartItem
-              {...cartItemProps}
-              onChangeQuantity={handleChangeQuantity}
-              onRemove={handleRemoveFromCart}
-            />
-          ))}
-        </VStack>
+        {isLoading ? (
+          <Square size="full">
+            <Spinner />
+          </Square>
+        ) : (
+          <VStack>
+            {carts.map((cart: ICartData): JSX.Element => {
+              return (
+                <CartItem
+                  key={cart.productId}
+                  // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
+                  data={cart}
+                  onChangeQuantity={handleQuantity}
+                  onRemove={handleRemoveProductFromCart}
+                />
+              );
+            })}
+          </VStack>
+        )}
       </Box>
 
-      <Checkout total={0} onCheckout={handleCheckout} />
+      <Checkout total={0} onCheckout={mutate} />
     </Flex>
   );
 };
