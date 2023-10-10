@@ -1,50 +1,50 @@
 export interface IRoutes {
-  root: string;
-  home: string;
-  detail: string;
-  auth: string;
-  signIn: string;
+  ROOT: string;
+  HOME: string;
+  DETAIL: string;
+  AUTH: string;
+  SIGN_IN: string;
 }
 
 export const ROUTES: Readonly<IRoutes> = {
-  root: '/',
-  home: 'home',
-  detail: 'detail',
-  auth: 'auth',
-  signIn: 'sign-in',
+  ROOT: '/',
+  HOME: 'home',
+  DETAIL: 'detail',
+  AUTH: 'auth',
+  SIGN_IN: 'sign-in',
 };
 
 //  Params
 export interface IParam {
-  product: string;
+  PRODUCT: string;
 }
 
 export const PARAM: Readonly<IParam> = {
-  product: ':product_id',
+  PRODUCT: ':product_id',
 };
 
 // Service Endpoints
 export interface IEndpointService {
-  users: string;
-  products: string;
-  carts: string;
+  USERS: string;
+  PRODUCTS: string;
+  CARTS: string;
 }
 
 export const ENDPOINT_SERVICES: Readonly<IEndpointService> = {
-  users: 'users',
-  products: 'products',
-  carts: 'carts',
+  USERS: 'users',
+  PRODUCTS: 'products',
+  CARTS: 'carts',
 };
 
 // Search params
 export interface ISearchParam {
-  page: string;
-  name: string;
-  category: string;
+  PAGE: string;
+  NAME: string;
+  CATEGORY: string;
 }
 
 export const SEARCH_PARAMS: Readonly<ISearchParam> = {
-  page: 'page',
-  name: 'name',
-  category: 'category',
+  PAGE: 'page',
+  NAME: 'name',
+  CATEGORY: 'category',
 };

@@ -6,7 +6,7 @@
       "description": "Quos tempora adipisci quidem ipsum.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "430.00",
-      "quantity": 5,
+      "quantity": 11,
       "isLiked": true,
       "id": 1
     },
@@ -15,7 +15,7 @@
       "description": "Ab repellat ullam autem. Esse facere facere debitis dicta quidem nihil. Saepe suscipit ex.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "373.00",
-      "quantity": 6,
+      "quantity": 0,
       "isLiked": false,
       "id": 2
     },

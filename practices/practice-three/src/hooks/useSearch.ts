@@ -23,11 +23,11 @@ export const useSearch = (data: IProduct[]): IUseSearch => {
 
   // Get 'name' from param
   const currentSearchValue: string = (
-    param.get(SEARCH_PARAMS.name) || ''
+    param.get(SEARCH_PARAMS.NAME) || ''
   ).trim();
 
   // Get 'category' from param
-  const currentCategory: string = param.get(SEARCH_PARAMS.category) || '';
+  const currentCategory: string = param.get(SEARCH_PARAMS.CATEGORY) || '';
 
   const isIncludeName = useCallback(
     (nameParam: string, data: IProduct): boolean => {
@@ -63,12 +63,12 @@ export const useSearch = (data: IProduct[]): IUseSearch => {
     (value: string) => {
       setSearchParam((prev) => {
         if (!value) {
-          prev.delete(SEARCH_PARAMS.name);
+          prev.delete(SEARCH_PARAMS.NAME);
 
           return prev;
         }
 
-        prev.set(SEARCH_PARAMS.name, value);
+        prev.set(SEARCH_PARAMS.NAME, value);
         return prev;
       });
     },

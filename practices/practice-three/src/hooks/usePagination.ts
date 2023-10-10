@@ -22,7 +22,7 @@ export const usePagination = <T>(
   });
 
   //  Get current page
-  const currentPage: number = Number(searchParam.get(SEARCH_PARAMS.page));
+  const currentPage: number = Number(searchParam.get(SEARCH_PARAMS.PAGE));
 
   /**
    * Calculate the number of pages to RECORDS_PER_PAGE
@@ -57,7 +57,7 @@ export const usePagination = <T>(
   const onChangePage = useCallback(
     (page: number) => {
       setSearchParam((prev) => {
-        prev.set(SEARCH_PARAMS.page, `${page}`);
+        prev.set(SEARCH_PARAMS.PAGE, `${page}`);
 
         return prev;
       });

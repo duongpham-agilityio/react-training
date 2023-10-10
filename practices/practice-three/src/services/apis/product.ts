@@ -40,12 +40,12 @@ interface IProductAPI {
 const getAll: IProductAPI['getAll'] = async () => {
   try {
     const res: AxiosResponse<IProduct[]> = await apiRequest.get<IProduct[]>(
-      ENDPOINT_SERVICES.products,
+      ENDPOINT_SERVICES.PRODUCTS,
     );
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.failToFetch);
+    throw new Error(MESSAGES.FAIL_TO_FETCH);
   }
 };
 
@@ -57,12 +57,12 @@ const getAll: IProductAPI['getAll'] = async () => {
 const getById: IProductAPI['getById'] = async (id: number) => {
   try {
     const res: AxiosResponse<IProduct> = await apiRequest.get(
-      `${ENDPOINT_SERVICES.products}/${id}`,
+      `${ENDPOINT_SERVICES.PRODUCTS}/${id}`,
     );
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.failToFetch);
+    throw new Error(MESSAGES.FAIL_TO_FETCH);
   }
 };
 
@@ -74,12 +74,12 @@ const getById: IProductAPI['getById'] = async (id: number) => {
 const getByName: IProductAPI['getByName'] = async (name: string) => {
   try {
     const res: AxiosResponse<IProduct[]> = await apiRequest.get(
-      `${ENDPOINT_SERVICES.products}?name=${name}`,
+      `${ENDPOINT_SERVICES.PRODUCTS}?name=${name}`,
     );
 
     return res.data;
   } catch (err) {
-    throw new Error(MESSAGES.failToFetch);
+    throw new Error(MESSAGES.FAIL_TO_FETCH);
   }
 };
 
@@ -93,12 +93,12 @@ const getByCategory: IProductAPI['getByCategory'] = async (
 ) => {
   try {
     const res: AxiosResponse<IProduct[]> = await apiRequest.get(
-      `${ENDPOINT_SERVICES.products}?category=${category}`,
+      `${ENDPOINT_SERVICES.PRODUCTS}?category=${category}`,
     );
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.failToFetch);
+    throw new Error(MESSAGES.FAIL_TO_FETCH);
   }
 };
 
@@ -117,13 +117,13 @@ const add: IProductAPI['add'] = async (payload: ProductPayload) => {
     };
 
     const res: AxiosResponse<IProduct> = await apiRequest.post(
-      ENDPOINT_SERVICES.products,
+      ENDPOINT_SERVICES.PRODUCTS,
       newProduct,
     );
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.failToFetch);
+    throw new Error(MESSAGES.FAIL_TO_FETCH);
   }
 };
 
@@ -139,13 +139,13 @@ const update: IProductAPI['update'] = async (
 ): Promise<IProduct> => {
   try {
     const res: AxiosResponse<IProduct> = await apiRequest.patch(
-      `${ENDPOINT_SERVICES.products}/${id}`,
+      `${ENDPOINT_SERVICES.PRODUCTS}/${id}`,
       payload,
     );
 
     return res.data;
   } catch (error) {
-    throw new Error(MESSAGES.failToFetch);
+    throw new Error(MESSAGES.FAIL_TO_FETCH);
   }
 };
 
@@ -159,14 +159,14 @@ const removeById: IProductAPI['removeById'] = async (
 ): Promise<boolean> => {
   try {
     const res: AxiosResponse = await apiRequest.delete(
-      `${ENDPOINT_SERVICES.products}/${id}`,
+      `${ENDPOINT_SERVICES.PRODUCTS}/${id}`,
     );
 
     if (+`${res.status}`[0] === 200) return true;
 
     return false;
   } catch (error) {
-    throw new Error(MESSAGES.failToFetch);
+    throw new Error(MESSAGES.FAIL_TO_FETCH);
   }
 };
 

@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { Heading, Spinner, Square, Text } from '@chakra-ui/react';
+import { Heading, Spinner, Square, Text, useToast } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 
 // Components
@@ -9,7 +9,7 @@ import { Products } from '@/pages/Home/components';
 // Hooks
 import {
   IUseFavorite,
-  useCart,
+  useHandleCart,
   useFavorite,
   usePagination,
   useSearch,
@@ -19,7 +19,12 @@ import {
 import { productAPI } from '@/services/apis';
 
 // Constants
-import { MESSAGES, ENDPOINT_SERVICES } from '@/constants';
+import {
+  MESSAGES,
+  ENDPOINT_SERVICES,
+  TITLES,
+  TOAST_TIME_OUT,
+} from '@/constants';
 
 // Types
 import { IProduct } from '@/interface';
@@ -31,15 +36,23 @@ const Component = (): JSX.Element => {
     isError,
     data = [],
   } = useQuery({
-    queryKey: [ENDPOINT_SERVICES.products],
+    queryKey: [ENDPOINT_SERVICES.PRODUCTS],
     queryFn: productAPI.getAll,
     notifyOnChangeProps: ['data'],
   });
 
   // Get handler from favorite store
   const onToggleFavorite = useFavorite(
-    (state: IUseFavorite) => state.handleToggleFavorite,
+    (state: IUseFavorite) => state.onToggleFavorite,
   );
+
+  // Get handle add to cart
+  const { handleAddProductToCart } = useHandleCart();
+
+  // Show toast
+  const toast = useToast({
+    duration: TOAST_TIME_OUT,
+  });
 
   // Calling useSearch hook
   const {
@@ -58,6 +71,7 @@ const Component = (): JSX.Element => {
     onChangePage,
   } = usePagination<IProduct>(filterProducts);
 
+  // Handle add product to wishlist
   const handleSelectFavorite = useCallback(
     (id: number): void => {
       const product = data.find((item) => item.id === id);
@@ -67,25 +81,26 @@ const Component = (): JSX.Element => {
     [data, onToggleFavorite],
   );
 
-  const { onAddToCart } = useCart();
+  // Filter and handle add product to cart
+  const handleAddToCart = useCallback(
+    (id: number): void => {
+      const product: IProduct = products.find(
+        (product) => product.id === id,
+      ) as IProduct;
 
-  const handleAddToCart = (id: number): void => {
-    const product: IProduct | undefined = products.find(
-      (product) => product.id === id,
-    );
+      const isAddSuccess: boolean = handleAddProductToCart(product);
 
-    if (!product) return;
-
-    const isAddSuccess: boolean = onAddToCart(product);
-
-    if (isAddSuccess) {
-      console.log('Success');
-
-      return;
-    }
-
-    console.log('Failed');
-  };
+      toast({
+        title: isAddSuccess ? TITLES.ADD : TITLES.REMOVE,
+        description: isAddSuccess
+          ? MESSAGES.ADD_TO_CART_SUCCESS
+          : MESSAGES.ADD_TO_CART_FAIL,
+        status: isAddSuccess ? 'success' : 'error',
+        duration: 1000,
+      });
+    },
+    [handleAddProductToCart, products, toast],
+  );
 
   if (isLoading)
     return (
@@ -97,7 +112,7 @@ const Component = (): JSX.Element => {
   if (isError)
     return (
       <Square size="full">
-        <Text>{MESSAGES.failToFetch}</Text>
+        <Text>{MESSAGES.FAIL_TO_FETCH}</Text>
       </Square>
     );
 

@@ -6,14 +6,14 @@ import { IProduct } from '@/interface';
 
 export interface IUseFavorite {
   data: IProduct[];
-  handleToggleFavorite: (product?: IProduct) => void;
+  onToggleFavorite: (product?: IProduct) => void;
 }
 
 export const useFavorite = create(
   persist<IUseFavorite>(
     (set, get) => ({
       data: [],
-      handleToggleFavorite: (product?: IProduct): void => {
+      onToggleFavorite: (product?: IProduct): void => {
         const { data } = get();
 
         if (!product) {

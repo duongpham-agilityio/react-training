@@ -18,11 +18,8 @@ export interface ProductsProps extends Omit<ProductCardProps, 'info'> {
   data: IProduct[];
 }
 
-const areCompare = (prevProps: ProductsProps, nextProps: ProductsProps) =>
-  isEqual(prevProps.data, nextProps.data);
-
 export const Products = memo(
-  ({ data, ...rest }: ProductsProps): JSX.Element => {
+  ({ data, onAddToCart, onLike }: ProductsProps): JSX.Element => {
     const favorites = useFavorite((state: IUseFavorite) => state.data);
 
     // Check for product is liked
@@ -49,11 +46,15 @@ export const Products = memo(
 
         return (
           <GridItem key={id}>
-            <ProductCard info={info} {...rest} />
+            <ProductCard
+              info={info}
+              onAddToCart={onAddToCart}
+              onLike={onLike}
+            />
           </GridItem>
         );
       },
-      [isLiked, rest],
+      [isLiked, onAddToCart, onLike],
     );
 
     return data.length ? (
@@ -69,10 +70,10 @@ export const Products = memo(
     ) : (
       <Center>
         <Text fontSize={18} fontWeight="bold">
-          {MESSAGES.empty}
+          {MESSAGES.EMPTY}
         </Text>
       </Center>
     );
   },
-  areCompare,
+  isEqual,
 );

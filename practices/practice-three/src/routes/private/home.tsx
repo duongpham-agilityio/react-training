@@ -11,7 +11,7 @@ import { MainLayout } from '@/components/Layout';
 const HomePage = lazy(() => import('@/pages/Home'));
 
 export const homeRoutes: RouteObject = {
-  path: ROUTES.root,
+  path: ROUTES.ROOT,
   element: <MainLayout />,
   children: [
     {
@@ -20,7 +20,7 @@ export const homeRoutes: RouteObject = {
     },
 
     {
-      path: ROUTES.Home,
+      path: ROUTES.HOME,
       Component: HomePage,
     },
   ],

@@ -21,13 +21,13 @@ const get: AccountAPI['get'] = async (email: string, password: string) => {
   try {
     const account: IAccount = (
       await apiRequest.get(
-        `${ENDPOINT_SERVICES.users}?email=${email}&password=${password}`,
+        `${ENDPOINT_SERVICES.USERS}?email=${email}&password=${password}`,
       )
     ).data;
 
     return account;
   } catch (error) {
-    throw new Error(MESSAGES.failToFetch);
+    throw new Error(MESSAGES.FAIL_TO_FETCH);
   }
 };
 
