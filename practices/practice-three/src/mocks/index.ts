@@ -4,3 +4,4 @@ export * from './inputForm';
 export * from './pagination';
 export * from './modal';
 export * from './cart';
+export * from './home';

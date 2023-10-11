@@ -12,6 +12,6 @@ export const productCardProps: ProductCardProps = {
     isLiked: false,
     statusMessage: 'Only 5 left',
   },
-  onAddToCard: () => {},
+  onAddToCart: () => {},
   onLike: () => {},
 };

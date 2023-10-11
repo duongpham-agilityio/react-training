@@ -1,7 +1,18 @@
 import { render } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+
+// Components
 import { Products } from '@/pages/Home/components';
 
-const setup = () => render(<Products />);
+// Mocks
+import { products } from '@/mocks';
+
+const setup = () =>
+  render(
+    <BrowserRouter>
+      <Products data={products} onLike={jest.fn()} onAddToCart={jest.fn()} />
+    </BrowserRouter>,
+  );
 
 describe('Products', () => {
   it('Match to snapshot', () => {

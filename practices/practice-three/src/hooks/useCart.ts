@@ -180,6 +180,8 @@ export const useHandleCart = (): IUseCart => {
           isError: false,
         };
       } catch (error) {
+        console.log(error);
+
         const message: string = (error as unknown as Error).message;
 
         return {
@@ -193,6 +195,8 @@ export const useHandleCart = (): IUseCart => {
 
   //  Handle checkout
   const handleCheckout = useCallback(async () => {
+    console.log('123123');
+
     // Get products from DB
     const products: IProduct[] = (await productAPI.getAll()) || [];
     //  Get cart from localStore

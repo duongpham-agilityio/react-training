@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArrowLeft Match to snapshot 1`] = `
+<div>
+  <svg
+    fill="#737373"
+    height="28"
+    viewBox="0 0 16 16"
+    width="28"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`ArrowLeftOutline Match to snapshot 1`] = `
+<div>
+  <svg
+    fill="none"
+    height="12"
+    width="59"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M59 6H5"
+      stroke="#000"
+      stroke-width="2"
+    />
+    <path
+      d="M6 0v12L0 6l6-6Z"
+      fill="#000"
+    />
+  </svg>
+</div>
+`;
+
+exports[`ArrowRight Match to snapshot 1`] = `
+<div>
+  <svg
+    fill="#737373"
+    height="28"
+    viewBox="0 0 16 16"
+    width="28"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`ArrowRightOutline Match to snapshot 1`] = `
+<div>
+  <svg
+    fill="none"
+    height="12"
+    width="59"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0 6h54"
+      stroke="#000"
+      stroke-width="2"
+    />
+    <path
+      d="M53 12V0l6 6-6 6Z"
+      fill="#000"
+    />
+  </svg>
+</div>
+`;

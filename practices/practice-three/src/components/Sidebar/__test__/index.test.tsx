@@ -19,4 +19,20 @@ describe('Sidebar', () => {
 
     expect(getByText('Wishlist')).toBeDefined();
   });
+
+  it('Click show wishlist option', () => {
+    const { container, getAllByRole } = setup();
+
+    fireEvent.click(getAllByRole('button')[0]);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('Click show cart option', () => {
+    const { container, getAllByRole } = setup();
+
+    fireEvent.click(getAllByRole('button')[1]);
+
+    expect(container).toMatchSnapshot();
+  });
 });

@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
 
 // Components
@@ -9,7 +10,12 @@ import { productCardProps } from '@/mocks';
 const onAddToCard = jest.fn();
 const onLike = jest.fn();
 
-const setup = (props: ProductCardProps) => render(<ProductCard {...props} />);
+const setup = (props: ProductCardProps) =>
+  render(
+    <BrowserRouter>
+      <ProductCard {...props} onAddToCart={onAddToCard} onLike={onLike} />
+    </BrowserRouter>,
+  );
 
 describe('ProductCard', () => {
   it('Match snapshot', () => {
@@ -29,6 +35,16 @@ describe('ProductCard', () => {
     });
 
     expect(getByText('available')).toBeDefined();
+  });
+
+  it('Render with isLiked  is true', () => {
+    setup({
+      ...productCardProps,
+      info: {
+        ...productCardProps.info,
+        isLiked: true,
+      },
+    });
   });
 
   it('Click cart icon', () => {

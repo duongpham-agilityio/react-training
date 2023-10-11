@@ -3,26 +3,23 @@
 exports[`Details page Match to snapshot 1`] = `
 <div>
   <div
-    class="chakra-stack css-f25ded"
+    class="chakra-stack css-wbyzcj"
   >
     <div
-      class="css-t3y40c"
+      class="css-f49638"
     >
-      <div
-        class="css-1rr4qq7"
-      />
       <div
         class="css-13n95wf"
       >
         <h2
           class="chakra-heading css-46oz1i"
         >
-          HUNK - Toffee
+          Tasty Plastic Mouse
         </h2>
         <p
-          class="chakra-text css-1gsq3tq"
+          class="chakra-text css-6b6bd2"
         >
-          Add a spring to your step with this elegant and sleek pair of footwear! With its heavily padded ankle straps for secure footing and matted steel buckles that add flair, support and style go hand in hand with these hunk sandals
+          Quos tempora adipisci quidem ipsum.
         </p>
       </div>
     </div>
@@ -133,7 +130,8 @@ exports[`Details page Match to snapshot 1`] = `
           class="chakra-button css-64vxoc"
           type="button"
         >
-          add to cart — $1599
+          add to cart — $
+          430
         </button>
       </div>
     </div>

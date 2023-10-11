@@ -22,6 +22,13 @@ describe('Pagination', () => {
     rerender(<Pagination {...defaultPropsPagination} data={[1, 2, 3]} />);
   });
 
+  it('Render with empty data', () => {
+    const { container } = setup({ ...defaultPropsPagination, data: [] });
+    const button = container.querySelector('button');
+
+    expect(button).toBeFalsy();
+  });
+
   it('onClick next button', () => {
     const onNextPage = jest.fn();
     const { getByText } = setup({ ...defaultPropsPagination, onNextPage });

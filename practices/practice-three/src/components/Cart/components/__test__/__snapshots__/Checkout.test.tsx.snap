@@ -3,7 +3,7 @@
 exports[`Checkout Match to snapshot 1`] = `
 <div>
   <div
-    class="css-0"
+    class="css-jtccbr"
   >
     <h2
       class="chakra-heading css-3nulb2"
@@ -21,7 +21,7 @@ exports[`Checkout Match to snapshot 1`] = `
         class="chakra-text css-0"
       >
         Total: 
-        200
+        $200
       </p>
       <button
         class="chakra-button css-12nodq4"
@@ -75,7 +75,7 @@ exports[`Checkout onCheckout 1`] = `
         >
           Checkout
         </button>,
-        "timeStamp": 1696527642698,
+        "timeStamp": 1697018115341,
         "type": "click",
         "view": null,
       },
