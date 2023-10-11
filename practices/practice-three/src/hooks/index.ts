@@ -4,3 +4,4 @@ export * from './useDebounce';
 export * from './useSearch';
 export * from './useFavorite';
 export * from './useCart';
+export * from './useAuth';

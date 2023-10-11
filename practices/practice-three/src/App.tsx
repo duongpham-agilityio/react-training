@@ -8,7 +8,15 @@ import { customTheme } from '@/themes';
 // Routes
 import { routes } from '@/routes';
 
+// Servers
+import { worker } from '@/servers/msw';
+
 const queryClient: QueryClient = new QueryClient();
+
+// Start MSW
+if (process.env.NODE_ENV === 'development') {
+  worker.start();
+}
 
 const App = (): JSX.Element => (
   <ChakraProvider theme={customTheme}>
