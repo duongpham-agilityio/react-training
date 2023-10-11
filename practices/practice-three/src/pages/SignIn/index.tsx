@@ -9,6 +9,9 @@ import {
 } from '@chakra-ui/react';
 import { memo, useCallback, useState } from 'react';
 
+// Hooks
+import { useHandleAuth } from '@/hooks';
+
 // Components
 import { InputForm } from '@/components/common';
 
@@ -18,6 +21,7 @@ export interface IFormData {
 }
 
 const Component = () => {
+  const { error, onLogin } = useHandleAuth<IFormData>();
   const [formData, setFormData] = useState<IFormData>({
     email: '',
     password: '',
@@ -31,6 +35,13 @@ const Component = () => {
       [key]: value,
     }));
   }, []);
+
+  const handleLogin = useCallback(async () => {
+    const { email, password } = formData;
+
+    onLogin(email, password);
+  }, [formData, onLogin]);
+
   return (
     <Square bg="yellow.20" minH="100vh">
       <Box
@@ -61,6 +72,8 @@ const Component = () => {
         {/* Input Form  */}
         <VStack py={10} gap={5}>
           <InputForm
+            isError={!!error['email']}
+            errorMessage={error['email']}
             value={formData.email}
             label="Email"
             name="email"
@@ -68,6 +81,8 @@ const Component = () => {
             onChange={onChange}
           />
           <InputForm
+            isError={!!error['password']}
+            errorMessage={error['password']}
             value={formData.password}
             type="password"
             name="password"
@@ -87,6 +102,7 @@ const Component = () => {
           _hover={{
             boxShadow: 'base',
           }}
+          onClick={handleLogin}
         >
           Sign in
         </Button>
