@@ -1,5 +1,6 @@
 interface IMessages {
   EMPTY: string;
+  EMPTY_FILED: string;
   FAIL_TO_FETCH: string;
   ADD_TO_CART_SUCCESS: string;
   ADD_TO_CART_FAIL: string;
@@ -10,6 +11,7 @@ interface IMessages {
 
 export const MESSAGES: Readonly<IMessages> = {
   EMPTY: 'No data',
+  EMPTY_FILED: 'Please fill in this field',
   FAIL_TO_FETCH: 'Something went wrong!! Please reload page.',
   ADD_TO_CART_SUCCESS: 'Add to cart successful!',
   ADD_TO_CART_FAIL: 'Add to cart fail!',
