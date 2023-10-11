@@ -20,7 +20,7 @@ export const detailRoutes: RouteObject = {
     },
 
     {
-      path: PARAM.PRODUCT,
+      path: `:${PARAM.PRODUCT}`,
       Component: DetailPage,
     },
   ],

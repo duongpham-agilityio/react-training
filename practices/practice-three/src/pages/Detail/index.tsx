@@ -7,25 +7,99 @@ import {
   Heading,
   IconButton,
   Image,
+  Spinner,
+  Square,
   Text,
   VStack,
+  useToast,
 } from '@chakra-ui/react';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
+import { QueryFunctionContext, useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+
+// Hooks
+import { useHandleCart } from '@/hooks';
+
+// Services
+import { productAPI } from '@/services/apis';
+
+// Constants
+import { MESSAGES, PARAM, ROUTES, TITLES, TOAST_TIME_OUT } from '@/constants';
 
 // Images
-import ShoesImage from '@/assets/images/shoes.png';
 import SocialImage from '@/assets/images/social.png';
 
 // Icons
 import { ArrowLeftOutline, ArrowRightOutline, Increase } from '@/assets/icons';
 
+// Types
+import { IProduct } from '@/interface';
+
 const Component = (): JSX.Element => {
-  // Todo: Update handle to late
+  // Toast
+  const toast = useToast({
+    duration: TOAST_TIME_OUT,
+  });
+
+  // Get params
+  const params = useParams();
+
+  //  Query data
+  const { isLoading, isError, data } = useQuery({
+    queryKey: [ROUTES.DETAIL, params[PARAM.PRODUCT]] as string[],
+    queryFn: ({ queryKey: [, param] }: QueryFunctionContext<string[]>) =>
+      productAPI.getById(+param),
+  });
+
+  //
+  const { handleAddProductToCart } = useHandleCart();
+
+  const handleAddToCart = useCallback(async () => {
+    try {
+      const product: IProduct | undefined = await productAPI.getById(
+        Number(params[PARAM.PRODUCT]),
+      );
+
+      if (!product) return;
+
+      const isAddSuccess: boolean = handleAddProductToCart(product);
+
+      return toast({
+        title: TITLES.ADD,
+        description: isAddSuccess
+          ? MESSAGES.ADD_TO_CART_SUCCESS
+          : MESSAGES.ADD_TO_CART_FAIL,
+        status: isAddSuccess ? 'success' : 'error',
+      });
+    } catch (error) {
+      toast({
+        title: TITLES.ERROR,
+        description: MESSAGES.FAIL_TO_FETCH,
+      });
+    }
+  }, [handleAddProductToCart, params, toast]);
+
+  if (isLoading)
+    return (
+      <Square size="full">
+        <Spinner />
+      </Square>
+    );
+
+  if (isError || !data)
+    return (
+      <Square size="full">
+        <Text>{MESSAGES.FAIL_TO_FETCH}</Text>
+      </Square>
+    );
+
+  //Destructure to get property
+  const { name, description, price, imageURL } = data;
 
   return (
     <VStack
       h="full"
-      backgroundImage={ShoesImage}
+      backgroundImage={imageURL}
       backgroundPosition="center"
       backgroundSize="contain"
       backgroundRepeat="no-repeat"
@@ -43,7 +117,7 @@ const Component = (): JSX.Element => {
             }}
             fontWeight="regular"
           >
-            HUNK - Toffee
+            {name}
           </Heading>
           <Text
             fontSize={{
@@ -55,11 +129,9 @@ const Component = (): JSX.Element => {
               '2xl': 8,
             }}
             color="gray.20"
+            noOfLines={4}
           >
-            Add a spring to your step with this elegant and sleek pair of
-            footwear! With its heavily padded ankle straps for secure footing
-            and matted steel buckles that add flair, support and style go hand
-            in hand with these hunk sandals
+            {description}
           </Text>
         </Box>
       </Flex>
@@ -139,8 +211,9 @@ const Component = (): JSX.Element => {
               color: 'gray.20',
             }}
             p="unset"
+            onClick={handleAddToCart}
           >
-            add to cart — $1599
+            add to cart — ${price}
           </Button>
         </HStack>
       </Box>
