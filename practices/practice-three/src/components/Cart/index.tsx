@@ -3,7 +3,7 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { Box, Flex, Spinner, Square, VStack, useToast } from '@chakra-ui/react';
 
 // Hooks
@@ -32,13 +32,24 @@ const Component = (): JSX.Element => {
   });
 
   //  Get data from cart
-  const carts = useCartStore((state: IUseCartStore): ICartData[] => state.data);
+  const cart = useCartStore((state: IUseCartStore): ICartData[] => state.data);
 
   // Get method clearCart
   const clearCart = useCartStore((state: IUseCartStore) => state.updateCart);
 
   // Destructure to get the handler
   const { handleRemove, handleQuantity, handleCheckout } = useHandleCart();
+
+  // Total money
+  const total: number = useMemo(
+    () =>
+      cart.reduce(
+        (result: number, nextItem: ICartData) =>
+          result + Number(nextItem.price),
+        0,
+      ),
+    [cart],
+  );
 
   // Handle checkout
   const { isLoading, mutate } = useMutation({
@@ -117,12 +128,12 @@ const Component = (): JSX.Element => {
           </Square>
         ) : (
           <VStack>
-            {carts.map(
-              (cart: ICartData): JSX.Element => (
+            {cart.map(
+              (item: ICartData): JSX.Element => (
                 <CartItem
-                  key={cart.productId}
+                  key={item.productId}
                   // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
-                  data={cart}
+                  data={item}
                   onChangeQuantity={handleChangeQuantity}
                   onRemove={handleRemoveProductFromCart}
                 />
@@ -132,7 +143,7 @@ const Component = (): JSX.Element => {
         )}
       </Box>
 
-      <Checkout total={0} onCheckout={mutate} />
+      <Checkout total={total} onCheckout={mutate} />
     </Flex>
   );
 };

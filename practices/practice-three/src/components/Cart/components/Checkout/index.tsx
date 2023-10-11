@@ -35,7 +35,7 @@ export const Checkout = memo(
 
         {/* Info */}
         <Box py={5}>
-          <Text>Total: {`${total}`}</Text>
+          <Text>Total: {`$${total}`}</Text>
           <Button
             textTransform="uppercase"
             bg="green.10"
