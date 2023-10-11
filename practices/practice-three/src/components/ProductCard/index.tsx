@@ -8,7 +8,6 @@ import {
   Heading,
   IconButton,
   Image,
-  Link,
   Text,
   VStack,
 } from '@chakra-ui/react';
@@ -17,6 +16,8 @@ import isEqual from 'react-fast-compare';
 
 // Icons
 import { CartOutline, HeartFill, HeartOutline } from '@/assets/icons';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '@/constants';
 
 // Todo: Update to later
 export interface IProductCard {
@@ -97,8 +98,8 @@ const Component = (props: ProductCardProps): JSX.Element => {
 
   return (
     <Card
-      as={Link} // Todo: Update to later when I install react-router-dom
-      href={`${id}`} // Todo: Update when the task above complete
+      as={Link}
+      to={`/${ROUTES.DETAIL}/${id}`}
       h={327}
       borderRadius={25}
       boxShadow="lg"

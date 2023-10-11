@@ -2,11 +2,14 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { useCallback } from 'react';
 
+// Constants
+import { MESSAGES } from '@/constants';
+
 // Services
 import { productAPI } from '@/services/apis';
 
 // Types
-import { ICartData, IProduct } from '@/interface';
+import { ICartData, IProduct, IResponse } from '@/interface';
 
 export interface IUseCartStore {
   data: ICartData[];
@@ -16,8 +19,8 @@ export interface IUseCartStore {
 
 export interface IUseCart {
   handleAddProductToCart: (product: IProduct) => boolean;
-  handleRemove: (productId: number) => void;
-  handleQuantity: (productId: number, quantity: number) => void;
+  handleRemove: (productId: number) => IResponse;
+  handleQuantity: (productId: number, quantity: number) => Promise<IResponse>;
   handleCheckout: () => Promise<void>;
 }
 
@@ -113,27 +116,42 @@ export const useHandleCart = (): IUseCart => {
 
   //  Handle remove product from cart
   const handleRemove = useCallback(
-    (productId: number): void => {
-      const carts: ICartData[] = useCartStore.getState().data;
-      const newCarts: ICartData[] = carts.filter(
-        (cart: ICartData): boolean => cart.productId !== productId,
-      );
+    (productId: number): IResponse => {
+      try {
+        const carts: ICartData[] = useCartStore.getState().data;
+        const newCarts: ICartData[] = carts.filter(
+          (cart: ICartData): boolean => cart.productId !== productId,
+        );
 
-      updateCart(newCarts);
+        updateCart(newCarts);
+
+        return {
+          isError: false,
+          message: MESSAGES.REMOVE_FORM_CART_SUCCESS,
+        };
+      } catch (error) {
+        return {
+          isError: true,
+          message: MESSAGES.FAIL_TO_FETCH,
+        };
+      }
     },
     [updateCart],
   );
 
   //  Handle change quantity from cart
   const handleQuantity = useCallback(
-    async (productId: number, quantity: number): Promise<void> => {
+    async (productId: number, quantity: number): Promise<IResponse> => {
       try {
         // Get product from BE
         const product: IProduct | undefined =
           await productAPI.getById(productId);
 
         if (!product) {
-          return;
+          return {
+            isError: true,
+            message: MESSAGES.FAIL_TO_FETCH,
+          };
         }
 
         const { price, quantity: quantityInStock } = product;
@@ -146,15 +164,28 @@ export const useHandleCart = (): IUseCart => {
 
         const isValid: boolean = isValidQuantity(quantity, quantityInStock);
 
-        if (!isValid) return;
+        if (!isValid)
+          return {
+            isError: true,
+            message: MESSAGES.CHANGE_QUANTITY_ERROR,
+          };
 
         // Update information
         cart.price = price * quantity;
         cart.quantity = quantity;
 
         updateCart([...carts]);
+
+        return {
+          isError: false,
+        };
       } catch (error) {
-        console.log(error);
+        const message: string = (error as unknown as Error).message;
+
+        return {
+          isError: true,
+          message: message,
+        };
       }
     },
     [isValidQuantity, updateCart],

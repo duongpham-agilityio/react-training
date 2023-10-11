@@ -1,3 +1,8 @@
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { memo, useCallback } from 'react';
 import { Box, Flex, Spinner, Square, VStack, useToast } from '@chakra-ui/react';
 
@@ -16,12 +21,7 @@ import {
 import { CartItem, Checkout } from './components';
 
 // Types
-import { ICartData } from '@/interface';
-import {
-  QueryClient,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { ICartData, IResponse } from '@/interface';
 
 const Component = (): JSX.Element => {
   const queryClient: QueryClient = useQueryClient();
@@ -40,6 +40,7 @@ const Component = (): JSX.Element => {
   // Destructure to get the handler
   const { handleRemove, handleQuantity, handleCheckout } = useHandleCart();
 
+  // Handle checkout
   const { isLoading, mutate } = useMutation({
     mutationFn: handleCheckout,
     onSuccess: () => {
@@ -70,23 +71,34 @@ const Component = (): JSX.Element => {
   // Handle remove  product from cart
   const handleRemoveProductFromCart = useCallback(
     (id: number) => {
-      try {
-        handleRemove(id);
+      const { isError, message }: IResponse = handleRemove(id);
 
-        toast({
-          title: TITLES.SUCCESS,
-          description: MESSAGES.REMOVE_FORM_CART_SUCCESS,
-          status: 'success',
-        });
-      } catch (error) {
-        toast({
+      toast({
+        title: isError ? TITLES.ERROR : TITLES.SUCCESS,
+        description: message,
+        status: isError ? 'error' : 'success',
+      });
+    },
+    [handleRemove, toast],
+  );
+
+  // Handle change quantity
+  const handleChangeQuantity = useCallback(
+    async (productId: number, quantity: number) => {
+      const { isError, message }: IResponse = await handleQuantity(
+        productId,
+        quantity,
+      );
+
+      if (isError) {
+        return toast({
           title: TITLES.ERROR,
-          description: MESSAGES.REMOVE_FORM_CART_FAIL,
+          description: message,
           status: 'error',
         });
       }
     },
-    [handleRemove, toast],
+    [handleQuantity, toast],
   );
 
   return (
@@ -105,17 +117,17 @@ const Component = (): JSX.Element => {
           </Square>
         ) : (
           <VStack>
-            {carts.map((cart: ICartData): JSX.Element => {
-              return (
+            {carts.map(
+              (cart: ICartData): JSX.Element => (
                 <CartItem
                   key={cart.productId}
                   // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
                   data={cart}
-                  onChangeQuantity={handleQuantity}
+                  onChangeQuantity={handleChangeQuantity}
                   onRemove={handleRemoveProductFromCart}
                 />
-              );
-            })}
+              ),
+            )}
           </VStack>
         )}
       </Box>

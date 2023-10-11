@@ -5,6 +5,7 @@ interface IMessages {
   ADD_TO_CART_FAIL: string;
   REMOVE_FORM_CART_SUCCESS: string;
   REMOVE_FORM_CART_FAIL: string;
+  CHANGE_QUANTITY_ERROR: string;
 }
 
 export const MESSAGES: Readonly<IMessages> = {
@@ -14,4 +15,5 @@ export const MESSAGES: Readonly<IMessages> = {
   ADD_TO_CART_FAIL: 'Add to cart fail!',
   REMOVE_FORM_CART_SUCCESS: 'Remove from cart successful!',
   REMOVE_FORM_CART_FAIL: 'Remove from cart fail!',
+  CHANGE_QUANTITY_ERROR: 'Quantity cannot be changed',
 };
