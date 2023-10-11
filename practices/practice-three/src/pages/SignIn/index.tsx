@@ -9,6 +9,9 @@ import {
 } from '@chakra-ui/react';
 import { memo, useCallback, useState } from 'react';
 
+// HOCs
+import { withIsUnAuth } from '@/hocs';
+
 // Hooks
 import { useHandleAuth } from '@/hooks';
 
@@ -111,6 +114,6 @@ const Component = () => {
   );
 };
 
-const SignIn = memo(Component);
+const SignIn = memo(withIsUnAuth(Component));
 
 export default SignIn;

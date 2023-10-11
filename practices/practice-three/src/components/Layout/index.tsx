@@ -13,13 +13,16 @@ import {
 import { Suspense, memo } from 'react';
 import { Outlet } from 'react-router-dom';
 
+// HOCs
+import { withIsAuth } from '@/hocs';
+
 // Components
 import { SideBar } from '@/components';
 
 // Images
 import { Logo } from '@/assets/images';
 
-export const MainLayout = memo(() => {
+const MainLayoutComponent = () => {
   return (
     <Container>
       <VStack>
@@ -81,4 +84,6 @@ export const MainLayout = memo(() => {
       </VStack>
     </Container>
   );
-});
+};
+
+export const MainLayout = memo(withIsAuth(MainLayoutComponent));
