@@ -7,6 +7,8 @@ interface IMessages {
   REMOVE_FORM_CART_SUCCESS: string;
   REMOVE_FORM_CART_FAIL: string;
   CHANGE_QUANTITY_ERROR: string;
+  EMAIL_NOT_CORRECT: string;
+  AUTH_INCORRECT: string;
 }
 
 export const MESSAGES: Readonly<IMessages> = {
@@ -18,4 +20,6 @@ export const MESSAGES: Readonly<IMessages> = {
   REMOVE_FORM_CART_SUCCESS: 'Remove from cart successful!',
   REMOVE_FORM_CART_FAIL: 'Remove from cart fail!',
   CHANGE_QUANTITY_ERROR: 'Quantity cannot be changed',
+  EMAIL_NOT_CORRECT: 'Email is not in correct format',
+  AUTH_INCORRECT: 'Email or Password is incorrect',
 };

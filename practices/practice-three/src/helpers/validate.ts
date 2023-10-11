@@ -21,3 +21,7 @@ export const isEmpty = <T = EmptyData>(
 
   return [!isNotEmpty, res];
 };
+
+export const isMatchRegexp = (text: string, regexp: RegExp): boolean => {
+  return regexp.test(text);
+};
