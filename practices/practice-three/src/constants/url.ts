@@ -20,7 +20,7 @@ export interface IParam {
 }
 
 export const PARAM: Readonly<IParam> = {
-  PRODUCT: ':product_id',
+  PRODUCT: 'productId',
 };
 
 // Service Endpoints
