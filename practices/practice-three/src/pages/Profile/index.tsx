@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   Flex,
   Grid,
   GridItem,
@@ -243,7 +244,15 @@ const ProfileComponent = () => {
         gap={6}
         py={5}
       >
-        {products.map(handleRenderProduct)}
+        {products.length ? (
+          products.map(handleRenderProduct)
+        ) : (
+          <Center>
+            <Text fontSize={18} fontWeight="bold">
+              {MESSAGES.EMPTY}
+            </Text>
+          </Center>
+        )}
       </Grid>
 
       {/* Pagination */}
