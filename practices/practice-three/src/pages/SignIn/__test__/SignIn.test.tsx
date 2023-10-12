@@ -1,9 +1,18 @@
 import { fireEvent, render } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
 // Pages
 import SignIn from '..';
 
-const setup = () => render(<SignIn />);
+// Constant
+import { MESSAGES } from '@/constants';
+
+const setup = () =>
+  render(
+    <BrowserRouter>
+      <SignIn />
+    </BrowserRouter>,
+  );
 
 describe('SignIn', () => {
   it('Match to snapshot', () => {
@@ -26,5 +35,14 @@ describe('SignIn', () => {
     });
 
     expect(inputEmail.value).toBe(mockValue);
+  });
+
+  it('Submit', () => {
+    const { getByText, getByRole } = setup();
+    const button = getByRole('button');
+
+    fireEvent.click(button);
+
+    expect(getByText(MESSAGES.EMPTY_FILED)).toBeDefined();
   });
 });

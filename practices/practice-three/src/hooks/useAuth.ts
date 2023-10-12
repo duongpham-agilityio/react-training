@@ -55,7 +55,7 @@ export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
 
   const handleSetAuth = useAuthStore((state: IUseAuthStore) => state.setIsAuth);
   const handleClearAuth = useAuthStore(
-    (state: IUseAuthStore) => state.setIsAuth,
+    (state: IUseAuthStore) => state.clearIsAuth,
   );
 
   const onLogin: IUseHandleAuth<T>['onLogin'] = useCallback(

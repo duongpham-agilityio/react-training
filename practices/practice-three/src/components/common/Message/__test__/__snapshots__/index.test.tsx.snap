@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartOutline Match to snapshot 1`] = `
+<div>
+  <div
+    class="css-gmuwbf"
+  >
+    <p
+      class="chakra-text css-1hmppls"
+    >
+      No data
+    </p>
+  </div>
+</div>
+`;

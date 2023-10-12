@@ -7,7 +7,342 @@ exports[`Wishlist Match to snapshot 1`] = `
   >
     <div
       class="css-1d6fzre"
-    />
+    >
+      <div
+        class="css-1gvp5h0"
+      >
+        <a
+          class="chakra-card css-frav00"
+          href="/detail/1"
+        >
+          <div
+            class="chakra-stack css-m4lmkl"
+          >
+            <div
+              class="css-1c7m7lf"
+            >
+              <img
+                alt="Tasty Plastic Mouse"
+                class="chakra-image css-13rbvqk"
+                src="https://loremflickr.com/640/480/fashion"
+              />
+            </div>
+            <div
+              class="chakra-card__body css-dspdqf"
+            >
+              <div
+                class="chakra-stack css-1luc48q"
+              >
+                <div
+                  class="css-13rbvqk"
+                >
+                  <h2
+                    class="chakra-heading css-micy4r"
+                  >
+                    Tasty Plastic Mouse
+                  </h2>
+                  <p
+                    class="chakra-text css-bmhbsm"
+                  >
+                    Quos tempora adipisci quidem ipsum.
+                  </p>
+                  <span
+                    class="chakra-badge css-ovswd3"
+                  >
+                    <div
+                      class="css-1ky2ef1"
+                    >
+                      available
+                    </div>
+                  </span>
+                </div>
+                <div
+                  class="chakra-stack css-bot922"
+                >
+                  <p
+                    class="chakra-text css-7sjuw3"
+                  >
+                    $
+                    430
+                  </p>
+                  <div
+                    class="chakra-stack css-1y3f6ad"
+                  >
+                    <button
+                      aria-label="Button add to cart"
+                      class="chakra-button css-p7mkev"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        focusable="false"
+                        height="27"
+                        width="28"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M25.502 3.562H5.821L4.139.548A1.069 1.069 0 0 0 3.206 0H1.069a1.069 1.069 0 1 0 0 2.137h1.51l1.659 2.975 3.827 8.469.004.008.337.746-3.842 4.099a1.069 1.069 0 0 0 .658 1.793l3.503.4c4.38.5 8.804.5 13.186 0l3.502-.4a1.069 1.069 0 1 0-.242-2.124l-3.503.4c-4.22.483-8.48.483-12.7 0l-1.39-.159 2.82-3.008c.027-.03.052-.06.076-.09l1.072.14a21.81 21.81 0 0 0 4.534.114 13.237 13.237 0 0 0 9.071-4.658l.824-.976c.028-.032.053-.067.077-.103l1.535-2.34c1.088-1.657-.101-3.86-2.085-3.86Zm-14.949 9.539a.69.69 0 0 1-.538-.397l-.002-.004-3.164-7h18.653c.284 0 .454.314.298.551l-1.5 2.286-.782.926a11.1 11.1 0 0 1-7.607 3.906 19.674 19.674 0 0 1-4.089-.103l-1.269-.165Z"
+                          fill="#979797"
+                          fill-rule="evenodd"
+                        />
+                        <path
+                          d="M7.48 22.442a2.137 2.137 0 1 0 0 4.275 2.137 2.137 0 0 0 0-4.275ZM21.017 24.58a2.137 2.137 0 1 1 4.275 0 2.137 2.137 0 0 1-4.275 0Z"
+                          fill="#979797"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      aria-label="Button add to favorite"
+                      class="chakra-button css-p7mkev"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        focusable="false"
+                        height="49"
+                        width="54"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          filter="url(#a)"
+                          shape-rendering="crispEdges"
+                        >
+                          <path
+                            d="M18.417 9C13.332 9 9 12.872 9 17.9c0 3.47 1.595 6.39 3.71 8.81 2.106 2.41 4.824 4.434 7.281 6.127l4.24 2.923c.465.32 1.073.32 1.538 0l4.24-2.922c2.457-1.694 5.175-3.718 7.282-6.129C39.405 24.29 41 21.37 41 17.9c0-5.028-4.332-8.9-9.417-8.9-2.621 0-4.928 1.252-6.583 2.871C23.345 10.251 21.038 9 18.417 9Z"
+                            fill="#E86F6F"
+                          />
+                          <path
+                            d="M18.417 9C13.332 9 9 12.872 9 17.9c0 3.47 1.595 6.39 3.71 8.81 2.106 2.41 4.824 4.434 7.281 6.127l4.24 2.923c.465.32 1.073.32 1.538 0l4.24-2.922c2.457-1.694 5.175-3.718 7.282-6.129C39.405 24.29 41 21.37 41 17.9c0-5.028-4.332-8.9-9.417-8.9-2.621 0-4.928 1.252-6.583 2.871C23.345 10.251 21.038 9 18.417 9Z"
+                            stroke="#FF8181"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-opacity="0.5"
+                          />
+                        </g>
+                        <defs>
+                          <filter
+                            color-interpolation-filters="sRGB"
+                            filterUnits="userSpaceOnUse"
+                            height="48"
+                            id="a"
+                            width="53"
+                            x="0.5"
+                            y="0.5"
+                          >
+                            <feflood
+                              flood-opacity="0"
+                              result="BackgroundImageFix"
+                            />
+                            <fecolormatrix
+                              in="SourceAlpha"
+                              result="hardAlpha"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                            />
+                            <feoffset
+                              dx="2"
+                              dy="2"
+                            />
+                            <fegaussianblur
+                              stdDeviation="5"
+                            />
+                            <fecomposite
+                              in2="hardAlpha"
+                              operator="out"
+                            />
+                            <fecolormatrix
+                              values="0 0 0 0 1 0 0 0 0 0.542262 0 0 0 0 0.542262 0 0 0 0.2 0"
+                            />
+                            <feblend
+                              in2="BackgroundImageFix"
+                              result="effect1_dropShadow_17_126"
+                            />
+                            <feblend
+                              in="SourceGraphic"
+                              in2="effect1_dropShadow_17_126"
+                              result="shape"
+                            />
+                          </filter>
+                        </defs>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div
+        class="css-1gvp5h0"
+      >
+        <a
+          class="chakra-card css-frav00"
+          href="/detail/2"
+        >
+          <div
+            class="chakra-stack css-m4lmkl"
+          >
+            <div
+              class="css-1c7m7lf"
+            >
+              <img
+                alt="Tasty Plastic Mouse"
+                class="chakra-image css-13rbvqk"
+                src="https://loremflickr.com/640/480/fashion"
+              />
+            </div>
+            <div
+              class="chakra-card__body css-dspdqf"
+            >
+              <div
+                class="chakra-stack css-1luc48q"
+              >
+                <div
+                  class="css-13rbvqk"
+                >
+                  <h2
+                    class="chakra-heading css-micy4r"
+                  >
+                    Tasty Plastic Mouse
+                  </h2>
+                  <p
+                    class="chakra-text css-bmhbsm"
+                  >
+                    Quos tempora adipisci quidem ipsum.
+                  </p>
+                  <span
+                    class="chakra-badge css-ovswd3"
+                  >
+                    <div
+                      class="css-1ky2ef1"
+                    >
+                      available
+                    </div>
+                  </span>
+                </div>
+                <div
+                  class="chakra-stack css-bot922"
+                >
+                  <p
+                    class="chakra-text css-7sjuw3"
+                  >
+                    $
+                    430
+                  </p>
+                  <div
+                    class="chakra-stack css-1y3f6ad"
+                  >
+                    <button
+                      aria-label="Button add to cart"
+                      class="chakra-button css-p7mkev"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        focusable="false"
+                        height="27"
+                        width="28"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M25.502 3.562H5.821L4.139.548A1.069 1.069 0 0 0 3.206 0H1.069a1.069 1.069 0 1 0 0 2.137h1.51l1.659 2.975 3.827 8.469.004.008.337.746-3.842 4.099a1.069 1.069 0 0 0 .658 1.793l3.503.4c4.38.5 8.804.5 13.186 0l3.502-.4a1.069 1.069 0 1 0-.242-2.124l-3.503.4c-4.22.483-8.48.483-12.7 0l-1.39-.159 2.82-3.008c.027-.03.052-.06.076-.09l1.072.14a21.81 21.81 0 0 0 4.534.114 13.237 13.237 0 0 0 9.071-4.658l.824-.976c.028-.032.053-.067.077-.103l1.535-2.34c1.088-1.657-.101-3.86-2.085-3.86Zm-14.949 9.539a.69.69 0 0 1-.538-.397l-.002-.004-3.164-7h18.653c.284 0 .454.314.298.551l-1.5 2.286-.782.926a11.1 11.1 0 0 1-7.607 3.906 19.674 19.674 0 0 1-4.089-.103l-1.269-.165Z"
+                          fill="#979797"
+                          fill-rule="evenodd"
+                        />
+                        <path
+                          d="M7.48 22.442a2.137 2.137 0 1 0 0 4.275 2.137 2.137 0 0 0 0-4.275ZM21.017 24.58a2.137 2.137 0 1 1 4.275 0 2.137 2.137 0 0 1-4.275 0Z"
+                          fill="#979797"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      aria-label="Button add to favorite"
+                      class="chakra-button css-p7mkev"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        focusable="false"
+                        height="49"
+                        width="54"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          filter="url(#a)"
+                          shape-rendering="crispEdges"
+                        >
+                          <path
+                            d="M18.417 9C13.332 9 9 12.872 9 17.9c0 3.47 1.595 6.39 3.71 8.81 2.106 2.41 4.824 4.434 7.281 6.127l4.24 2.923c.465.32 1.073.32 1.538 0l4.24-2.922c2.457-1.694 5.175-3.718 7.282-6.129C39.405 24.29 41 21.37 41 17.9c0-5.028-4.332-8.9-9.417-8.9-2.621 0-4.928 1.252-6.583 2.871C23.345 10.251 21.038 9 18.417 9Z"
+                            fill="#E86F6F"
+                          />
+                          <path
+                            d="M18.417 9C13.332 9 9 12.872 9 17.9c0 3.47 1.595 6.39 3.71 8.81 2.106 2.41 4.824 4.434 7.281 6.127l4.24 2.923c.465.32 1.073.32 1.538 0l4.24-2.922c2.457-1.694 5.175-3.718 7.282-6.129C39.405 24.29 41 21.37 41 17.9c0-5.028-4.332-8.9-9.417-8.9-2.621 0-4.928 1.252-6.583 2.871C23.345 10.251 21.038 9 18.417 9Z"
+                            stroke="#FF8181"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-opacity="0.5"
+                          />
+                        </g>
+                        <defs>
+                          <filter
+                            color-interpolation-filters="sRGB"
+                            filterUnits="userSpaceOnUse"
+                            height="48"
+                            id="a"
+                            width="53"
+                            x="0.5"
+                            y="0.5"
+                          >
+                            <feflood
+                              flood-opacity="0"
+                              result="BackgroundImageFix"
+                            />
+                            <fecolormatrix
+                              in="SourceAlpha"
+                              result="hardAlpha"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                            />
+                            <feoffset
+                              dx="2"
+                              dy="2"
+                            />
+                            <fegaussianblur
+                              stdDeviation="5"
+                            />
+                            <fecomposite
+                              in2="hardAlpha"
+                              operator="out"
+                            />
+                            <fecolormatrix
+                              values="0 0 0 0 1 0 0 0 0 0.542262 0 0 0 0 0.542262 0 0 0 0.2 0"
+                            />
+                            <feblend
+                              in2="BackgroundImageFix"
+                              result="effect1_dropShadow_17_126"
+                            />
+                            <feblend
+                              in="SourceGraphic"
+                              in2="effect1_dropShadow_17_126"
+                              result="shape"
+                            />
+                          </filter>
+                        </defs>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 `;
