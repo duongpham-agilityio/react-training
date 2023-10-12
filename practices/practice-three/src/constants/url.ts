@@ -4,6 +4,7 @@ export interface IRoutes {
   DETAIL: string;
   AUTH: string;
   SIGN_IN: string;
+  PROFILE: string;
 }
 
 export const ROUTES: Readonly<IRoutes> = {
@@ -12,6 +13,7 @@ export const ROUTES: Readonly<IRoutes> = {
   DETAIL: 'detail',
   AUTH: 'auth',
   SIGN_IN: 'sign-in',
+  PROFILE: 'profile',
 };
 
 //  Params

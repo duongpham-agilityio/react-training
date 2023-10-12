@@ -9,6 +9,10 @@ interface IMessages {
   CHANGE_QUANTITY_ERROR: string;
   EMAIL_NOT_CORRECT: string;
   AUTH_INCORRECT: string;
+  ADD_NEW_PRODUCT_SUCCESS: string;
+  ADD_NEW_PRODUCT_FAIL: string;
+  UPDATE_PRODUCT_SUCCESS: string;
+  UPDATE_PRODUCT_FAIL: string;
 }
 
 export const MESSAGES: Readonly<IMessages> = {
@@ -22,4 +26,8 @@ export const MESSAGES: Readonly<IMessages> = {
   CHANGE_QUANTITY_ERROR: 'Quantity cannot be changed',
   EMAIL_NOT_CORRECT: 'Email is not in correct format',
   AUTH_INCORRECT: 'Email or Password is incorrect',
+  ADD_NEW_PRODUCT_SUCCESS: 'Add product success',
+  ADD_NEW_PRODUCT_FAIL: 'Add product success',
+  UPDATE_PRODUCT_SUCCESS: 'Add product success',
+  UPDATE_PRODUCT_FAIL: 'Add product success',
 };
