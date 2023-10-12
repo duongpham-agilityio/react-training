@@ -9,7 +9,7 @@ import { apiRequest } from '../configs';
 // Constants
 import { ENDPOINT_SERVICES, MESSAGES } from '@/constants';
 
-type ProductPayload = Pick<
+export type ProductPayload = Pick<
   IProduct,
   | 'imageURL'
   | 'isLiked'
