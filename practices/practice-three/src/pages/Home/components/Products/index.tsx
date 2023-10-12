@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
-import { Center, Grid, GridItem, Text } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 
 // Hooks
 import { IUseFavorite, useFavorite } from '@/hooks';
@@ -13,6 +13,7 @@ import { IProductCard, ProductCard, ProductCardProps } from '@/components';
 
 // Types
 import { IProduct } from '@/interface';
+import { Message } from '@/components/common';
 
 export interface ProductsProps extends Omit<ProductCardProps, 'info'> {
   data: IProduct[];
@@ -68,11 +69,7 @@ export const Products = memo(
         {data.map(handleRenderProduct)}
       </Grid>
     ) : (
-      <Center>
-        <Text fontSize={18} fontWeight="bold">
-          {MESSAGES.EMPTY}
-        </Text>
-      </Center>
+      <Message message={MESSAGES.EMPTY} />
     );
   },
   isEqual,

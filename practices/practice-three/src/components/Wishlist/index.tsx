@@ -5,10 +5,11 @@ import { memo, useCallback } from 'react';
 import { IUseFavorite, useFavorite } from '@/hooks';
 
 // Constants
-import { LIMIT_QUANTITY } from '@/constants';
+import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
 
 // Components
 import { IProductCard, ProductCard } from '@/components';
+import { Message } from '@/components/common';
 
 // Types
 import { IProduct } from '@/interface';
@@ -77,7 +78,11 @@ const Component = (): JSX.Element => {
         }}
         gap={5}
       >
-        {favorites.map(handleRenderProduct)}
+        {favorites.length ? (
+          favorites.map(handleRenderProduct)
+        ) : (
+          <Message message={MESSAGES.EMPTY} />
+        )}
       </Grid>
     </Box>
   );

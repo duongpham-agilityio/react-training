@@ -19,6 +19,7 @@ import {
 
 // Components
 import { CartItem, Checkout } from './components';
+import { Message } from '../common';
 
 // Types
 import { ICartData, IResponse } from '@/interface';
@@ -128,16 +129,20 @@ const Component = (): JSX.Element => {
           </Square>
         ) : (
           <VStack>
-            {cart.map(
-              (item: ICartData): JSX.Element => (
-                <CartItem
-                  key={item.productId}
-                  // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
-                  data={item}
-                  onChangeQuantity={handleChangeQuantity}
-                  onRemove={handleRemoveProductFromCart}
-                />
-              ),
+            {cart.length ? (
+              cart.map(
+                (item: ICartData): JSX.Element => (
+                  <CartItem
+                    key={item.productId}
+                    // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
+                    data={item}
+                    onChangeQuantity={handleChangeQuantity}
+                    onRemove={handleRemoveProductFromCart}
+                  />
+                ),
+              )
+            ) : (
+              <Message message={MESSAGES.EMPTY} />
             )}
           </VStack>
         )}

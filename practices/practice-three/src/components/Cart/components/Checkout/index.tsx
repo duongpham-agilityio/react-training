@@ -44,6 +44,7 @@ export const Checkout = memo(
             _hover={{
               bg: 'green.20',
             }}
+            isDisabled={!total}
             onClick={onCheckout}
           >
             Checkout
