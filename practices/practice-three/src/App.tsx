@@ -13,10 +13,8 @@ import { worker } from '@/servers/msw';
 
 const queryClient: QueryClient = new QueryClient();
 
-// Start MSW
-if (process.env.NODE_ENV === 'development') {
-  worker.start();
-}
+//  Start MSW
+worker.start();
 
 const App = (): JSX.Element => (
   <ChakraProvider theme={customTheme}>
