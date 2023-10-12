@@ -144,6 +144,7 @@ export const SideBar = memo((): JSX.Element => {
           <Square
             as={rest.to ? Link : Button}
             {...rest}
+            aria-label={`Button navigate to the ${title}`}
             gap={5}
             mt={22}
             p={0}
@@ -183,6 +184,7 @@ export const SideBar = memo((): JSX.Element => {
           <ListItem position="relative" h={20}>
             <Square
               as={Button}
+              aria-label="Button change theme"
               justifyContent={isShowFullSidebar ? 'flex-start' : 'center'}
               gap={5}
               mt={{
