@@ -77,6 +77,11 @@ const ProfileComponent = () => {
     [onToggleForm],
   );
 
+  const handleCloseModal = useCallback(() => {
+    onToggleForm();
+    setEdit(undefined);
+  }, [onToggleForm]);
+
   const handleSubmitAdd = useCallback(
     async (product: IFormAddData) => {
       const isSuccess: boolean = await onAddProduct(product);
@@ -89,9 +94,9 @@ const ProfileComponent = () => {
         status: isSuccess ? 'success' : 'error',
       });
 
-      if (isSuccess) return onToggleForm();
+      if (isSuccess) return handleCloseModal();
     },
-    [onAddProduct, onToggleForm, toast],
+    [handleCloseModal, onAddProduct, toast],
   );
 
   const handleSubmitUpdate = useCallback(
@@ -106,9 +111,9 @@ const ProfileComponent = () => {
         status: isSuccess ? 'success' : 'error',
       });
 
-      if (isSuccess) return onToggleForm();
+      if (isSuccess) return handleCloseModal();
     },
-    [onToggleForm, onUpdateProduct, toast],
+    [handleCloseModal, onUpdateProduct, toast],
   );
 
   const handleSubmitRemove = useCallback(
@@ -118,8 +123,8 @@ const ProfileComponent = () => {
       toast({
         title: TITLES.REMOVE,
         description: isSuccess
-          ? MESSAGES.REMOVE_FORM_CART_SUCCESS
-          : MESSAGES.REMOVE_FORM_CART_FAIL,
+          ? MESSAGES.REMOVE_PRODUCT_SUCCESS
+          : MESSAGES.REMOVE_PRODUCT_FAIL,
         status: isSuccess ? 'success' : 'error',
       });
     },
@@ -201,7 +206,7 @@ const ProfileComponent = () => {
         </GridItem>
       );
     },
-    [handleOpenFormUpdate],
+    [handleOpenFormUpdate, handleSubmitRemove],
   );
 
   if (isLoading)
@@ -256,7 +261,7 @@ const ProfileComponent = () => {
         <ModalCustom
           title={edit ? TITLES.UPDATE_PRODUCT : TITLES.CREATE_PRODUCT}
           isOpen
-          onClose={onToggleForm}
+          onClose={handleCloseModal}
         >
           <FormAdd onSubmit={handleSubmit} data={edit} />
         </ModalCustom>

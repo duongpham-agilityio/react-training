@@ -13,6 +13,8 @@ interface IMessages {
   ADD_NEW_PRODUCT_FAIL: string;
   UPDATE_PRODUCT_SUCCESS: string;
   UPDATE_PRODUCT_FAIL: string;
+  REMOVE_PRODUCT_SUCCESS: string;
+  REMOVE_PRODUCT_FAIL: string;
 }
 
 export const MESSAGES: Readonly<IMessages> = {
@@ -29,5 +31,7 @@ export const MESSAGES: Readonly<IMessages> = {
   ADD_NEW_PRODUCT_SUCCESS: 'Add product success',
   ADD_NEW_PRODUCT_FAIL: 'Add product success',
   UPDATE_PRODUCT_SUCCESS: 'Add product success',
-  UPDATE_PRODUCT_FAIL: 'Add product success',
+  UPDATE_PRODUCT_FAIL: 'Update product fail',
+  REMOVE_PRODUCT_SUCCESS: 'Remove product success',
+  REMOVE_PRODUCT_FAIL: 'Remove product fail',
 };
