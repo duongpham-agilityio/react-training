@@ -19,7 +19,7 @@ export const signIn = async (
   res: ResponseComposition,
   context: RestContext,
 ): Promise<MockedResponse> => {
-  const MOCK_EMAIL: string = 'phamtanduong@gmail.com';
+  const MOCK_EMAIL: string = 'duong.pham@asnet.com.vn';
   const MOCK_PASSWORD: string = '12345678';
   const payload: Pick<IAccount, 'email' | 'password'> = await req.json();
 
