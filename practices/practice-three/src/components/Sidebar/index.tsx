@@ -1,9 +1,9 @@
 import { FC, ReactNode, Suspense, lazy, memo, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Center,
   IconButton,
-  Link,
   List,
   ListItem,
   Spinner,
@@ -34,6 +34,7 @@ import {
   LightMode,
   PersonCircle,
 } from '@/assets/icons';
+import { ROUTES } from '@/constants';
 
 // Lazy components
 const Cart = lazy(() => import('@/components/Cart'));
@@ -46,6 +47,7 @@ export interface SideBarProps {
 export interface ISideBarOption {
   icon: FC;
   title: string;
+  to?: string;
   isShowPseudo?: boolean;
   pseudoColor?: string;
   pseudoValue?: number | string;
@@ -100,6 +102,7 @@ export const SideBar = memo((): JSX.Element => {
       {
         icon: PersonCircle,
         title: 'Join',
+        to: `/${ROUTES.PROFILE}`,
       },
     ],
     [favoriteSize, onToggleWishlist, quantityCart, onToggleCart],
@@ -109,11 +112,12 @@ export const SideBar = memo((): JSX.Element => {
     return sidebarOptions.map((option): JSX.Element => {
       const {
         pseudoValue = 0,
-        isShowPseudo,
-        pseudoColor,
         icon,
         title,
+        pseudoColor,
+        isShowPseudo,
         onClick,
+        ...rest
       } = option;
       const Icon = icon;
       const pseudo: SystemStyleObject = isShowPseudo
@@ -138,7 +142,8 @@ export const SideBar = memo((): JSX.Element => {
       return (
         <ListItem position="relative" _after={pseudo} key={title} h={20}>
           <Square
-            as={Button}
+            as={rest.to ? Link : Button}
+            {...rest}
             gap={5}
             mt={22}
             p={0}
@@ -177,7 +182,7 @@ export const SideBar = memo((): JSX.Element => {
           {renderOptions}
           <ListItem position="relative" h={20}>
             <Square
-              as={Link}
+              as={Button}
               justifyContent={isShowFullSidebar ? 'flex-start' : 'center'}
               gap={5}
               mt={{

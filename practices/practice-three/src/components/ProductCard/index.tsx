@@ -43,8 +43,9 @@ interface IBadge {
 
 export interface ProductCardProps {
   info: IProductCard;
-  onAddToCart: (id: number) => void | Promise<void>;
-  onLike: (id: number) => void | Promise<void>;
+  renderIcon?: () => JSX.Element;
+  onAddToCart?: (id: number) => void | Promise<void>;
+  onLike?: (id: number) => void | Promise<void>;
 }
 
 const Component = (props: ProductCardProps): JSX.Element => {
@@ -59,6 +60,7 @@ const Component = (props: ProductCardProps): JSX.Element => {
       status,
       statusMessage,
     },
+    renderIcon,
     onAddToCart,
     onLike,
   } = props;
@@ -82,7 +84,7 @@ const Component = (props: ProductCardProps): JSX.Element => {
     (e: MouseEvent): void => {
       e.preventDefault();
 
-      onAddToCart(id);
+      onAddToCart && onAddToCart(id);
     },
     [id, onAddToCart],
   );
@@ -91,7 +93,7 @@ const Component = (props: ProductCardProps): JSX.Element => {
     (e: MouseEvent): void => {
       e.preventDefault();
 
-      onLike(id);
+      onLike && onLike(id);
     },
     [id, onLike],
   );
@@ -115,7 +117,7 @@ const Component = (props: ProductCardProps): JSX.Element => {
         </Center>
         <CardBody w="50%" px={6} py={7} h="full">
           <VStack h="full" justifyContent="space-between">
-            <Box>
+            <Box width="full">
               <Heading fontSize={22} color="gray.40">
                 {title}
               </Heading>
@@ -140,16 +142,22 @@ const Component = (props: ProductCardProps): JSX.Element => {
                 ${price}
               </Text>
               <HStack justifyContent="space-between">
-                <IconButton
-                  aria-label="Button add to cart"
-                  icon={<CartOutline />}
-                  onClick={handleAddToCart}
-                />
-                <IconButton
-                  aria-label="Button add to favorite"
-                  icon={isLiked ? <HeartFill /> : <HeartOutline />}
-                  onClick={handleAddToFavorite}
-                />
+                {renderIcon ? (
+                  renderIcon()
+                ) : (
+                  <>
+                    <IconButton
+                      aria-label="Button add to cart"
+                      icon={<CartOutline />}
+                      onClick={handleAddToCart}
+                    />
+                    <IconButton
+                      aria-label="Button add to favorite"
+                      icon={isLiked ? <HeartFill /> : <HeartOutline />}
+                      onClick={handleAddToFavorite}
+                    />
+                  </>
+                )}
               </HStack>
             </HStack>
           </VStack>
