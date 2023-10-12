@@ -6,3 +6,4 @@ export * from './Person';
 export * from './Mode';
 export * from './Control';
 export * from './Trash';
+export * from './Pencil';
