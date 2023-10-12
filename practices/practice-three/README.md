@@ -47,7 +47,7 @@
 
 - Timeline
   - Estimate day: 6 days
-  - Actual time: Updating
+  - Actual time: 8.5 days
 - Techniques:
   - HTML5/CSS [last version](https://html.spec.whatwg.org/multipage/)
   - TypeScript [v4.9.5](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)
@@ -117,10 +117,10 @@
   ```
 - Step 5: Now you need to install packages
   ```
-  yarn install
+  pnpm install
   ```
 - Step 6: After installing the packages
   ```
-  yarn dev
+  pnpm start
   ```
 - Step 7: Open [localhost](http://localhost:5173) to see the website

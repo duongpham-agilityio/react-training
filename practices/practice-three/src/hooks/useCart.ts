@@ -195,8 +195,6 @@ export const useHandleCart = (): IUseCart => {
 
   //  Handle checkout
   const handleCheckout = useCallback(async () => {
-    console.log('123123');
-
     // Get products from DB
     const products: IProduct[] = (await productAPI.getAll()) || [];
     //  Get cart from localStore
