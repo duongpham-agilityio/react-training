@@ -1,5 +1,5 @@
 export const STATUS = {
   NOT_FOUND: 404,
-  AUTHORIZATION: 401,
+  UNAUTHORIZED: 401,
   SUCCESS: 200,
 };
