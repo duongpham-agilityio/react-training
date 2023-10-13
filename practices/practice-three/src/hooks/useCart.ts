@@ -1,5 +1,3 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import { useCallback } from 'react';
 
 // Constants
@@ -8,14 +6,11 @@ import { MESSAGES } from '@/constants';
 // Services
 import { productAPI } from '@/services/apis';
 
+// Stores
+import { ICartStore, cartStore } from '@/stores';
+
 // Types
 import { ICartData, IProduct, IResponse } from '@/interface';
-
-export interface IUseCartStore {
-  data: ICartData[];
-  addNewProduct: (product: ICartData) => void;
-  updateCart: (product: ICartData[]) => void;
-}
 
 export interface IUseCart {
   handleAddProductToCart: (product: IProduct) => boolean;
@@ -24,31 +19,15 @@ export interface IUseCart {
   handleCheckout: () => Promise<void>;
 }
 
-//  Cart store
-export const useCartStore = create(
-  persist<IUseCartStore>(
-    (set) => ({
-      data: [],
-      addNewProduct: (product: ICartData): void =>
-        set((state) => ({ data: [...state.data, product] })),
-      updateCart: (products: ICartData[]) => set({ data: products }),
-    }),
-    {
-      name: 'cart',
-    },
-  ),
-);
-
 export const useHandleCart = (): IUseCart => {
   //  Get handle add to cart from store
-  const addNewProduct = useCartStore(
-    (state: IUseCartStore): IUseCartStore['addNewProduct'] =>
-      state.addNewProduct,
+  const addNewProduct = cartStore(
+    (state: ICartStore): ICartStore['addNewProduct'] => state.addNewProduct,
   );
 
   //  Get handle update cart
-  const updateCart = useCartStore(
-    (state: IUseCartStore): IUseCartStore['updateCart'] => state.updateCart,
+  const updateCart = cartStore(
+    (state: ICartStore): ICartStore['updateCart'] => state.updateCart,
   );
 
   //  Handle check quantity
@@ -68,7 +47,7 @@ export const useHandleCart = (): IUseCart => {
     (product: IProduct): boolean => {
       try {
         //  Get data from cart store
-        const { data: carts } = useCartStore.getState();
+        const { data: carts } = cartStore.getState();
         const { id, description, imageURL, name, price, quantity } = product;
 
         // Check Product exists from cart store
@@ -118,7 +97,7 @@ export const useHandleCart = (): IUseCart => {
   const handleRemove = useCallback(
     (productId: number): IResponse => {
       try {
-        const carts: ICartData[] = useCartStore.getState().data;
+        const carts: ICartData[] = cartStore.getState().data;
         const newCarts: ICartData[] = carts.filter(
           (cart: ICartData): boolean => cart.productId !== productId,
         );
@@ -156,7 +135,7 @@ export const useHandleCart = (): IUseCart => {
 
         const { price, quantity: quantityInStock } = product;
         // Get carts from localStore
-        const carts: ICartData[] = useCartStore.getState().data;
+        const carts: ICartData[] = cartStore.getState().data;
         // Get cart matching with productID
         const cart: ICartData = carts.find(
           (cart: ICartData) => cart.productId === productId,
@@ -198,7 +177,7 @@ export const useHandleCart = (): IUseCart => {
     // Get products from DB
     const products: IProduct[] = (await productAPI.getAll()) || [];
     //  Get cart from localStore
-    const carts: ICartData[] = useCartStore.getState().data;
+    const carts: ICartData[] = cartStore.getState().data;
 
     await Promise.all(
       carts.map((cart: ICartData) => {
