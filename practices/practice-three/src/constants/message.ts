@@ -1,23 +1,4 @@
-interface IMessages {
-  EMPTY: string;
-  EMPTY_FILED: string;
-  FAIL_TO_FETCH: string;
-  ADD_TO_CART_SUCCESS: string;
-  ADD_TO_CART_FAIL: string;
-  REMOVE_FORM_CART_SUCCESS: string;
-  REMOVE_FORM_CART_FAIL: string;
-  CHANGE_QUANTITY_ERROR: string;
-  EMAIL_NOT_CORRECT: string;
-  AUTH_INCORRECT: string;
-  ADD_NEW_PRODUCT_SUCCESS: string;
-  ADD_NEW_PRODUCT_FAIL: string;
-  UPDATE_PRODUCT_SUCCESS: string;
-  UPDATE_PRODUCT_FAIL: string;
-  REMOVE_PRODUCT_SUCCESS: string;
-  REMOVE_PRODUCT_FAIL: string;
-}
-
-export const MESSAGES: Readonly<IMessages> = {
+export const MESSAGES = {
   EMPTY: 'No data',
   EMPTY_FILED: 'Please fill in this field',
   FAIL_TO_FETCH: 'Something went wrong!! Please reload page.',
