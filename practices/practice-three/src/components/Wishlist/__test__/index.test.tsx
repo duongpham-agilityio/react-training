@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 // Stores
-import { favoriteStore } from '@/stores';
+import { useFavoriteStore } from '@/stores';
 
 // Components
 import Wishlist from '..';
@@ -16,7 +16,7 @@ const setup = () =>
 
 describe('Wishlist', () => {
   beforeEach(() => {
-    favoriteStore.setState({
+    useFavoriteStore.setState({
       data: [
         {
           name: 'Tasty Plastic Mouse',
@@ -56,10 +56,10 @@ describe('Wishlist', () => {
       'button[ aria-label="Button add to favorite"]',
     );
 
-    expect(favoriteStore.getState().data.length).toBe(2);
+    expect(useFavoriteStore.getState().data.length).toBe(2);
 
     fireEvent.click(buttons[0]);
 
-    expect(favoriteStore.getState().data.length).toBe(1);
+    expect(useFavoriteStore.getState().data.length).toBe(1);
   });
 });

@@ -13,7 +13,7 @@ export interface IFavoriteStore {
   updateStore: (products: IProduct[]) => void;
 }
 
-export const favoriteStore = create(
+export const useFavoriteStore = create(
   persist<IFavoriteStore>(
     (set) => ({
       data: [],

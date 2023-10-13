@@ -5,7 +5,7 @@ import { memo, useCallback } from 'react';
 import { useFavorite } from '@/hooks';
 
 // Stores
-import { IFavoriteStore, favoriteStore } from '@/stores';
+import { IFavoriteStore, useFavoriteStore } from '@/stores';
 
 // Constants
 import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
@@ -18,7 +18,7 @@ import { Message } from '@/components/common';
 import { IProduct } from '@/interface';
 
 const Component = (): JSX.Element => {
-  const favorites = favoriteStore((state: IFavoriteStore) => state.data);
+  const favorites = useFavoriteStore((state: IFavoriteStore) => state.data);
   const { onToggleFavorite } = useFavorite();
 
   // Check for product is liked

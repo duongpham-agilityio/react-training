@@ -9,7 +9,7 @@ export interface IAuthStore {
   clearIsAuth: () => void;
 }
 
-export const authStore = create(
+export const useAuthStore = create(
   persist<IAuthStore>(
     (set) => ({
       isAuth: false,

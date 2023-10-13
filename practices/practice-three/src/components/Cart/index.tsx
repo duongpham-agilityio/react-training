@@ -13,7 +13,7 @@ import { useHandleCart } from '@/hooks';
 import { ENDPOINT_SERVICES, MESSAGES, TITLES, TIMES } from '@/constants';
 
 // Stores
-import { ICartStore, cartStore } from '@/stores';
+import { ICartStore, useCartStore } from '@/stores';
 
 // Components
 import { CartItem, Checkout } from './components';
@@ -31,10 +31,10 @@ const Component = (): JSX.Element => {
   });
 
   //  Get data from cart
-  const cart = cartStore((state: ICartStore): ICartData[] => state.data);
+  const cart = useCartStore((state: ICartStore): ICartData[] => state.data);
 
   // Get method clearCart
-  const clearCart = cartStore((state: ICartStore) => state.updateCart);
+  const clearCart = useCartStore((state: ICartStore) => state.updateCart);
 
   // Destructure to get the handler
   const { handleRemove, handleQuantity, handleCheckout } = useHandleCart();

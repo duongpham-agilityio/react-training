@@ -14,7 +14,7 @@ export interface ICartStore {
 }
 
 //  Cart store
-export const cartStore = create(
+export const useCartStore = create(
   persist<ICartStore>(
     (set) => ({
       data: [],

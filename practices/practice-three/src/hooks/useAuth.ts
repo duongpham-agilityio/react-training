@@ -3,7 +3,7 @@ import { useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 // Stores
-import { IAuthStore, authStore } from '@/stores';
+import { IAuthStore, useAuthStore } from '@/stores';
 
 // Constants
 import { MESSAGES, ROUTES, TITLES, TIMES } from '@/constants';
@@ -35,8 +35,10 @@ export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
     error: {} as T,
   });
 
-  const handleSetAuth = authStore((state: IAuthStore) => state.setIsAuth);
-  const handleClearAuth = authStore((state: IAuthStore) => state.clearIsAuth);
+  const handleSetAuth = useAuthStore((state: IAuthStore) => state.setIsAuth);
+  const handleClearAuth = useAuthStore(
+    (state: IAuthStore) => state.clearIsAuth,
+  );
 
   const onLogin: IUseHandleAuth<T>['onLogin'] = useCallback(
     async (email: string, password: string) => {

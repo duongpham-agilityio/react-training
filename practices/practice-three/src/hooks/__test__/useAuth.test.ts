@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 
 // Stores
-import { authStore } from '@/stores';
+import { useAuthStore } from '@/stores';
 
 // Hooks
 import { useHandleAuth } from '..';
@@ -71,6 +71,6 @@ describe('useAuth', () => {
 
     await act(async () => await result.current.onLogout());
 
-    expect(authStore.getState().isAuth).toBeFalsy();
+    expect(useAuthStore.getState().isAuth).toBeFalsy();
   });
 });

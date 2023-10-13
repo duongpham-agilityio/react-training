@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 // Stores
-import { IFavoriteStore, favoriteStore } from '@/stores';
+import { IFavoriteStore, useFavoriteStore } from '@/stores';
 
 // Types
 import { IProduct } from '@/interface';
@@ -12,15 +12,15 @@ export interface IUseFavorite {
 }
 
 export const useFavorite = () => {
-  const favorites: IProduct[] = favoriteStore(
+  const favorites: IProduct[] = useFavoriteStore(
     (state: IFavoriteStore) => state.data,
   );
 
-  const addToStore = favoriteStore(
+  const addToStore = useFavoriteStore(
     (state: IFavoriteStore) => state.setNewProduct,
   );
 
-  const updateStore = favoriteStore(
+  const updateStore = useFavoriteStore(
     (state: IFavoriteStore) => state.updateStore,
   );
 

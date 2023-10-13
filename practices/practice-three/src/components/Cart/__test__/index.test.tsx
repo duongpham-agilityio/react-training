@@ -10,7 +10,7 @@ import {
 import Cart from '..';
 
 // Stores
-import { cartStore } from '@/stores';
+import { useCartStore } from '@/stores';
 
 // Mocks
 import { cartItemProps, products } from '@/mocks';
@@ -34,7 +34,7 @@ const setup = () =>
 
 describe('Cart', () => {
   beforeEach(() => {
-    cartStore.setState({
+    useCartStore.setState({
       data: [
         {
           ...cartItemProps.data,
@@ -69,11 +69,11 @@ describe('Cart', () => {
       'button[aria-label="Button remove from cart"]',
     );
 
-    expect(cartStore.getState().data.length).toBe(2);
+    expect(useCartStore.getState().data.length).toBe(2);
 
     fireEvent.click(trashButtons[0]);
 
-    expect(cartStore.getState().data.length).toBe(1);
+    expect(useCartStore.getState().data.length).toBe(1);
   });
 
   // !Issues: can not expect

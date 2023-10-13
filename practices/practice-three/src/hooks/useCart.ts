@@ -7,7 +7,7 @@ import { MESSAGES } from '@/constants';
 import { productAPI } from '@/services/apis';
 
 // Stores
-import { ICartStore, cartStore } from '@/stores';
+import { ICartStore, useCartStore } from '@/stores';
 
 // Types
 import { ICartData, IProduct, IResponse } from '@/interface';
@@ -21,12 +21,12 @@ export interface IUseCart {
 
 export const useHandleCart = (): IUseCart => {
   //  Get handle add to cart from store
-  const addNewProduct = cartStore(
+  const addNewProduct = useCartStore(
     (state: ICartStore): ICartStore['addNewProduct'] => state.addNewProduct,
   );
 
   //  Get handle update cart
-  const updateCart = cartStore(
+  const updateCart = useCartStore(
     (state: ICartStore): ICartStore['updateCart'] => state.updateCart,
   );
 
@@ -47,7 +47,7 @@ export const useHandleCart = (): IUseCart => {
     (product: IProduct): boolean => {
       try {
         //  Get data from cart store
-        const { data: carts } = cartStore.getState();
+        const { data: carts } = useCartStore.getState();
         const { id, description, imageURL, name, price, quantity } = product;
 
         // Check Product exists from cart store
@@ -97,7 +97,7 @@ export const useHandleCart = (): IUseCart => {
   const handleRemove = useCallback(
     (productId: number): IResponse => {
       try {
-        const carts: ICartData[] = cartStore.getState().data;
+        const carts: ICartData[] = useCartStore.getState().data;
         const newCarts: ICartData[] = carts.filter(
           (cart: ICartData): boolean => cart.productId !== productId,
         );
@@ -135,7 +135,7 @@ export const useHandleCart = (): IUseCart => {
 
         const { price, quantity: quantityInStock } = product;
         // Get carts from localStore
-        const carts: ICartData[] = cartStore.getState().data;
+        const carts: ICartData[] = useCartStore.getState().data;
         // Get cart matching with productID
         const cart: ICartData = carts.find(
           (cart: ICartData) => cart.productId === productId,
@@ -177,7 +177,7 @@ export const useHandleCart = (): IUseCart => {
     // Get products from DB
     const products: IProduct[] = (await productAPI.getAll()) || [];
     //  Get cart from localStore
-    const carts: ICartData[] = cartStore.getState().data;
+    const carts: ICartData[] = useCartStore.getState().data;
 
     await Promise.all(
       carts.map((cart: ICartData) => {
