@@ -1,5 +1,5 @@
 export const MESSAGES = {
-  EMPTY: 'No data',
+  EMPTY: 'No suitable data found!',
   EMPTY_FILED: 'Please fill in this field',
   FAIL_TO_FETCH: 'Something went wrong!! Please reload page.',
   ADD_TO_CART_SUCCESS: 'Add to cart successful!',
