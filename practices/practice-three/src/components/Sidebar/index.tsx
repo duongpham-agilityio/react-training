@@ -14,13 +14,13 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-// Hooks
+// Stores
 import {
-  IUseCartStore,
-  IUseFavorite,
+  ICartStore,
+  IFavoriteStore,
   useCartStore,
-  useFavorite,
-} from '@/hooks';
+  useFavoriteStore,
+} from '@/stores';
 
 // Components
 import Modal from '@/components/Modal';
@@ -74,12 +74,12 @@ export const SideBar = memo((): JSX.Element => {
   const { isOpen: isOpenCart, onToggle: onToggleCart } = useDisclosure();
 
   // Quantity product in cart
-  const quantityCart = useCartStore(
-    (state: IUseCartStore) => state.data.length,
-  );
+  const quantityCart = useCartStore((state: ICartStore) => state.data.length);
 
   // Quantity favorite product
-  const favoriteSize = useFavorite((state: IUseFavorite) => state.data.length);
+  const favoriteSize = useFavoriteStore(
+    (state: IFavoriteStore) => state.data.length,
+  );
 
   const sidebarOptions: ISideBarOption[] = useMemo(
     (): ISideBarOption[] => [

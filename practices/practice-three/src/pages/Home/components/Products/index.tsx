@@ -2,8 +2,8 @@ import { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
 import { Grid, GridItem } from '@chakra-ui/react';
 
-// Hooks
-import { IUseFavorite, useFavorite } from '@/hooks';
+// Constants
+import { IFavoriteStore, favoriteStore } from '@/stores';
 
 // Constants
 import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
@@ -21,7 +21,7 @@ export interface ProductsProps extends Omit<ProductCardProps, 'info'> {
 
 export const Products = memo(
   ({ data, onAddToCart, onLike }: ProductsProps): JSX.Element => {
-    const favorites = useFavorite((state: IUseFavorite) => state.data);
+    const favorites = favoriteStore((state: IFavoriteStore) => state.data);
 
     // Check for product is liked
     const isLiked = useCallback(

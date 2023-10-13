@@ -1,12 +1,15 @@
 import { renderHook } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
+
+// Stores
+import { useAuthStore } from '@/stores';
 
 // Hooks
-import { useAuthStore, useHandleAuth } from '..';
+import { useHandleAuth } from '..';
 
 // Constants
 import { MESSAGES } from '@/constants';
-import { act } from 'react-dom/test-utils';
 
 const setup = () =>
   renderHook(useHandleAuth, {

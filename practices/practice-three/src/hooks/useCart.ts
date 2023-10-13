@@ -1,5 +1,3 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import { useCallback } from 'react';
 
 // Constants
@@ -8,14 +6,11 @@ import { MESSAGES } from '@/constants';
 // Services
 import { productAPI } from '@/services/apis';
 
+// Stores
+import { ICartStore, useCartStore } from '@/stores';
+
 // Types
 import { ICartData, IProduct, IResponse } from '@/interface';
-
-export interface IUseCartStore {
-  data: ICartData[];
-  addNewProduct: (product: ICartData) => void;
-  updateCart: (product: ICartData[]) => void;
-}
 
 export interface IUseCart {
   handleAddProductToCart: (product: IProduct) => boolean;
@@ -24,31 +19,15 @@ export interface IUseCart {
   handleCheckout: () => Promise<void>;
 }
 
-//  Cart store
-export const useCartStore = create(
-  persist<IUseCartStore>(
-    (set) => ({
-      data: [],
-      addNewProduct: (product: ICartData): void =>
-        set((state) => ({ data: [...state.data, product] })),
-      updateCart: (products: ICartData[]) => set({ data: products }),
-    }),
-    {
-      name: 'cart',
-    },
-  ),
-);
-
 export const useHandleCart = (): IUseCart => {
   //  Get handle add to cart from store
   const addNewProduct = useCartStore(
-    (state: IUseCartStore): IUseCartStore['addNewProduct'] =>
-      state.addNewProduct,
+    (state: ICartStore): ICartStore['addNewProduct'] => state.addNewProduct,
   );
 
   //  Get handle update cart
   const updateCart = useCartStore(
-    (state: IUseCartStore): IUseCartStore['updateCart'] => state.updateCart,
+    (state: ICartStore): ICartStore['updateCart'] => state.updateCart,
   );
 
   //  Handle check quantity

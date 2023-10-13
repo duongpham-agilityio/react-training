@@ -7,13 +7,7 @@ import { FilterBar, Pagination } from '@/components';
 import { Products } from '@/pages/Home/components';
 
 // Hooks
-import {
-  IUseFavorite,
-  useHandleCart,
-  useFavorite,
-  usePagination,
-  useSearch,
-} from '@/hooks';
+import { useHandleCart, useFavorite, usePagination, useSearch } from '@/hooks';
 
 // Services
 import { productAPI } from '@/services/apis';
@@ -37,9 +31,7 @@ const Component = (): JSX.Element => {
   });
 
   // Get handler from favorite store
-  const onToggleFavorite = useFavorite(
-    (state: IUseFavorite) => state.onToggleFavorite,
-  );
+  const { onToggleFavorite } = useFavorite();
 
   // Get handle add to cart
   const { handleAddProductToCart } = useHandleCart();

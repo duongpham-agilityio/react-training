@@ -9,8 +9,8 @@ import {
 // Components
 import Cart from '..';
 
-// Hooks
-import { useCartStore } from '@/hooks';
+// Stores
+import { useCartStore } from '@/stores';
 
 // Mocks
 import { cartItemProps, products } from '@/mocks';

@@ -7,14 +7,17 @@ import { memo, useCallback, useMemo } from 'react';
 import { Box, Flex, Spinner, Square, VStack, useToast } from '@chakra-ui/react';
 
 // Hooks
-import { IUseCartStore, useCartStore, useHandleCart } from '@/hooks';
+import { useHandleCart } from '@/hooks';
 
 // Constants
 import { ENDPOINT_SERVICES, MESSAGES, TITLES, TIMES } from '@/constants';
 
+// Stores
+import { ICartStore, useCartStore } from '@/stores';
+
 // Components
 import { CartItem, Checkout } from './components';
-import { Message } from '../common';
+import { Message } from '@/components/common';
 
 // Types
 import { ICartData, IResponse } from '@/interface';
@@ -28,10 +31,10 @@ const Component = (): JSX.Element => {
   });
 
   //  Get data from cart
-  const cart = useCartStore((state: IUseCartStore): ICartData[] => state.data);
+  const cart = useCartStore((state: ICartStore): ICartData[] => state.data);
 
   // Get method clearCart
-  const clearCart = useCartStore((state: IUseCartStore) => state.updateCart);
+  const clearCart = useCartStore((state: ICartStore) => state.updateCart);
 
   // Destructure to get the handler
   const { handleRemove, handleQuantity, handleCheckout } = useHandleCart();
