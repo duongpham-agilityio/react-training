@@ -10,12 +10,7 @@ import { Box, Flex, Spinner, Square, VStack, useToast } from '@chakra-ui/react';
 import { IUseCartStore, useCartStore, useHandleCart } from '@/hooks';
 
 // Constants
-import {
-  ENDPOINT_SERVICES,
-  MESSAGES,
-  TITLES,
-  TOAST_TIME_OUT,
-} from '@/constants';
+import { ENDPOINT_SERVICES, MESSAGES, TITLES, TIMES } from '@/constants';
 
 // Components
 import { CartItem, Checkout } from './components';
@@ -29,7 +24,7 @@ const Component = (): JSX.Element => {
 
   // Toast
   const toast = useToast({
-    duration: TOAST_TIME_OUT,
+    duration: TIMES.TOAST,
   });
 
   //  Get data from cart

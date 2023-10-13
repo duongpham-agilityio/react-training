@@ -27,7 +27,7 @@ import {
   LIMIT_QUANTITY,
   MESSAGES,
   TITLES,
-  TOAST_TIME_OUT,
+  TIMES,
 } from '@/constants';
 
 // Components
@@ -65,7 +65,7 @@ const ProfileComponent = () => {
   const [edit, setEdit] = useState<IFormAddData>();
 
   const toast = useToast({
-    duration: TOAST_TIME_OUT,
+    duration: TIMES.TOAST,
   });
 
   const { onAddProduct, onUpdateProduct, onRemoveProduct } = useProduct();

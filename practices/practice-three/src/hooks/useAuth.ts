@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 import { useToast } from '@chakra-ui/react';
 
 // Constants
-import { MESSAGES, ROUTES, TITLES, TOAST_TIME_OUT } from '@/constants';
+import { MESSAGES, ROUTES, TITLES, TIMES } from '@/constants';
 import { useNavigate } from 'react-router-dom';
 
 export interface IUseAuthStore {
@@ -44,7 +44,7 @@ export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
 
   // Show toast
   const toast = useToast({
-    duration: TOAST_TIME_OUT,
+    duration: TIMES.TOAST,
   });
 
   // Error

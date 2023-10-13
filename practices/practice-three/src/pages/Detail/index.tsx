@@ -24,7 +24,7 @@ import { useHandleCart } from '@/hooks';
 import { productAPI } from '@/services/apis';
 
 // Constants
-import { MESSAGES, PARAM, ROUTES, TITLES, TOAST_TIME_OUT } from '@/constants';
+import { MESSAGES, PARAM, ROUTES, TITLES, TIMES } from '@/constants';
 
 // Images
 import SocialImage from '@/assets/images/social.png';
@@ -38,7 +38,7 @@ import { IProduct } from '@/interface';
 const Component = (): JSX.Element => {
   // Toast
   const toast = useToast({
-    duration: TOAST_TIME_OUT,
+    duration: TIMES.TOAST,
   });
 
   // Get params
