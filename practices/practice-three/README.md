@@ -75,7 +75,7 @@
 ### Development Environment
 
 - Node [v16.20.0](https://nodejs.org/en/)
-- Yarn [v8.6.5](https://pnpm.io/installation)
+- Pnpm [v8.6.5](https://pnpm.io/installation)
 
 ### Main App Features
 
