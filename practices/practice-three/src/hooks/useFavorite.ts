@@ -1,7 +1,9 @@
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { useCallback } from 'react';
 
-// Styles
+// Stores
+import { IFavoriteStore, favoriteStore } from '@/stores';
+
+// Types
 import { IProduct } from '@/interface';
 
 export interface IUseFavorite {
@@ -9,36 +11,43 @@ export interface IUseFavorite {
   onToggleFavorite: (product?: IProduct) => void;
 }
 
-export const useFavorite = create(
-  persist<IUseFavorite>(
-    (set, get) => ({
-      data: [],
-      onToggleFavorite: (product?: IProduct): void => {
-        const { data } = get();
+export const useFavorite = () => {
+  const favorites: IProduct[] = favoriteStore(
+    (state: IFavoriteStore) => state.data,
+  );
 
-        if (!product) {
-          return;
-        }
+  const addToStore = favoriteStore(
+    (state: IFavoriteStore) => state.setNewProduct,
+  );
 
-        // check product exists in the store.
-        const isExist: boolean = !!data.find((item) => product.id === item.id);
+  const updateStore = favoriteStore(
+    (state: IFavoriteStore) => state.updateStore,
+  );
 
-        // Remove from favorites list when Product already exists
-        if (isExist) {
-          const newFavorites = data.filter((item) => product.id !== item.id);
+  const onToggleFavorite = useCallback(
+    (product?: IProduct) => {
+      if (!product) {
+        return;
+      }
 
-          return set({ data: newFavorites });
-        }
+      // check product exists in the store.
+      const isExist: boolean = !!favorites.find(
+        (item) => product.id === item.id,
+      );
 
-        // Add product to favorites
-        return set({
-          data: [...data, product],
-        });
-      },
-    }),
-    {
-      name: 'favorites',
-      storage: createJSONStorage(() => localStorage),
+      // Remove from favorites list when Product already exists
+      if (isExist) {
+        const newFavorites = favorites.filter((item) => product.id !== item.id);
+
+        return updateStore(newFavorites);
+      }
+
+      return addToStore(product);
     },
-  ),
-);
+    [addToStore, favorites, updateStore],
+  );
+
+  return {
+    onToggleFavorite,
+  };
+};
