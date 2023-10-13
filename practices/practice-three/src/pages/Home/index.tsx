@@ -1,5 +1,5 @@
 import { memo, useCallback } from 'react';
-import { Heading, Spinner, Square, Text, useToast } from '@chakra-ui/react';
+import { Heading, Spinner, Square, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 
 // Components
@@ -7,13 +7,19 @@ import { FilterBar, Pagination } from '@/components';
 import { Products } from '@/pages/Home/components';
 
 // Hooks
-import { useHandleCart, useFavorite, usePagination, useSearch } from '@/hooks';
+import {
+  useHandleCart,
+  useFavorite,
+  usePagination,
+  useSearch,
+  useToast,
+} from '@/hooks';
 
 // Services
 import { productAPI } from '@/services/apis';
 
 // Constants
-import { MESSAGES, ENDPOINT_SERVICES, TITLES, TIMES } from '@/constants';
+import { MESSAGES, ENDPOINT_SERVICES, TITLES } from '@/constants';
 
 // Types
 import { IProduct } from '@/interface';
@@ -37,9 +43,7 @@ const Component = (): JSX.Element => {
   const { handleAddProductToCart } = useHandleCart();
 
   // Show toast
-  const toast = useToast({
-    duration: TIMES.TOAST,
-  });
+  const { showToast } = useToast();
 
   // Calling useSearch hook
   const {
@@ -77,7 +81,7 @@ const Component = (): JSX.Element => {
 
       const isAddSuccess: boolean = handleAddProductToCart(product);
 
-      toast({
+      showToast({
         title: isAddSuccess ? TITLES.ADD : TITLES.REMOVE,
         description: isAddSuccess
           ? MESSAGES.ADD_TO_CART_SUCCESS
@@ -86,7 +90,7 @@ const Component = (): JSX.Element => {
         duration: 1000,
       });
     },
-    [handleAddProductToCart, products, toast],
+    [handleAddProductToCart, products, showToast],
   );
 
   if (isLoading)
