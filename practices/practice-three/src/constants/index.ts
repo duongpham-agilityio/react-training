@@ -5,3 +5,4 @@ export * from './title';
 export * from './regex';
 export * from './time';
 export * from './status';
+export * from './store';
