@@ -19,12 +19,7 @@ import {
 import { productAPI } from '@/services/apis';
 
 // Constants
-import {
-  MESSAGES,
-  ENDPOINT_SERVICES,
-  TITLES,
-  TOAST_TIME_OUT,
-} from '@/constants';
+import { MESSAGES, ENDPOINT_SERVICES, TITLES, TIMES } from '@/constants';
 
 // Types
 import { IProduct } from '@/interface';
@@ -51,7 +46,7 @@ const Component = (): JSX.Element => {
 
   // Show toast
   const toast = useToast({
-    duration: TOAST_TIME_OUT,
+    duration: TIMES.TOAST,
   });
 
   // Calling useSearch hook

@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react';
 
 // Constants
-import { DEBOUNCE_TIME_OUT } from '@/constants';
+import { TIMES } from '@/constants';
 
 export type IUseDebounce<T> = (value: T) => void;
 
@@ -19,7 +19,7 @@ export const useDebounce = <T>(callback?: IUseDebounce<T>): IUseDebounce<T> => {
 
       refTime.current = setTimeout(() => {
         if (callback) callback(value);
-      }, DEBOUNCE_TIME_OUT);
+      }, TIMES.DEBOUNCE);
     },
     [callback],
   );
