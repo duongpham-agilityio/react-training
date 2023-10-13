@@ -12,7 +12,7 @@ import { IAccount, IAuthEmpty, IMswResponse } from '@/interface';
 import { isEmpty, isMatchRegexp } from '@/helpers';
 
 // Constants
-import { MESSAGES, REGEXP_EMAIL } from '@/constants';
+import { MESSAGES, REGEXPS } from '@/constants';
 
 export const signIn = async (
   req: MockedRequest,
@@ -31,7 +31,7 @@ export const signIn = async (
       context.json<IMswResponse<IAuthEmpty>>({ data }),
     );
 
-  if (!isMatchRegexp(payload.email, REGEXP_EMAIL)) {
+  if (!isMatchRegexp(payload.email, REGEXPS.EMAIL)) {
     return res(
       context.status(401),
       context.json<IMswResponse<IAuthEmpty>>({
