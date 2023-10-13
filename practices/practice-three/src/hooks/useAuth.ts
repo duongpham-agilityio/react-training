@@ -1,30 +1,12 @@
 import { useCallback, useState } from 'react';
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import { useToast } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+
+// Stores
+import { IAuthStore, authStore } from '@/stores';
 
 // Constants
 import { MESSAGES, ROUTES, TITLES, TIMES } from '@/constants';
-import { useNavigate } from 'react-router-dom';
-
-export interface IUseAuthStore {
-  isAuth: boolean;
-  setIsAuth: () => void;
-  clearIsAuth: () => void;
-}
-
-export const useAuthStore = create(
-  persist<IUseAuthStore>(
-    (set) => ({
-      isAuth: false,
-      setIsAuth: () => set({ isAuth: true }),
-      clearIsAuth: () => set({ isAuth: false }),
-    }),
-    {
-      name: 'auth',
-    },
-  ),
-);
 
 export interface IUseHandleAuth<T> {
   isError: boolean;
@@ -53,10 +35,8 @@ export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
     error: {} as T,
   });
 
-  const handleSetAuth = useAuthStore((state: IUseAuthStore) => state.setIsAuth);
-  const handleClearAuth = useAuthStore(
-    (state: IUseAuthStore) => state.clearIsAuth,
-  );
+  const handleSetAuth = authStore((state: IAuthStore) => state.setIsAuth);
+  const handleClearAuth = authStore((state: IAuthStore) => state.clearIsAuth);
 
   const onLogin: IUseHandleAuth<T>['onLogin'] = useCallback(
     async (email: string, password: string) => {

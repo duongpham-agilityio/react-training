@@ -1,12 +1,15 @@
 import { renderHook } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
+
+// Stores
+import { authStore } from '@/stores';
 
 // Hooks
-import { useAuthStore, useHandleAuth } from '..';
+import { useHandleAuth } from '..';
 
 // Constants
 import { MESSAGES } from '@/constants';
-import { act } from 'react-dom/test-utils';
 
 const setup = () =>
   renderHook(useHandleAuth, {
@@ -68,6 +71,6 @@ describe('useAuth', () => {
 
     await act(async () => await result.current.onLogout());
 
-    expect(useAuthStore.getState().isAuth).toBeFalsy();
+    expect(authStore.getState().isAuth).toBeFalsy();
   });
 });
