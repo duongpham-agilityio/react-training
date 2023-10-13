@@ -7,7 +7,21 @@
   - Products management [here](<https://www.figma.com/file/n5ACucnmYWfUvXja46YZXS/e-shopping-website-redesign-(Community)?type=design&node-id=0-1&mode=design&t=isBt5YBYyi7Cm1DC-0>)
 - Plan: [here](https://docs.google.com/document/d/1iRr0LhzKkR29vpm8js6BG4rVCc8ITGJxzN5LmvwvDhY/edit)
 - App workflow [here](https://miro.com/app/board/uXjVNfGsX7Y=/?share_link_id=761369513237)
-- Deploy: (Updating...)
+- Deploy: [here](https://pracitce-three.vercel.app/)
+
+### Updated
+
+- README.md
+- Constants file
+  - HTTP status
+  - Time
+  - Remove interface and Utility type
+- Stores
+  - Create stores folder
+- Hooks
+  - Update logic handler
+- Custom theme for ChakraUI
+- Implement unit test
 
 ### Targets
 
@@ -22,23 +36,16 @@
 
 - Sidebar
   - Show all options with the user-logged
-  - Show wishlist, card, wallets and mode
 - List product
-- Mode (dark, light)
 - Add product
-  - If the user doesn't log in then redirect the user to log in page
-  - If user-logged then continue to the next step
 - Edit product
-  - Users can only edit their own products in their profile
 - Remove product
-  - Same case Editing product
+- If a product has been deleted, that product will also be deleted from the favorites and carts list.
 - Wishlist
-  - Calculated for only logged-in users
+  - Display favorite product information.
 - Carts
-- Same case editing the wishlist
+  - Same case editing the wishlist
 - Checkout
-  - If the user is not logged in, the user will be redirected to the login page. After successful login, the user will be redirected to the page the user has selected.
-  - If user-logged then continue to the next step
 - Sign In
   - If the user is not logged in, he or she can access the page
   - If the user is already logged in, navigate the user back to the home page
@@ -49,26 +56,26 @@
   - Estimate day: 6 days
   - Actual time: 8.5 days
 - Techniques:
-  - HTML5/CSS [last version](https://html.spec.whatwg.org/multipage/)
-  - TypeScript [v4.9.5](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)
+  - ChakraUI:[v2.8.1](https://chakra-ui.com/getting-started)
+  - TypeScript [v5.2.2](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)
   - React [v18.2.0](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html)
-  - JSON server [v0.17.3](https://www.npmjs.com/package/json-server)
+  - JSON server [v0.17.4](https://www.npmjs.com/package/json-server)
   - localStorage
-  - Vite [v4.2.0](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)
+  - Vite [v4.4.5](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)
   - Eslint [v8.0.1](https://eslint.org/docs/latest/use/getting-started#quick-start)
   - Prettier [v2.8.7](https://prettier.io/docs/en/install.html)
   - Jest [v29.5.0](https://jestjs.io/docs/getting-started)
   - Ts-jest [v29.0.5](https://kulshekhar.github.io/ts-jest/docs/getting-started/installation)
   - React-testing [v14.0.0](https://testing-library.com/docs/react-testing-library/intro/)
-  - React Query: Updating...
-  - Zustand: Updating...
-  - MSW: Updating...
+  - React Query: [v4.35.7](https://tanstack.com/query/v4/docs/react/overview)
+  - Zustand: [v4.4.1](https://docs.pmnd.rs/zustand/getting-started/introduction)
+  - MSW: [v1.3.2](https://mswjs.io/docs/)
 - Editor: Visual Studio Code.
 
 ### Development Environment
 
 - Node [v16.20.0](https://nodejs.org/en/)
-- Yarn [v1.22.19](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
+- Pnpm [v8.6.5](https://pnpm.io/installation)
 
 ### Main App Features
 
@@ -107,9 +114,9 @@
   ```
   cd reactjs-training
   ```
-- Step 3: Move to branch develop
+- Step 3: Move to branch feature/practice-three
   ```
-  git checkout develop
+  git checkout feature/practice-three
   ```
 - Step 4: Move to folder
   ```
