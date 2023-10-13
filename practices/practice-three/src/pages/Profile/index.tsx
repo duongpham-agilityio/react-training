@@ -10,7 +10,6 @@ import {
   Text,
   VStack,
   useDisclosure,
-  useToast,
 } from '@chakra-ui/react';
 import { memo, useCallback, useState, MouseEvent } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -19,7 +18,7 @@ import { useQuery } from '@tanstack/react-query';
 import { withIsAuth } from '@/hocs';
 
 // Hooks
-import { usePagination, useProduct } from '@/hooks';
+import { usePagination, useProduct, useToast } from '@/hooks';
 
 // Constants
 import {
@@ -27,7 +26,6 @@ import {
   LIMIT_QUANTITY,
   MESSAGES,
   TITLES,
-  TIMES,
 } from '@/constants';
 
 // Components
@@ -64,9 +62,7 @@ const ProfileComponent = () => {
   const { isOpen: isOpenFormAdd, onToggle: onToggleForm } = useDisclosure();
   const [edit, setEdit] = useState<IFormAddData>();
 
-  const toast = useToast({
-    duration: TIMES.TOAST,
-  });
+  const { showToast } = useToast();
 
   const { onAddProduct, onUpdateProduct, onRemoveProduct } = useProduct();
 
@@ -87,7 +83,7 @@ const ProfileComponent = () => {
     async (product: IFormAddData) => {
       const isSuccess: boolean = await onAddProduct(product);
 
-      toast({
+      showToast({
         title: TITLES.ADD,
         description: isSuccess
           ? MESSAGES.ADD_NEW_PRODUCT_SUCCESS
@@ -97,14 +93,14 @@ const ProfileComponent = () => {
 
       if (isSuccess) return handleCloseModal();
     },
-    [handleCloseModal, onAddProduct, toast],
+    [handleCloseModal, onAddProduct, showToast],
   );
 
   const handleSubmitUpdate = useCallback(
     async (id: number, product: IFormAddData) => {
       const isSuccess = await onUpdateProduct(id, product);
 
-      toast({
+      showToast({
         title: TITLES.UPDATE,
         description: isSuccess
           ? MESSAGES.UPDATE_PRODUCT_SUCCESS
@@ -114,14 +110,14 @@ const ProfileComponent = () => {
 
       if (isSuccess) return handleCloseModal();
     },
-    [handleCloseModal, onUpdateProduct, toast],
+    [handleCloseModal, onUpdateProduct, showToast],
   );
 
   const handleSubmitRemove = useCallback(
     async (id: number): Promise<void> => {
       const isSuccess: boolean = await onRemoveProduct(id);
 
-      toast({
+      showToast({
         title: TITLES.REMOVE,
         description: isSuccess
           ? MESSAGES.REMOVE_PRODUCT_SUCCESS
@@ -129,7 +125,7 @@ const ProfileComponent = () => {
         status: isSuccess ? 'success' : 'error',
       });
     },
-    [onRemoveProduct, toast],
+    [onRemoveProduct, showToast],
   );
 
   const handleSubmit = useCallback(

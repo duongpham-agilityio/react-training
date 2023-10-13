@@ -1,12 +1,14 @@
 import { useCallback, useState } from 'react';
-import { useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+
+// Hooks
+import { useToast } from '@/hooks';
 
 // Stores
 import { IAuthStore, useAuthStore } from '@/stores';
 
 // Constants
-import { MESSAGES, ROUTES, TITLES, TIMES } from '@/constants';
+import { MESSAGES, ROUTES, TITLES } from '@/constants';
 
 export interface IUseHandleAuth<T> {
   isError: boolean;
@@ -25,9 +27,7 @@ export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
   const redirect = useNavigate();
 
   // Show toast
-  const toast = useToast({
-    duration: TIMES.TOAST,
-  });
+  const { showToast } = useToast();
 
   // Error
   const [err, setError] = useState<IUseAuthError<T>>({
@@ -67,14 +67,14 @@ export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
       } catch (error) {
         const message: string = (error as unknown as Error).message;
 
-        toast({
+        showToast({
           title: TITLES.ERROR,
           description: message,
           status: 'error',
         });
       }
     },
-    [handleSetAuth, redirect, toast],
+    [handleSetAuth, redirect, showToast],
   );
 
   const onLogout = useCallback(() => handleClearAuth(), [handleClearAuth]);

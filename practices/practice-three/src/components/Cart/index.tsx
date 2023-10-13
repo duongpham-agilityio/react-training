@@ -4,13 +4,13 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { memo, useCallback, useMemo } from 'react';
-import { Box, Flex, Spinner, Square, VStack, useToast } from '@chakra-ui/react';
+import { Box, Flex, Spinner, Square, VStack } from '@chakra-ui/react';
 
 // Hooks
-import { useHandleCart } from '@/hooks';
+import { useHandleCart, useToast } from '@/hooks';
 
 // Constants
-import { ENDPOINT_SERVICES, MESSAGES, TITLES, TIMES } from '@/constants';
+import { ENDPOINT_SERVICES, MESSAGES, TITLES } from '@/constants';
 
 // Stores
 import { ICartStore, useCartStore } from '@/stores';
@@ -26,9 +26,7 @@ const Component = (): JSX.Element => {
   const queryClient: QueryClient = useQueryClient();
 
   // Toast
-  const toast = useToast({
-    duration: TIMES.TOAST,
-  });
+  const { showToast } = useToast();
 
   //  Get data from cart
   const cart = useCartStore((state: ICartStore): ICartData[] => state.data);
@@ -61,7 +59,7 @@ const Component = (): JSX.Element => {
       queryClient.invalidateQueries([ENDPOINT_SERVICES.PRODUCTS]);
 
       // Show notification
-      toast({
+      showToast({
         title: TITLES.SUCCESS,
         description: MESSAGES.REMOVE_FORM_CART_SUCCESS,
         status: 'success',
@@ -70,7 +68,7 @@ const Component = (): JSX.Element => {
     onError: (error: Error) => {
       const message: string = error.message;
 
-      toast({
+      showToast({
         title: TITLES.ERROR,
         description: message,
         status: 'error',
@@ -83,13 +81,13 @@ const Component = (): JSX.Element => {
     (id: number) => {
       const { isError, message }: IResponse = handleRemove(id);
 
-      toast({
+      showToast({
         title: isError ? TITLES.ERROR : TITLES.SUCCESS,
         description: message,
         status: isError ? 'error' : 'success',
       });
     },
-    [handleRemove, toast],
+    [handleRemove, showToast],
   );
 
   // Handle change quantity
@@ -101,14 +99,14 @@ const Component = (): JSX.Element => {
       );
 
       if (isError) {
-        return toast({
+        return showToast({
           title: TITLES.ERROR,
           description: message,
           status: 'error',
         });
       }
     },
-    [handleQuantity, toast],
+    [handleQuantity, showToast],
   );
 
   return (

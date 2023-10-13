@@ -11,20 +11,19 @@ import {
   Square,
   Text,
   VStack,
-  useToast,
 } from '@chakra-ui/react';
 import { memo, useCallback } from 'react';
 import { QueryFunctionContext, useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 // Hooks
-import { useHandleCart } from '@/hooks';
+import { useHandleCart, useToast } from '@/hooks';
 
 // Services
 import { productAPI } from '@/services/apis';
 
 // Constants
-import { MESSAGES, PARAM, ROUTES, TITLES, TIMES } from '@/constants';
+import { MESSAGES, PARAM, ROUTES, TITLES } from '@/constants';
 
 // Images
 import SocialImage from '@/assets/images/social.png';
@@ -37,9 +36,7 @@ import { IProduct } from '@/interface';
 
 const Component = (): JSX.Element => {
   // Toast
-  const toast = useToast({
-    duration: TIMES.TOAST,
-  });
+  const { showToast } = useToast();
 
   // Get params
   const params = useParams();
@@ -64,7 +61,7 @@ const Component = (): JSX.Element => {
 
       const isAddSuccess: boolean = handleAddProductToCart(product);
 
-      return toast({
+      return showToast({
         title: TITLES.ADD,
         description: isAddSuccess
           ? MESSAGES.ADD_TO_CART_SUCCESS
@@ -72,12 +69,12 @@ const Component = (): JSX.Element => {
         status: isAddSuccess ? 'success' : 'error',
       });
     } catch (error) {
-      toast({
+      showToast({
         title: TITLES.ERROR,
         description: MESSAGES.FAIL_TO_FETCH,
       });
     }
-  }, [handleAddProductToCart, params, toast]);
+  }, [handleAddProductToCart, params, showToast]);
 
   if (isLoading)
     return (
