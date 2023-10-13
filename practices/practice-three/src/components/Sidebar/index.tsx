@@ -14,11 +14,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-// Hooks
-import { IUseFavorite, useFavorite } from '@/hooks';
-
 // Stores
-import { ICartStore, cartStore } from '@/stores';
+import { ICartStore, IFavoriteStore, cartStore, favoriteStore } from '@/stores';
 
 // Components
 import Modal from '@/components/Modal';
@@ -75,7 +72,9 @@ export const SideBar = memo((): JSX.Element => {
   const quantityCart = cartStore((state: ICartStore) => state.data.length);
 
   // Quantity favorite product
-  const favoriteSize = useFavorite((state: IUseFavorite) => state.data.length);
+  const favoriteSize = favoriteStore(
+    (state: IFavoriteStore) => state.data.length,
+  );
 
   const sidebarOptions: ISideBarOption[] = useMemo(
     (): ISideBarOption[] => [

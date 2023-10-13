@@ -2,7 +2,10 @@ import { Box, Grid, GridItem } from '@chakra-ui/react';
 import { memo, useCallback } from 'react';
 
 // Hooks
-import { IUseFavorite, useFavorite } from '@/hooks';
+import { useFavorite } from '@/hooks';
+
+// Stores
+import { IFavoriteStore, favoriteStore } from '@/stores';
 
 // Constants
 import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
@@ -15,10 +18,8 @@ import { Message } from '@/components/common';
 import { IProduct } from '@/interface';
 
 const Component = (): JSX.Element => {
-  const favorites = useFavorite((state: IUseFavorite) => state.data);
-  const onAddToFavorite = useFavorite(
-    (state: IUseFavorite) => state.onToggleFavorite,
-  );
+  const favorites = favoriteStore((state: IFavoriteStore) => state.data);
+  const { onToggleFavorite } = useFavorite();
 
   // Check for product is liked
   const isLiked = useCallback(
@@ -34,9 +35,9 @@ const Component = (): JSX.Element => {
         (item) => item.id === id,
       );
 
-      onAddToFavorite(product);
+      onToggleFavorite(product);
     },
-    [favorites, onAddToFavorite],
+    [favorites, onToggleFavorite],
   );
 
   // Todo: Update to late
