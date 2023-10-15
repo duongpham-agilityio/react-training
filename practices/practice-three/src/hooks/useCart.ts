@@ -10,12 +10,12 @@ import { productAPI } from '@/services/apis';
 import { TCartStore, useCartStore } from '@/stores';
 
 // Types
-import { ICartData, IProduct, IResponse } from '@/interface';
+import { ICartData, IProduct, TResponse } from '@/interface';
 
 export type TUseCart = {
   handleAddProductToCart: (product: IProduct) => boolean;
-  handleRemove: (productId: number) => IResponse;
-  handleQuantity: (productId: number, quantity: number) => Promise<IResponse>;
+  handleRemove: (productId: number) => TResponse;
+  handleQuantity: (productId: number, quantity: number) => Promise<TResponse>;
   handleCheckout: () => Promise<void>;
 };
 
@@ -95,7 +95,7 @@ export const useHandleCart = (): TUseCart => {
 
   //  Handle remove product from cart
   const handleRemove = useCallback(
-    (productId: number): IResponse => {
+    (productId: number): TResponse => {
       try {
         const carts: ICartData[] = useCartStore.getState().data;
         const newCarts: ICartData[] = carts.filter(
@@ -120,7 +120,7 @@ export const useHandleCart = (): TUseCart => {
 
   //  Handle change quantity from cart
   const handleQuantity = useCallback(
-    async (productId: number, quantity: number): Promise<IResponse> => {
+    async (productId: number, quantity: number): Promise<TResponse> => {
       try {
         // Get product from BE
         const product: IProduct | undefined =

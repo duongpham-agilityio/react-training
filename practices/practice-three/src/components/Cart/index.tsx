@@ -20,7 +20,7 @@ import { CartItem, Checkout } from './components';
 import { Message } from '@/components/common';
 
 // Types
-import { ICartData, IResponse } from '@/interface';
+import { ICartData, TResponse } from '@/interface';
 
 const Component = (): JSX.Element => {
   const queryClient: QueryClient = useQueryClient();
@@ -79,7 +79,7 @@ const Component = (): JSX.Element => {
   // Handle remove  product from cart
   const handleRemoveProductFromCart = useCallback(
     (id: number) => {
-      const { isError, message }: IResponse = handleRemove(id);
+      const { isError, message }: TResponse = handleRemove(id);
 
       showToast({
         title: isError ? TITLES.ERROR : TITLES.SUCCESS,
@@ -93,7 +93,7 @@ const Component = (): JSX.Element => {
   // Handle change quantity
   const handleChangeQuantity = useCallback(
     async (productId: number, quantity: number) => {
-      const { isError, message }: IResponse = await handleQuantity(
+      const { isError, message }: TResponse = await handleQuantity(
         productId,
         quantity,
       );
