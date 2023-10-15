@@ -5,10 +5,10 @@ import '@/components/FilterBar/__test__/SearchBar.test';
 import '@/components/FilterBar/__test__/FilterOptions.test';
 
 // Components
-import { FilterBar, FilterBarProps } from '..';
+import { FilterBar, TFilterBarProps } from '..';
 
 const onChange = jest.fn();
-const defaultProps: FilterBarProps = {
+const defaultProps: TFilterBarProps = {
   value: '',
   onChange,
 };

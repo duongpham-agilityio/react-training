@@ -7,12 +7,12 @@ import {
 } from '@chakra-ui/react';
 import { ChangeEvent, memo, useCallback } from 'react';
 
-export interface InputFormProps extends Omit<InputProps, 'onChange'> {
+export type TInputFormProps = Omit<InputProps, 'onChange'> & {
   isError?: boolean;
   label?: string;
   errorMessage?: string;
   onChange: (value: string, name?: string) => void;
-}
+};
 
 export const InputForm = memo(
   ({
@@ -21,7 +21,7 @@ export const InputForm = memo(
     errorMessage,
     onChange,
     ...props
-  }: InputFormProps) => {
+  }: TInputFormProps) => {
     const handleChange = useCallback(
       (e: ChangeEvent<HTMLInputElement>) => {
         const el: HTMLInputElement = e.target;

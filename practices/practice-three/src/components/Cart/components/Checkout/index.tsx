@@ -1,13 +1,13 @@
 import { Box, Button, Divider, Heading, Text } from '@chakra-ui/react';
 import { memo } from 'react';
 
-export interface CheckoutProps {
+export type TCheckoutProps = {
   total: number;
   onCheckout: () => void;
-}
+};
 
 export const Checkout = memo(
-  ({ total, onCheckout }: CheckoutProps): JSX.Element => {
+  ({ total, onCheckout }: TCheckoutProps): JSX.Element => {
     return (
       <Box
         h={{

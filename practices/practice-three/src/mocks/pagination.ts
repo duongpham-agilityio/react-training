@@ -1,6 +1,6 @@
-import { PaginationProps } from '@/components';
+import { TPaginationProps } from '@/components';
 
-export const defaultPropsPagination: PaginationProps = {
+export const defaultPropsPagination: TPaginationProps = {
   data: [1, 2, 3, 4, 5, 6, 7],
   currentPage: 1,
   isNextPage: true,

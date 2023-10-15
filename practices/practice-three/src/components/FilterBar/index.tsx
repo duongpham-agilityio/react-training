@@ -2,12 +2,12 @@ import { VStack } from '@chakra-ui/react';
 import { memo } from 'react';
 
 // Components
-import { SearchBar, SearchBarProps } from './SearchBar';
+import { SearchBar, TSearchBarProps } from './SearchBar';
 import { FilterOptions } from './FilterOptions';
 
-export type FilterBarProps = SearchBarProps;
+export type TFilterBarProps = TSearchBarProps;
 
-const Component = (props: FilterBarProps) => {
+const Component = (props: TFilterBarProps) => {
   const { value, onChange } = props;
 
   return (

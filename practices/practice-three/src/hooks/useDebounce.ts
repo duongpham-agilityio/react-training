@@ -3,14 +3,14 @@ import { useCallback, useRef } from 'react';
 // Constants
 import { TIMES } from '@/constants';
 
-export type IUseDebounce<T> = (value: T) => void;
+export type TUseDebounce<T> = (value: T) => void;
 
 /**
  * - This is a custom hook that listens for user input
  * @param callback Have a string as parameter
  * @returns
  */
-export const useDebounce = <T>(callback?: IUseDebounce<T>): IUseDebounce<T> => {
+export const useDebounce = <T>(callback?: TUseDebounce<T>): TUseDebounce<T> => {
   const refTime = useRef<ReturnType<typeof setTimeout>>();
 
   const debounce = useCallback(

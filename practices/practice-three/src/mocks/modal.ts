@@ -1,6 +1,6 @@
-import { ModalProps } from '@/components';
+import { TModalProps } from '@/components';
 
-export const defaultModalProps: ModalProps = {
+export const defaultModalProps: TModalProps = {
   title: 'Demo',
   isOpen: true,
   onClose: () => {},

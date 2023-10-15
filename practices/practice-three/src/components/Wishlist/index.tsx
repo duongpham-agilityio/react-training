@@ -5,20 +5,20 @@ import { memo, useCallback } from 'react';
 import { useFavorite } from '@/hooks';
 
 // Stores
-import { IFavoriteStore, useFavoriteStore } from '@/stores';
+import { TFavoriteStore, useFavoriteStore } from '@/stores';
 
 // Constants
 import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
 
 // Components
-import { IProductCard, ProductCard } from '@/components';
+import { TProductCard, ProductCard } from '@/components';
 import { Message } from '@/components/common';
 
 // Types
 import { IProduct } from '@/interface';
 
 const Component = (): JSX.Element => {
-  const favorites = useFavoriteStore((state: IFavoriteStore) => state.data);
+  const favorites = useFavoriteStore((state: TFavoriteStore) => state.data);
   const { onToggleFavorite } = useFavorite();
 
   // Check for product is liked
@@ -46,7 +46,7 @@ const Component = (): JSX.Element => {
   const handleRenderProduct = useCallback(
     (product: IProduct): JSX.Element => {
       const { id, imageURL, name, description, price, quantity } = product;
-      const info: IProductCard = {
+      const info: TProductCard = {
         id,
         imageURL,
         price,

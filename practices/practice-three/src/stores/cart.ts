@@ -7,15 +7,15 @@ import { STORES } from '@/constants';
 // Types
 import { ICartData } from '@/interface';
 
-export interface ICartStore {
+export type TCartStore = {
   data: ICartData[];
   addNewProduct: (product: ICartData) => void;
   updateCart: (product: ICartData[]) => void;
-}
+};
 
 //  Cart store
 export const useCartStore = create(
-  persist<ICartStore>(
+  persist<TCartStore>(
     (set) => ({
       data: [],
       addNewProduct: (product: ICartData): void =>

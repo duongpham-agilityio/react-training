@@ -15,13 +15,13 @@ import { ICartData } from '@/interface';
 // Icons
 import { Decrease, Increase, Trash } from '@/assets/icons';
 
-export interface CartItemProps {
+export type TCartItemProps = {
   data: ICartData;
   onRemove: (productId: number) => void;
   onChangeQuantity: (productId: number, currentQuantity: number) => void;
-}
+};
 
-const CartItemComponent = (props: CartItemProps): JSX.Element => {
+const CartItemComponent = (props: TCartItemProps): JSX.Element => {
   const { data, onChangeQuantity, onRemove } = props;
   const { name, description, imageURL, productId, price, quantity } = data;
 

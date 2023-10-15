@@ -1,27 +1,26 @@
 import { useCallback } from 'react';
 
 // Stores
-import { IFavoriteStore, useFavoriteStore } from '@/stores';
+import { TFavoriteStore, useFavoriteStore } from '@/stores';
 
 // Types
 import { IProduct } from '@/interface';
 
-export interface IUseFavorite {
-  data: IProduct[];
+export type TUseFavorite = {
   onToggleFavorite: (product?: IProduct) => void;
-}
+};
 
-export const useFavorite = () => {
+export const useFavorite = (): TUseFavorite => {
   const favorites: IProduct[] = useFavoriteStore(
-    (state: IFavoriteStore) => state.data,
+    (state: TFavoriteStore) => state.data,
   );
 
   const addToStore = useFavoriteStore(
-    (state: IFavoriteStore) => state.setNewProduct,
+    (state: TFavoriteStore) => state.setNewProduct,
   );
 
   const updateStore = useFavoriteStore(
-    (state: IFavoriteStore) => state.updateStore,
+    (state: TFavoriteStore) => state.updateStore,
   );
 
   const onToggleFavorite = useCallback(

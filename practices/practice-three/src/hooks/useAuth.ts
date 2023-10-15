@@ -5,24 +5,24 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks';
 
 // Stores
-import { IAuthStore, useAuthStore } from '@/stores';
+import { TAuthStore, useAuthStore } from '@/stores';
 
 // Constants
 import { MESSAGES, ROUTES, TITLES } from '@/constants';
 
-export interface IUseHandleAuth<T> {
+export type TUseHandleAuth<T> = {
   isError: boolean;
   error: T;
   onLogin: (email: string, password: string) => void;
   onLogout: () => void;
-}
+};
 
-interface IUseAuthError<T> {
+type TUseAuthError<T> = {
   isError: boolean;
   error: T;
-}
+};
 
-export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
+export const useHandleAuth = <T extends object>(): TUseHandleAuth<T> => {
   // Redirect to other page
   const redirect = useNavigate();
 
@@ -30,17 +30,17 @@ export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
   const { showToast } = useToast();
 
   // Error
-  const [err, setError] = useState<IUseAuthError<T>>({
+  const [err, setError] = useState<TUseAuthError<T>>({
     isError: false,
     error: {} as T,
   });
 
-  const handleSetAuth = useAuthStore((state: IAuthStore) => state.setIsAuth);
+  const handleSetAuth = useAuthStore((state: TAuthStore) => state.setIsAuth);
   const handleClearAuth = useAuthStore(
-    (state: IAuthStore) => state.clearIsAuth,
+    (state: TAuthStore) => state.clearIsAuth,
   );
 
-  const onLogin: IUseHandleAuth<T>['onLogin'] = useCallback(
+  const onLogin: TUseHandleAuth<T>['onLogin'] = useCallback(
     async (email: string, password: string) => {
       try {
         const response: Response = await fetch('', {

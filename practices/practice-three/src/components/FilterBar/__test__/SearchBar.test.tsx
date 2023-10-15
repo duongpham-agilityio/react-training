@@ -1,10 +1,10 @@
 import { fireEvent, render } from '@testing-library/react';
 
 // Components
-import { SearchBar, SearchBarProps } from '../SearchBar';
+import { SearchBar, TSearchBarProps } from '../SearchBar';
 
 const onChange = jest.fn();
-const defaultProps: SearchBarProps = {
+const defaultProps: TSearchBarProps = {
   value: '',
   onChange,
 };

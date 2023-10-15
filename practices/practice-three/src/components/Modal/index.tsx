@@ -9,14 +9,14 @@ import {
 import { ReactNode, memo } from 'react';
 import isEqual from 'react-fast-compare';
 
-export interface ModalProps {
+export type TModalProps = {
   children?: ReactNode;
   title: string;
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
-const Component = (props: ModalProps): JSX.Element => {
+const Component = (props: TModalProps): JSX.Element => {
   const { children, title, ...rest } = props;
 
   return (
@@ -52,7 +52,7 @@ const Component = (props: ModalProps): JSX.Element => {
   );
 };
 
-const areCompare = (prevProps: ModalProps, nextProps: ModalProps): boolean =>
+const areCompare = (prevProps: TModalProps, nextProps: TModalProps): boolean =>
   isEqual(prevProps.children, nextProps.children);
 
 const ModalCustom = memo(Component, areCompare);

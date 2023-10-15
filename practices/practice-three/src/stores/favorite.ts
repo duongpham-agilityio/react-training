@@ -7,14 +7,14 @@ import { STORES } from '@/constants';
 // Styles
 import { IProduct } from '@/interface';
 
-export interface IFavoriteStore {
+export type TFavoriteStore = {
   data: IProduct[];
   setNewProduct: (product: IProduct) => void;
   updateStore: (products: IProduct[]) => void;
-}
+};
 
 export const useFavoriteStore = create(
-  persist<IFavoriteStore>(
+  persist<TFavoriteStore>(
     (set) => ({
       data: [],
       setNewProduct: (product: IProduct): void =>

@@ -7,9 +7,9 @@ import { ENDPOINT_SERVICES, MESSAGES } from '@/constants';
 // Services
 import { apiRequest } from '@/services/configs';
 
-interface AccountAPI {
+type TAccountAPI = {
   get: (email: string, password: string) => Promise<IAccount>;
-}
+};
 
 /**
  * Get account by email & password
@@ -17,7 +17,7 @@ interface AccountAPI {
  * @param password your password
  * @returns your account
  */
-const get: AccountAPI['get'] = async (email: string, password: string) => {
+const get: TAccountAPI['get'] = async (email: string, password: string) => {
   try {
     const account: IAccount = (
       await apiRequest.get(

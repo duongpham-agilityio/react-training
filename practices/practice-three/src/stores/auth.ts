@@ -3,14 +3,14 @@ import { persist } from 'zustand/middleware';
 
 import { STORES } from '@/constants';
 
-export interface IAuthStore {
+export type TAuthStore = {
   isAuth: boolean;
   setIsAuth: () => void;
   clearIsAuth: () => void;
-}
+};
 
 export const useAuthStore = create(
-  persist<IAuthStore>(
+  persist<TAuthStore>(
     (set) => ({
       isAuth: false,
       setIsAuth: () => set({ isAuth: true }),

@@ -1,5 +1,5 @@
 // Types
-import { FilterBarProps } from '@/components';
+import { TFilterBarProps } from '@/components';
 
 export interface IFilterOption {
   name: string;
@@ -25,7 +25,7 @@ export const filterOptions: IFilterOption[] = [
   },
 ];
 
-export const filterBarProps: FilterBarProps = {
+export const filterBarProps: TFilterBarProps = {
   value: '',
   onChange: () => {},
 };

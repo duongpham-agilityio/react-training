@@ -13,7 +13,7 @@ import { useHandleCart, useToast } from '@/hooks';
 import { ENDPOINT_SERVICES, MESSAGES, TITLES } from '@/constants';
 
 // Stores
-import { ICartStore, useCartStore } from '@/stores';
+import { TCartStore, useCartStore } from '@/stores';
 
 // Components
 import { CartItem, Checkout } from './components';
@@ -29,10 +29,10 @@ const Component = (): JSX.Element => {
   const { showToast } = useToast();
 
   //  Get data from cart
-  const cart = useCartStore((state: ICartStore): ICartData[] => state.data);
+  const cart = useCartStore((state: TCartStore): ICartData[] => state.data);
 
   // Get method clearCart
-  const clearCart = useCartStore((state: ICartStore) => state.updateCart);
+  const clearCart = useCartStore((state: TCartStore) => state.updateCart);
 
   // Destructure to get the handler
   const { handleRemove, handleQuantity, handleCheckout } = useHandleCart();

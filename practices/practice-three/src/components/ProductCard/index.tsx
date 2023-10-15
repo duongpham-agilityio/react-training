@@ -19,8 +19,7 @@ import { CartOutline, HeartFill, HeartOutline } from '@/assets/icons';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 
-// Todo: Update to later
-export interface IProductCard {
+export type TProductCard = {
   id: number;
   imageURL: string;
   title: string;
@@ -29,26 +28,26 @@ export interface IProductCard {
   statusMessage?: string;
   price: number;
   isLiked?: boolean;
-}
+};
 
-interface BadgeData {
+type TBadgeData = {
   color: string;
   message: string;
-}
+};
 
-interface IBadge {
-  available: BadgeData;
-  other: BadgeData;
-}
+type TBadge = {
+  available: TBadgeData;
+  other: TBadgeData;
+};
 
-export interface ProductCardProps {
-  info: IProductCard;
+export type TProductCardProps = {
+  info: TProductCard;
   renderIcon?: () => JSX.Element;
   onAddToCart?: (id: number) => void | Promise<void>;
   onLike?: (id: number) => void | Promise<void>;
-}
+};
 
-const Component = (props: ProductCardProps): JSX.Element => {
+const Component = (props: TProductCardProps): JSX.Element => {
   const {
     info: {
       imageURL,
@@ -65,8 +64,8 @@ const Component = (props: ProductCardProps): JSX.Element => {
     onLike,
   } = props;
 
-  const badge: BadgeData = useMemo((): BadgeData => {
-    const obj: IBadge = {
+  const badge: TBadgeData = useMemo((): TBadgeData => {
+    const obj: TBadge = {
       available: {
         color: 'green.10',
         message: 'available',
