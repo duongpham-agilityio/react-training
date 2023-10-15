@@ -13,4 +13,4 @@ export type IMswResponse<T> = {
 
 export type IAuthEmpty = Partial<Pick<IAccount, 'email' | 'password'>>;
 
-export type IResponse<T = object> = Partial<IError & T>;
+export type TResponse<T = object> = Partial<IError & T>;
