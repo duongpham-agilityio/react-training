@@ -7,7 +7,7 @@ export type TMessageProps = {
 
 export const Message = memo(({ message }: TMessageProps) => (
   <Center>
-    <Text fontSize={18} fontWeight="bold">
+    <Text fontSize="lg" fontWeight="bold">
       {message}
     </Text>
   </Center>

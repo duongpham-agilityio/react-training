@@ -13,11 +13,13 @@ import {
 } from '@chakra-ui/react';
 import { memo, useCallback, useMemo, MouseEvent } from 'react';
 import isEqual from 'react-fast-compare';
+import { Link } from 'react-router-dom';
+
+// Constants
+import { ROUTES } from '@/constants';
 
 // Icons
 import { CartOutline, HeartFill, HeartOutline } from '@/assets/icons';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '@/constants';
 
 export type TProductCard = {
   id: number;
@@ -67,11 +69,11 @@ const Component = (props: TProductCardProps): JSX.Element => {
   const badge: TBadgeData = useMemo((): TBadgeData => {
     const obj: TBadge = {
       available: {
-        color: 'green.10',
+        color: 'successToLight',
         message: 'available',
       },
       other: {
-        color: 'yellow.20',
+        color: 'warning',
         message: statusMessage ?? '',
       },
     };
@@ -102,7 +104,6 @@ const Component = (props: TProductCardProps): JSX.Element => {
       as={Link}
       to={`/${ROUTES.DETAIL}/${id}`}
       h={327}
-      borderRadius={25}
       boxShadow="lg"
       _hover={{
         boxShadow: '2xl',
@@ -111,25 +112,26 @@ const Component = (props: TProductCardProps): JSX.Element => {
       }}
     >
       <HStack h="full" gap="unset" borderRadius="inherit" overflow="hidden">
-        <Center w="50%" h="full" bg="gray.10">
+        <Center w="50%" h="full" bg="darkToLight">
           <Image src={imageURL} w="full" alt={title} />
         </Center>
         <CardBody w="50%" px={6} py={7} h="full">
           <VStack h="full" justifyContent="space-between">
             <Box width="full">
-              <Heading fontSize={22} color="gray.40">
+              <Heading fontSize="2xl" color="dark">
                 {title}
               </Heading>
-              <Text fontWeight="regular" fontSize={16} noOfLines={3}>
+              <Text fontWeight="regular" fontSize="md" noOfLines={3}>
                 {description}
               </Text>
-              <Badge w={98} h={6} borderRadius={50} bg={badge.color} my={2}>
+              <Badge minW={98} h={6} borderRadius="3xl" bg={badge.color} my={2}>
                 <Center
                   h="full"
                   color="white"
                   fontWeight="regular"
                   textTransform="capitalize"
-                  fontSize={14}
+                  fontSize="sm"
+                  px={2}
                 >
                   {badge.message}
                 </Center>
@@ -137,7 +139,7 @@ const Component = (props: TProductCardProps): JSX.Element => {
             </Box>
 
             <HStack w="full" justifyContent="space-between">
-              <Text fontSize={20} fontWeight="bold">
+              <Text fontSize="xl" fontWeight="bold">
                 ${price}
               </Text>
               <HStack justifyContent="space-between">

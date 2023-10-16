@@ -53,7 +53,7 @@ export const Pagination = memo((props: TPaginationProps): JSX.Element => {
         return (
           <Button
             key={page}
-            bg={isActive ? 'yellow.20' : 'gray.400'}
+            bg={isActive ? 'warning' : 'gray.400'}
             boxShadow="base"
             onClick={handleChangePage}
           >

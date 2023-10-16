@@ -35,8 +35,8 @@ const Component = (props: TModalProps): JSX.Element => {
       >
         <ModalHeader
           fontSize={{
-            base: 20,
-            lg: 30,
+            base: 'xl',
+            lg: '5xl',
           }}
         >
           {title}
