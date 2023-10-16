@@ -8,8 +8,8 @@ import { ROUTES } from '@/constants';
 // Images
 import { Logo } from '@/assets/images';
 
-export const Header = memo(() => {
-  return (
+export const Header = memo(
+  (): JSX.Element => (
     <Center
       as={Link}
       py={2}
@@ -30,5 +30,5 @@ export const Header = memo(() => {
         My Site
       </Text>
     </Center>
-  );
-});
+  ),
+);

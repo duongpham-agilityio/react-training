@@ -153,6 +153,7 @@ const Component = (props: TProductCardProps): JSX.Element => {
                       onClick={handleAddToCart}
                     />
                     <IconButton
+                      minW="60px"
                       aria-label="Button add to favorite"
                       icon={isLiked ? <HeartFill /> : <HeartOutline />}
                       onClick={handleAddToFavorite}
