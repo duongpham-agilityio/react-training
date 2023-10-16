@@ -159,8 +159,6 @@ export const useHandleCart = (): TUseCart => {
           isError: false,
         };
       } catch (error) {
-        console.log(error);
-
         const message: string = (error as unknown as Error).message;
 
         return {
@@ -179,6 +177,7 @@ export const useHandleCart = (): TUseCart => {
     //  Get cart from localStore
     const carts: ICartData[] = useCartStore.getState().data;
 
+    // Send request
     await Promise.all(
       carts.map((cart: ICartData) => {
         const { quantity, productId } = cart;

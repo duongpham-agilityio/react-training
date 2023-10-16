@@ -1,6 +1,6 @@
 import { FormEvent, useCallback, useState } from 'react';
 
-type TFormData<T> = T & { [key: string]: string };
+type TFormData<T> = T & { [key: string]: string | number };
 type TSubmitCallback = () => void;
 type TUseForm<T> = {
   formData: TFormData<T>;
