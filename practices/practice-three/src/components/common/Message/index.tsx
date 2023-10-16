@@ -1,10 +1,20 @@
-import { Center, Text } from '@chakra-ui/react';
+import { Center, Square, Text } from '@chakra-ui/react';
 import { memo } from 'react';
 
-export const Message = memo(({ message }: { message: string }) => (
+export type TMessageProps = {
+  message: string;
+};
+
+export const Message = memo(({ message }: TMessageProps) => (
   <Center>
     <Text fontSize={18} fontWeight="bold">
       {message}
     </Text>
   </Center>
+));
+
+export const FetchingMessage = memo(({ message }: TMessageProps) => (
+  <Square size="full">
+    <Text>{message}</Text>
+  </Square>
 ));
