@@ -3,13 +3,27 @@ import { ThemeOverride } from '@chakra-ui/react';
 export const button: ThemeOverride['components'] = {
   Button: {
     baseStyle: {
-      color: 'black',
+      color: 'darkGrey30',
+      bg: 'white',
+      transition: '0.3s linear',
+      borderColor: 'darkGrey30',
+      borderRadius: 'xl',
     },
     defaultProps: {
       colorScheme: 'transparent',
-      color: 'black',
+      color: 'primary',
     },
     variants: {
+      default: {
+        bg: 'white',
+        color: 'darkGrey30',
+      },
+
+      active: {
+        bg: 'successToLight',
+        color: 'white',
+      },
+
       hoverShadow: {
         _hover: {
           boxShadow: 'base',
