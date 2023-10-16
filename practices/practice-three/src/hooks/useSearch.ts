@@ -10,14 +10,14 @@ import { SEARCH_PARAMS } from '@/constants';
 // Types
 import { IProduct } from '@/interface';
 
-export interface IUseSearch {
+export type TUseSearch = {
   data: IProduct[];
   searchValue: string;
   category: string;
   onChangeSearchInput: (value: string) => void;
-}
+};
 
-export const useSearch = (data: IProduct[]): IUseSearch => {
+export const useSearch = (data: IProduct[]): TUseSearch => {
   const [search, setSearch] = useState<string>('');
   const [param, setSearchParam] = useSearchParams();
 

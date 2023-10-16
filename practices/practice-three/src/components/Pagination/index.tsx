@@ -2,7 +2,7 @@ import { Button, HStack } from '@chakra-ui/react';
 import { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
 
-export interface PaginationProps {
+export type TPaginationProps = {
   data: number[];
   currentPage: number;
   isNextPage: boolean;
@@ -10,9 +10,9 @@ export interface PaginationProps {
   onChangePage: (page: number) => void;
   onNextPage: (nextPage: number) => void;
   onPreviousPage: (prevPage: number) => void;
-}
+};
 
-export const Pagination = memo((props: PaginationProps): JSX.Element => {
+export const Pagination = memo((props: TPaginationProps): JSX.Element => {
   const {
     data,
     currentPage,

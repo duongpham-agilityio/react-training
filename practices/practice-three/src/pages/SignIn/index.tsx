@@ -7,13 +7,20 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // HOCs
 import { withIsUnAuth } from '@/hocs';
 
 // Hooks
-import { useHandleAuth } from '@/hooks';
+import { useForm, useHandleAuth } from '@/hooks';
+
+// Stores
+import { TAuthStore, useAuthStore } from '@/stores';
+
+// Constants
+import { ROUTES } from '@/constants';
 
 // Components
 import { InputForm } from '@/components/common';
@@ -24,26 +31,54 @@ export interface IFormData {
 }
 
 const Component = () => {
-  const { error, onLogin } = useHandleAuth<IFormData>();
-  const [formData, setFormData] = useState<IFormData>({
+  const { formData, onChange } = useForm<IFormData>({
     email: '',
     password: '',
   });
+  const { error, onLogin } = useHandleAuth<IFormData>();
+  const setAuth = useAuthStore((state: TAuthStore) => state.setIsAuth);
+  const redirect = useNavigate();
 
-  const onChange = useCallback((value: string, name?: string) => {
-    const key = (name ?? '') as keyof IFormData;
+  const handleChangeValue = useCallback(
+    (value: string, name?: string) => {
+      const key = (name ?? 'name') as keyof IFormData;
 
-    setFormData((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  }, []);
+      onChange(value, key);
+    },
+    [onChange],
+  );
+
+  const handleVerifySuccessful = useCallback(() => {
+    setAuth();
+    redirect(ROUTES.ROOT, { replace: true });
+  }, [redirect, setAuth]);
 
   const handleLogin = useCallback(async () => {
-    const { email, password } = formData;
+    onLogin(formData, handleVerifySuccessful);
+  }, [formData, handleVerifySuccessful, onLogin]);
 
-    onLogin(email, password);
-  }, [formData, onLogin]);
+  // !ISSUES: Because it is currently being re-render, I must use useMemo to remember
+  const renderFormHeader = useMemo(
+    () => (
+      <>
+        {/* Heading */}
+        <Center h="fit-content" gap={2} py={6}>
+          <Box w="1.5" h={39} bg="yellow.10" />
+          <Heading fontSize={32}>CRUD OPERATIONS</Heading>
+        </Center>
+        {/* Title */}
+        <Box textAlign="center" py={4}>
+          <Heading fontSize={22} py={1}>
+            Sign In
+          </Heading>
+          <Text color="gray.20" fontSize={14} fontWeight="regular">
+            Enter your credentials to access your account
+          </Text>
+        </Box>
+      </>
+    ),
+    [],
+  );
 
   return (
     <Square bg="yellow.20" minH="100vh">
@@ -56,21 +91,7 @@ const Component = () => {
         bg="white"
         alignItems="unset"
       >
-        {/* Heading */}
-        <Center h="fit-content" gap={2} py={6}>
-          <Box w="1.5" h={39} bg="yellow.10" />
-          <Heading fontSize={32}>CRUD OPERATIONS</Heading>
-        </Center>
-
-        {/* Title */}
-        <Box textAlign="center" py={4}>
-          <Heading fontSize={22} py={1}>
-            Sign In
-          </Heading>
-          <Text color="gray.20" fontSize={14} fontWeight="regular">
-            Enter your credentials to access your account
-          </Text>
-        </Box>
+        {renderFormHeader}
 
         {/* Input Form  */}
         <VStack py={10} gap={5}>
@@ -81,7 +102,7 @@ const Component = () => {
             label="Email"
             name="email"
             placeholder="Please enter your email"
-            onChange={onChange}
+            onChange={handleChangeValue}
           />
           <InputForm
             isError={!!error['password']}
@@ -91,7 +112,7 @@ const Component = () => {
             name="password"
             label="Password"
             placeholder="Please enter your password"
-            onChange={onChange}
+            onChange={handleChangeValue}
           />
         </VStack>
 

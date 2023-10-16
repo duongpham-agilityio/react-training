@@ -1,16 +1,16 @@
 // Interface
 import { IAccount } from '.';
 
-export interface IError {
+export type IError = {
   isFetchFailed?: boolean;
   isError: boolean;
   message: string;
-}
+};
 
-export interface IMswResponse<T> {
+export type IMswResponse<T> = {
   data: T;
-}
+};
 
 export type IAuthEmpty = Partial<Pick<IAccount, 'email' | 'password'>>;
 
-export type IResponse<T = object> = Partial<IError & T>;
+export type TResponse<T = object> = Partial<IError & T>;

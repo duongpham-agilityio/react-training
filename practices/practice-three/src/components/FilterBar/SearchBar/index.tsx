@@ -4,12 +4,12 @@ import { Center, Input, InputGroup } from '@chakra-ui/react';
 // Icons
 import { Search } from '@/assets/icons';
 
-export interface SearchBarProps {
+export type TSearchBarProps = {
   value: string;
   onChange: (value: string) => void;
-}
+};
 
-export const SearchBar = memo(({ value, onChange }: SearchBarProps) => {
+export const SearchBar = memo(({ value, onChange }: TSearchBarProps) => {
   const handleChangeValue = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;

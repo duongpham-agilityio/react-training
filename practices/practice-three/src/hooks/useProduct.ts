@@ -10,7 +10,16 @@ import { ProductPayload, productAPI } from '@/services/apis';
 // Constants
 import { ENDPOINT_SERVICES } from '@/constants';
 
-export const useProduct = () => {
+export type TUseProduct = {
+  onAddProduct: (data: IFormAddData) => Promise<boolean>;
+  onUpdateProduct: (
+    id: number,
+    product: Partial<ProductPayload>,
+  ) => Promise<boolean>;
+  onRemoveProduct: (id: number) => Promise<boolean>;
+};
+
+export const useProduct = (): TUseProduct => {
   const queryClient = useQueryClient();
 
   const onAddProduct = useCallback(

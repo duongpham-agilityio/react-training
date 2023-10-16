@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
 
 // Components
-import { ProductCard, ProductCardProps } from '@/components/ProductCard';
+import { ProductCard, TProductCardProps } from '@/components/ProductCard';
 
 // Mocks
 import { productCardProps } from '@/mocks';
@@ -10,7 +10,7 @@ import { productCardProps } from '@/mocks';
 const onAddToCard = jest.fn();
 const onLike = jest.fn();
 
-const setup = (props: ProductCardProps) =>
+const setup = (props: TProductCardProps) =>
   render(
     <BrowserRouter>
       <ProductCard {...props} onAddToCart={onAddToCard} onLike={onLike} />

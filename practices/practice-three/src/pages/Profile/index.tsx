@@ -30,7 +30,7 @@ import {
 
 // Components
 import FormAdd, { IFormAddData } from './components/FormAdd';
-import { IProductCard, Pagination, ProductCard } from '@/components';
+import { TProductCard, Pagination, ProductCard } from '@/components';
 import ModalCustom from '@/components/Modal';
 
 // Services
@@ -152,7 +152,7 @@ const ProfileComponent = () => {
         category,
       };
 
-      const info: IProductCard = {
+      const info: TProductCard = {
         id,
         imageURL,
         price,

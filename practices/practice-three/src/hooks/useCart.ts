@@ -7,27 +7,27 @@ import { MESSAGES } from '@/constants';
 import { productAPI } from '@/services/apis';
 
 // Stores
-import { ICartStore, useCartStore } from '@/stores';
+import { TCartStore, useCartStore } from '@/stores';
 
 // Types
-import { ICartData, IProduct, IResponse } from '@/interface';
+import { ICartData, IProduct, TResponse } from '@/interface';
 
-export interface IUseCart {
+export type TUseCart = {
   handleAddProductToCart: (product: IProduct) => boolean;
-  handleRemove: (productId: number) => IResponse;
-  handleQuantity: (productId: number, quantity: number) => Promise<IResponse>;
+  handleRemove: (productId: number) => TResponse;
+  handleQuantity: (productId: number, quantity: number) => Promise<TResponse>;
   handleCheckout: () => Promise<void>;
-}
+};
 
-export const useHandleCart = (): IUseCart => {
+export const useHandleCart = (): TUseCart => {
   //  Get handle add to cart from store
   const addNewProduct = useCartStore(
-    (state: ICartStore): ICartStore['addNewProduct'] => state.addNewProduct,
+    (state: TCartStore): TCartStore['addNewProduct'] => state.addNewProduct,
   );
 
   //  Get handle update cart
   const updateCart = useCartStore(
-    (state: ICartStore): ICartStore['updateCart'] => state.updateCart,
+    (state: TCartStore): TCartStore['updateCart'] => state.updateCart,
   );
 
   //  Handle check quantity
@@ -95,7 +95,7 @@ export const useHandleCart = (): IUseCart => {
 
   //  Handle remove product from cart
   const handleRemove = useCallback(
-    (productId: number): IResponse => {
+    (productId: number): TResponse => {
       try {
         const carts: ICartData[] = useCartStore.getState().data;
         const newCarts: ICartData[] = carts.filter(
@@ -120,7 +120,7 @@ export const useHandleCart = (): IUseCart => {
 
   //  Handle change quantity from cart
   const handleQuantity = useCallback(
-    async (productId: number, quantity: number): Promise<IResponse> => {
+    async (productId: number, quantity: number): Promise<TResponse> => {
       try {
         // Get product from BE
         const product: IProduct | undefined =

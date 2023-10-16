@@ -16,8 +16,8 @@ import {
 
 // Stores
 import {
-  ICartStore,
-  IFavoriteStore,
+  TCartStore,
+  TFavoriteStore,
   useCartStore,
   useFavoriteStore,
 } from '@/stores';
@@ -40,11 +40,11 @@ import { ROUTES } from '@/constants';
 const Cart = lazy(() => import('@/components/Cart'));
 const Wishlist = lazy(() => import('@/components/Wishlist'));
 
-export interface SideBarProps {
+export type TSideBarProps = {
   isAuth?: boolean;
-}
+};
 
-export interface ISideBarOption {
+export type TSideBarOption = {
   icon: FC;
   title: string;
   to?: string;
@@ -52,7 +52,7 @@ export interface ISideBarOption {
   pseudoColor?: string;
   pseudoValue?: number | string;
   onClick?: () => void;
-}
+};
 
 const Lazy = ({ children }: { children: ReactNode }): JSX.Element => (
   <Suspense
@@ -74,15 +74,15 @@ export const SideBar = memo((): JSX.Element => {
   const { isOpen: isOpenCart, onToggle: onToggleCart } = useDisclosure();
 
   // Quantity product in cart
-  const quantityCart = useCartStore((state: ICartStore) => state.data.length);
+  const quantityCart = useCartStore((state: TCartStore) => state.data.length);
 
   // Quantity favorite product
   const favoriteSize = useFavoriteStore(
-    (state: IFavoriteStore) => state.data.length,
+    (state: TFavoriteStore) => state.data.length,
   );
 
-  const sidebarOptions: ISideBarOption[] = useMemo(
-    (): ISideBarOption[] => [
+  const sidebarOptions: TSideBarOption[] = useMemo(
+    (): TSideBarOption[] => [
       {
         icon: HeartSideBarFill,
         title: 'Wishlist',

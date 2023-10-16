@@ -1,7 +1,7 @@
 // Components
-import { InputFormProps } from '@/components/common';
+import { TInputFormProps } from '@/components/common';
 
-export const inputFormProps: InputFormProps = {
+export const inputFormProps: TInputFormProps = {
   label: 'Email',
   value: '',
   placeholder: 'Please enter email',

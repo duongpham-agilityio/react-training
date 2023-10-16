@@ -1,10 +1,10 @@
 import { fireEvent, render } from '@testing-library/react';
 
 // Components
-import { Checkout, CheckoutProps } from '..';
+import { Checkout, TCheckoutProps } from '..';
 
 const onCheckout = jest.fn();
-const init: CheckoutProps = {
+const init: TCheckoutProps = {
   total: 200,
   onCheckout,
 };

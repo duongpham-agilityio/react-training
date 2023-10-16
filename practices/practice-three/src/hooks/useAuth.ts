@@ -1,69 +1,56 @@
 import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 // Hooks
 import { useToast } from '@/hooks';
 
 // Stores
-import { IAuthStore, useAuthStore } from '@/stores';
+import { TAuthStore, useAuthStore } from '@/stores';
 
 // Constants
-import { MESSAGES, ROUTES, TITLES } from '@/constants';
+import { TITLES } from '@/constants';
+import { accountAPI } from '@/services/apis';
 
-export interface IUseHandleAuth<T> {
+export type TUseHandleAuth<T> = {
   isError: boolean;
   error: T;
-  onLogin: (email: string, password: string) => void;
+  onLogin: (
+    data: { email: string; password: string },
+    onSuccess: () => void,
+  ) => void;
   onLogout: () => void;
-}
+};
 
-interface IUseAuthError<T> {
+type TUseAuthError<T> = {
   isError: boolean;
   error: T;
-}
+};
 
-export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
+export const useHandleAuth = <T extends object>(): TUseHandleAuth<T> => {
   // Redirect to other page
-  const redirect = useNavigate();
 
   // Show toast
   const { showToast } = useToast();
 
   // Error
-  const [err, setError] = useState<IUseAuthError<T>>({
+  const [err, setError] = useState<TUseAuthError<T>>({
     isError: false,
     error: {} as T,
   });
 
-  const handleSetAuth = useAuthStore((state: IAuthStore) => state.setIsAuth);
   const handleClearAuth = useAuthStore(
-    (state: IAuthStore) => state.clearIsAuth,
+    (state: TAuthStore) => state.clearIsAuth,
   );
 
-  const onLogin: IUseHandleAuth<T>['onLogin'] = useCallback(
-    async (email: string, password: string) => {
+  const onLogin: TUseHandleAuth<T>['onLogin'] = useCallback(
+    async (data, onSuccess) => {
+      const { email, password } = data;
+
       try {
-        const response: Response = await fetch('', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        });
+        const { isError, error } = await accountAPI.verify<T>(email, password);
 
-        if (response.status === 404) throw new Error(MESSAGES.FAIL_TO_FETCH);
+        if (!isError) return onSuccess();
 
-        if (response.status === 401) {
-          const data = await response.json();
-
-          return setError({
-            isError: true,
-            error: data.data,
-          });
-        }
-
-        handleSetAuth();
-        redirect(ROUTES.ROOT);
+        setError({ isError, error } as TUseAuthError<T>);
       } catch (error) {
         const message: string = (error as unknown as Error).message;
 
@@ -74,7 +61,7 @@ export const useHandleAuth = <T extends object>(): IUseHandleAuth<T> => {
         });
       }
     },
-    [handleSetAuth, redirect, showToast],
+    [showToast],
   );
 
   const onLogout = useCallback(() => handleClearAuth(), [handleClearAuth]);

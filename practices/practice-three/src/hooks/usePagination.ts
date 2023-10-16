@@ -4,19 +4,19 @@ import { useSearchParams } from 'react-router-dom';
 // Constants
 import { RECORDS_PER_PAGE, SEARCH_PARAMS } from '@/constants';
 
-export interface IUsePagination<T> {
+export type TUsePagination<T> = {
   data: T[];
   pagination: number[];
   currentPage: number;
   isNextPage: boolean;
   isPrevPage: boolean;
   onChangePage: (page: number) => void;
-}
+};
 
 export const usePagination = <T>(
   data: T[],
   record = RECORDS_PER_PAGE,
-): IUsePagination<T> => {
+): TUsePagination<T> => {
   const [searchParam, setSearchParam] = useSearchParams({
     page: '1',
   });

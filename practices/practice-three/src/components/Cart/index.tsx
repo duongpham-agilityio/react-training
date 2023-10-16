@@ -13,14 +13,14 @@ import { useHandleCart, useToast } from '@/hooks';
 import { ENDPOINT_SERVICES, MESSAGES, TITLES } from '@/constants';
 
 // Stores
-import { ICartStore, useCartStore } from '@/stores';
+import { TCartStore, useCartStore } from '@/stores';
 
 // Components
 import { CartItem, Checkout } from './components';
 import { Message } from '@/components/common';
 
 // Types
-import { ICartData, IResponse } from '@/interface';
+import { ICartData, TResponse } from '@/interface';
 
 const Component = (): JSX.Element => {
   const queryClient: QueryClient = useQueryClient();
@@ -29,10 +29,10 @@ const Component = (): JSX.Element => {
   const { showToast } = useToast();
 
   //  Get data from cart
-  const cart = useCartStore((state: ICartStore): ICartData[] => state.data);
+  const cart = useCartStore((state: TCartStore): ICartData[] => state.data);
 
   // Get method clearCart
-  const clearCart = useCartStore((state: ICartStore) => state.updateCart);
+  const clearCart = useCartStore((state: TCartStore) => state.updateCart);
 
   // Destructure to get the handler
   const { handleRemove, handleQuantity, handleCheckout } = useHandleCart();
@@ -79,7 +79,7 @@ const Component = (): JSX.Element => {
   // Handle remove  product from cart
   const handleRemoveProductFromCart = useCallback(
     (id: number) => {
-      const { isError, message }: IResponse = handleRemove(id);
+      const { isError, message }: TResponse = handleRemove(id);
 
       showToast({
         title: isError ? TITLES.ERROR : TITLES.SUCCESS,
@@ -93,7 +93,7 @@ const Component = (): JSX.Element => {
   // Handle change quantity
   const handleChangeQuantity = useCallback(
     async (productId: number, quantity: number) => {
-      const { isError, message }: IResponse = await handleQuantity(
+      const { isError, message }: TResponse = await handleQuantity(
         productId,
         quantity,
       );

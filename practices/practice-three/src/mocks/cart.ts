@@ -1,6 +1,6 @@
-import { CartItemProps } from '@/components/Cart/components';
+import { TCartItemProps } from '@/components/Cart/components';
 
-export const cartItemProps: CartItemProps = {
+export const cartItemProps: TCartItemProps = {
   data: {
     productId: 1,
     description: 'Adidas Men’s T-Shirt',

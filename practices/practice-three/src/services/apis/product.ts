@@ -20,7 +20,7 @@ export type ProductPayload = Pick<
   | 'quantity'
 >;
 
-interface IProductAPI {
+type TProductAPI = {
   getAll: () => Promise<IProduct[]> | undefined;
   getById: (id: number) => Promise<IProduct> | undefined;
   getByName: (name: string) => Promise<IProduct[]> | undefined;
@@ -31,13 +31,13 @@ interface IProductAPI {
     payload: Partial<ProductPayload>,
   ) => Promise<IProduct> | undefined;
   removeById: (id: number) => Promise<boolean> | undefined;
-}
+};
 
 /**
  *   Get all products from db
  * @returns
  */
-const getAll: IProductAPI['getAll'] = async () => {
+const getAll: TProductAPI['getAll'] = async () => {
   try {
     const res: AxiosResponse<IProduct[]> = await apiRequest.get<IProduct[]>(
       ENDPOINT_SERVICES.PRODUCTS,
@@ -54,7 +54,7 @@ const getAll: IProductAPI['getAll'] = async () => {
  * @param id
  * @returns
  */
-const getById: IProductAPI['getById'] = async (id: number) => {
+const getById: TProductAPI['getById'] = async (id: number) => {
   try {
     const res: AxiosResponse<IProduct> = await apiRequest.get(
       `${ENDPOINT_SERVICES.PRODUCTS}/${id}`,
@@ -71,7 +71,7 @@ const getById: IProductAPI['getById'] = async (id: number) => {
  * @param name
  * @returns
  */
-const getByName: IProductAPI['getByName'] = async (name: string) => {
+const getByName: TProductAPI['getByName'] = async (name: string) => {
   try {
     const res: AxiosResponse<IProduct[]> = await apiRequest.get(
       `${ENDPOINT_SERVICES.PRODUCTS}?name=${name}`,
@@ -88,7 +88,7 @@ const getByName: IProductAPI['getByName'] = async (name: string) => {
  * @param category
  * @returns
  */
-const getByCategory: IProductAPI['getByCategory'] = async (
+const getByCategory: TProductAPI['getByCategory'] = async (
   category: string,
 ) => {
   try {
@@ -107,7 +107,7 @@ const getByCategory: IProductAPI['getByCategory'] = async (
  * @param payload
  * @returns
  */
-const add: IProductAPI['add'] = async (payload: ProductPayload) => {
+const add: TProductAPI['add'] = async (payload: ProductPayload) => {
   try {
     // Define new product
     const newProduct: Omit<IProduct, 'id'> = {
@@ -133,7 +133,7 @@ const add: IProductAPI['add'] = async (payload: ProductPayload) => {
  * @param payload
  * @returns
  */
-const update: IProductAPI['update'] = async (
+const update: TProductAPI['update'] = async (
   id: number,
   payload: Partial<ProductPayload>,
 ): Promise<IProduct> => {
@@ -154,7 +154,7 @@ const update: IProductAPI['update'] = async (
  * @param id
  * @returns
  */
-const removeById: IProductAPI['removeById'] = async (
+const removeById: TProductAPI['removeById'] = async (
   id: number,
 ): Promise<boolean> => {
   try {
@@ -170,7 +170,7 @@ const removeById: IProductAPI['removeById'] = async (
   }
 };
 
-export const productAPI: IProductAPI = {
+export const productAPI: TProductAPI = {
   getAll,
   getById,
   getByName,
