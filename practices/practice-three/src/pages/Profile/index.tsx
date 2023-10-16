@@ -16,7 +16,7 @@ import { useQuery } from '@tanstack/react-query';
 import { withIsAuth } from '@/hocs';
 
 // Hooks
-import { usePagination, useHandleProduct, useToast } from '@/hooks';
+import { usePagination, useProduct, useToast } from '@/hooks';
 
 // Constants
 import {
@@ -63,7 +63,7 @@ const ProfileComponent = () => {
 
   const { showToast } = useToast();
 
-  const { onAddProduct, onUpdateProduct, onRemoveProduct } = useHandleProduct();
+  const { onAddProduct, onUpdateProduct, onRemoveProduct } = useProduct();
 
   const handleOpenFormUpdate = useCallback(
     (product: IFormAddData) => {

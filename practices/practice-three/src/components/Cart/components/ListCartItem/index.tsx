@@ -20,26 +20,24 @@ const ListComponent = ({
   data,
   onChangeQuantity,
   onRemove,
-}: TListCartItemProps) => {
-  return (
-    <VStack>
-      {data.length ? (
-        data.map(
-          (item: ICartData): JSX.Element => (
-            <CartItem
-              key={item.productId}
-              // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
-              data={item}
-              onChangeQuantity={onChangeQuantity}
-              onRemove={onRemove}
-            />
-          ),
-        )
-      ) : (
-        <Message message={MESSAGES.EMPTY} />
-      )}
-    </VStack>
-  );
-};
+}: TListCartItemProps): JSX.Element => (
+  <VStack>
+    {data.length ? (
+      data.map(
+        (item: ICartData): JSX.Element => (
+          <CartItem
+            key={item.productId}
+            // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
+            data={item}
+            onChangeQuantity={onChangeQuantity}
+            onRemove={onRemove}
+          />
+        ),
+      )
+    ) : (
+      <Message message={MESSAGES.EMPTY} />
+    )}
+  </VStack>
+);
 
 export const ListCartItem = memo(ListComponent, isEqual);

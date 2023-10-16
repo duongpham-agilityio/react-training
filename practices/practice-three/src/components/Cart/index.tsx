@@ -13,8 +13,7 @@ import { useHandleCart, useToast } from '@/hooks';
 import { ENDPOINT_SERVICES, MESSAGES, TITLES } from '@/constants';
 
 // Components
-import { ListCartItem } from './components/ListCartItem';
-import { Checkout } from './components';
+import { Checkout, ListCartItem } from './components';
 
 // Stores
 import { TCartStore, useCartStore } from '@/stores';

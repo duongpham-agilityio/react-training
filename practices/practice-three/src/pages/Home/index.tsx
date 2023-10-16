@@ -4,6 +4,7 @@ import { Heading } from '@chakra-ui/react';
 // Components
 import { FilterBar, Pagination, Spinner } from '@/components';
 import { Products } from '@/pages/Home/components';
+import { FetchingMessage } from '@/components/common';
 
 // Hooks
 import {
@@ -20,7 +21,6 @@ import { MESSAGES, TITLES } from '@/constants';
 
 // Types
 import { IProduct } from '@/interface';
-import { FetchingMessage } from '@/components/common';
 
 const Component = (): JSX.Element => {
   // Get products
