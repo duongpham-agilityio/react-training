@@ -4,7 +4,7 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { memo, useCallback, useMemo } from 'react';
-import { Box, Flex, Spinner, Square, VStack } from '@chakra-ui/react';
+import { Box, Flex, Spinner, Square } from '@chakra-ui/react';
 
 // Hooks
 import { useHandleCart, useToast } from '@/hooks';
@@ -12,12 +12,12 @@ import { useHandleCart, useToast } from '@/hooks';
 // Constants
 import { ENDPOINT_SERVICES, MESSAGES, TITLES } from '@/constants';
 
+// Components
+import { ListCartItem } from './components/ListCartItem';
+import { Checkout } from './components';
+
 // Stores
 import { TCartStore, useCartStore } from '@/stores';
-
-// Components
-import { CartItem, Checkout } from './components';
-import { Message } from '@/components/common';
 
 // Types
 import { ICartData, TResponse } from '@/interface';
@@ -124,23 +124,11 @@ const Component = (): JSX.Element => {
             <Spinner />
           </Square>
         ) : (
-          <VStack>
-            {cart.length ? (
-              cart.map(
-                (item: ICartData): JSX.Element => (
-                  <CartItem
-                    key={item.productId}
-                    // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
-                    data={item}
-                    onChangeQuantity={handleChangeQuantity}
-                    onRemove={handleRemoveProductFromCart}
-                  />
-                ),
-              )
-            ) : (
-              <Message message={MESSAGES.EMPTY} />
-            )}
-          </VStack>
+          <ListCartItem
+            data={cart}
+            onChangeQuantity={handleChangeQuantity}
+            onRemove={handleRemoveProductFromCart}
+          />
         )}
       </Box>
 

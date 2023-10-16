@@ -17,6 +17,9 @@ import {
 import { ChangeEvent, memo, useCallback, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
+// Hooks
+import { useForm } from '@/hooks';
+
 // Components
 import { InputForm } from '@/components/common';
 
@@ -56,7 +59,7 @@ const FormAddComponent = ({
   data = initData,
   onSubmit,
 }: FormAddProps): JSX.Element => {
-  const [formData, setFormData] = useState<IFormAddData>(data);
+  const { formData, onChange } = useForm<IFormAddData>(data);
   const [error, setError] = useState<Partial<IFormAddData>>();
   const { isLoading: isUpload, mutate } = useMutation({
     mutationFn: (file: FormData) => uploadImage(file),
@@ -64,9 +67,9 @@ const FormAddComponent = ({
 
   const handleChangeInputForm = useCallback(
     (value: string, key = 'name'): void => {
-      setFormData((prev: IFormAddData) => ({ ...prev, [key]: value }));
+      onChange(value, key);
     },
-    [],
+    [onChange],
   );
 
   const handleChangeForm = useCallback(
@@ -75,9 +78,9 @@ const FormAddComponent = ({
       const key: string = element.name;
       const value: string = element.value;
 
-      setFormData((prev: IFormAddData) => ({ ...prev, [key]: value }));
+      onChange(value, key);
     },
-    [],
+    [onChange],
   );
 
   const handleChangeImage = useCallback(
@@ -91,11 +94,10 @@ const FormAddComponent = ({
 
       data.append('image', file);
       mutate(data, {
-        onSuccess: (data: string) =>
-          setFormData((prev) => ({ ...prev, imageURL: data })),
+        onSuccess: (data: string) => onChange(data, 'imageURl'),
       });
     },
-    [mutate],
+    [mutate, onChange],
   );
 
   const handleSubmit = useCallback(() => {

@@ -1,9 +1,8 @@
 import { memo, useCallback } from 'react';
-import { Heading, Spinner, Square, Text } from '@chakra-ui/react';
-import { useQuery } from '@tanstack/react-query';
+import { Heading } from '@chakra-ui/react';
 
 // Components
-import { FilterBar, Pagination } from '@/components';
+import { FilterBar, Pagination, Spinner } from '@/components';
 import { Products } from '@/pages/Home/components';
 
 // Hooks
@@ -13,28 +12,19 @@ import {
   usePagination,
   useSearch,
   useToast,
+  useProducts,
 } from '@/hooks';
 
-// Services
-import { productAPI } from '@/services/apis';
-
 // Constants
-import { MESSAGES, ENDPOINT_SERVICES, TITLES } from '@/constants';
+import { MESSAGES, TITLES } from '@/constants';
 
 // Types
 import { IProduct } from '@/interface';
+import { FetchingMessage } from '@/components/common';
 
 const Component = (): JSX.Element => {
   // Get products
-  const {
-    isLoading,
-    isError,
-    data = [],
-  } = useQuery({
-    queryKey: [ENDPOINT_SERVICES.PRODUCTS],
-    queryFn: productAPI.getAll,
-    notifyOnChangeProps: ['data'],
-  });
+  const { isLoading, isError, data = [] } = useProducts();
 
   // Get handler from favorite store
   const { onToggleFavorite } = useFavorite();
@@ -93,19 +83,9 @@ const Component = (): JSX.Element => {
     [handleAddProductToCart, products, showToast],
   );
 
-  if (isLoading)
-    return (
-      <Square size="full">
-        <Spinner />
-      </Square>
-    );
+  if (isLoading) return <Spinner />;
 
-  if (isError)
-    return (
-      <Square size="full">
-        <Text>{MESSAGES.FAIL_TO_FETCH}</Text>
-      </Square>
-    );
+  if (isError) return <FetchingMessage message={MESSAGES.FAIL_TO_FETCH} />;
 
   return (
     <>
