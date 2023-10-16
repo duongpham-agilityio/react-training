@@ -7,7 +7,7 @@ export const button: ThemeOverride['components'] = {
       bg: 'white',
       transition: '0.3s linear',
       borderColor: 'darkGrey30',
-      borderRadius: 'xl',
+      borderRadius: 'md',
     },
     defaultProps: {
       colorScheme: 'transparent',

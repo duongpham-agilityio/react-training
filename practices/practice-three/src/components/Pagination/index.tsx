@@ -36,7 +36,7 @@ export const Pagination = memo((props: TPaginationProps): JSX.Element => {
   return (
     <HStack justifyContent="center" py={10}>
       <Button
-        bg="gray.400"
+        bg="darkGrey30"
         boxShadow="base"
         isDisabled={!isPrevPage}
         onClick={handlePrevPage}
@@ -53,7 +53,7 @@ export const Pagination = memo((props: TPaginationProps): JSX.Element => {
         return (
           <Button
             key={page}
-            bg={isActive ? 'warning' : 'gray.400'}
+            bg={isActive ? 'warning' : 'darkGrey30'}
             boxShadow="base"
             onClick={handleChangePage}
           >
@@ -62,7 +62,7 @@ export const Pagination = memo((props: TPaginationProps): JSX.Element => {
         );
       })}
       <Button
-        bg="gray.400"
+        bg="darkGrey30"
         boxShadow="base"
         isDisabled={!isNextPage}
         onClick={handleNextPage}
