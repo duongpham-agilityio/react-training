@@ -48,14 +48,14 @@ const Component = () => {
     [onChange],
   );
 
-  const handleVerifySuccessFul = useCallback(() => {
+  const handleVerifySuccessful = useCallback(() => {
     setAuth();
     redirect(ROUTES.ROOT, { replace: true });
   }, [redirect, setAuth]);
 
   const handleLogin = useCallback(async () => {
-    onLogin(formData, handleVerifySuccessFul);
-  }, [formData, handleVerifySuccessFul, onLogin]);
+    onLogin(formData, handleVerifySuccessful);
+  }, [formData, handleVerifySuccessful, onLogin]);
 
   // !ISSUES: Because it is currently being re-render, I must use useMemo to remember
   const renderFormHeader = useMemo(
