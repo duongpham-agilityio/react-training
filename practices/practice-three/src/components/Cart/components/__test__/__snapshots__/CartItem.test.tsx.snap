@@ -3,25 +3,25 @@
 exports[`CartItem Match top snapshot 1`] = `
 <div>
   <div
-    class="css-6havx5"
+    class="css-1ktqtw"
   >
     <div
       class="css-13hz88"
     >
       <img
-        class="chakra-image css-exprrl"
+        class="chakra-image css-4lt28k"
         src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/d455e5b6-23e9-4f06-8b86-32610d838937/renew-run-3-road-running-shoes-395S7c.png"
       />
       <div
         class="css-0"
       >
         <h2
-          class="chakra-heading css-navt0c"
+          class="chakra-heading css-hsvq9i"
         >
           Adidas T-Shirt
         </h2>
         <p
-          class="chakra-text css-1r2n17h"
+          class="chakra-text css-ivgvjt"
         >
           Adidas Men’s T-Shirt
         </p>

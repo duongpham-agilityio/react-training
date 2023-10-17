@@ -3,14 +3,14 @@
 exports[`ProductCard Match snapshot 1`] = `
 <div>
   <a
-    class="chakra-card css-frav00"
+    class="chakra-card css-1wt50ai"
     href="/detail/1"
   >
     <div
       class="chakra-stack css-m4lmkl"
     >
       <div
-        class="css-1c7m7lf"
+        class="css-1ql0rgo"
       >
         <img
           alt="Nike React Miler"
@@ -28,20 +28,20 @@ exports[`ProductCard Match snapshot 1`] = `
             class="css-13rbvqk"
           >
             <h2
-              class="chakra-heading css-micy4r"
+              class="chakra-heading css-n93nk6"
             >
               Nike React Miler
             </h2>
             <p
-              class="chakra-text css-bmhbsm"
+              class="chakra-text css-1286dop"
             >
               Apple M1 Chip with 8‑Core CPU and 8‑Core GPU 512GB Storage
             </p>
             <span
-              class="chakra-badge css-ovswd3"
+              class="chakra-badge css-1dm3gsd"
             >
               <div
-                class="css-1ky2ef1"
+                class="css-artlef"
               >
                 available
               </div>
@@ -51,7 +51,7 @@ exports[`ProductCard Match snapshot 1`] = `
             class="chakra-stack css-bot922"
           >
             <p
-              class="chakra-text css-7sjuw3"
+              class="chakra-text css-17nnq38"
             >
               $
               1000
@@ -86,7 +86,7 @@ exports[`ProductCard Match snapshot 1`] = `
               </button>
               <button
                 aria-label="Button add to favorite"
-                class="chakra-button css-p7mkev"
+                class="chakra-button css-15eygc7"
                 type="button"
               >
                 <svg

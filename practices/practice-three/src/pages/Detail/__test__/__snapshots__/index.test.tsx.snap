@@ -12,12 +12,12 @@ exports[`Details page Match to snapshot 1`] = `
         class="css-13n95wf"
       >
         <h2
-          class="chakra-heading css-46oz1i"
+          class="chakra-heading css-18ogl02"
         >
           Tasty Plastic Mouse
         </h2>
         <p
-          class="chakra-text css-6b6bd2"
+          class="chakra-text css-oy2klv"
         >
           Quos tempora adipisci quidem ipsum.
         </p>
@@ -30,7 +30,7 @@ exports[`Details page Match to snapshot 1`] = `
         class="css-1lekzkb"
       >
         <p
-          class="chakra-text css-gbfwt9"
+          class="chakra-text css-f6sj0y"
         >
           Scroll down
         </p>
@@ -46,11 +46,11 @@ exports[`Details page Match to snapshot 1`] = `
           class="css-gmuwbf"
         >
           <button
-            class="chakra-button css-1qqt8hf"
+            class="chakra-button css-1a9xw4d"
             type="button"
           >
             <p
-              class="chakra-text css-s9vxsi"
+              class="chakra-text css-1qstmp2"
             >
               Prev
             </p>
@@ -72,11 +72,11 @@ exports[`Details page Match to snapshot 1`] = `
             </svg>
           </button>
           <button
-            class="chakra-button css-1qqt8hf"
+            class="chakra-button css-1a9xw4d"
             type="button"
           >
             <p
-              class="chakra-text css-s9vxsi"
+              class="chakra-text css-1qstmp2"
             >
               Next
             </p>
@@ -121,13 +121,13 @@ exports[`Details page Match to snapshot 1`] = `
             </svg>
           </button>
           <p
-            class="chakra-text css-11kk9eu"
+            class="chakra-text css-5nwi2u"
           >
             Play video
           </p>
         </div>
         <button
-          class="chakra-button css-64vxoc"
+          class="chakra-button css-6s9i42"
           type="button"
         >
           add to cart — $

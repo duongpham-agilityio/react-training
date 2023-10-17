@@ -37,12 +37,12 @@ describe('Cart', () => {
     useCartStore.setState({
       data: [
         {
-          ...cartItemProps.data,
+          ...cartItemProps,
           productId: 1,
           quantity: 2,
         },
         {
-          ...cartItemProps.data,
+          ...cartItemProps,
           productId: 2,
         },
       ],
@@ -62,7 +62,7 @@ describe('Cart', () => {
   it('Remove one product', () => {
     (useMutation as jest.Mock).mockReturnValue({
       isLoading: false,
-      mutate: jest.fn(),
+      // mutate: jest.fn(),
     });
     const { container } = setup();
     const trashButtons = container.querySelectorAll(
@@ -70,7 +70,6 @@ describe('Cart', () => {
     );
 
     expect(useCartStore.getState().data.length).toBe(2);
-
     fireEvent.click(trashButtons[0]);
 
     expect(useCartStore.getState().data.length).toBe(1);
@@ -89,6 +88,8 @@ describe('Cart', () => {
     const changeButtons = container.querySelectorAll(
       'button[aria-label="Button increase quantity"]',
     );
+
+    console.log(changeButtons[0]);
 
     fireEvent.click(changeButtons[0]);
   });

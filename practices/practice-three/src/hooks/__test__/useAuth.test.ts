@@ -27,7 +27,7 @@ describe('useAuth', () => {
       );
       const { result } = setup();
 
-      result.current.onLogin('duong', '123');
+      result.current.onLogin({ email: 'duong', password: '123' }, jest.fn());
     } catch (error) {
       const message: string = (error as unknown as Error).message;
 
@@ -47,7 +47,13 @@ describe('useAuth', () => {
     );
     const { result } = setup();
 
-    await act(async () => await result.current.onLogin('duong', '123'));
+    await act(
+      async () =>
+        await result.current.onLogin(
+          { email: 'duong', password: '123' },
+          jest.fn(),
+        ),
+    );
 
     expect(result.current.isError).toBeTruthy();
   });
@@ -61,7 +67,13 @@ describe('useAuth', () => {
     );
     const { result } = setup();
 
-    await act(async () => await result.current.onLogin('duong', '123'));
+    await act(
+      async () =>
+        await result.current.onLogin(
+          { email: 'duong', password: '123' },
+          jest.fn(),
+        ),
+    );
 
     expect(result.current.isError).toBeFalsy();
   });

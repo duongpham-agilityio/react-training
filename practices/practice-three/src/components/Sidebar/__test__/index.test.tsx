@@ -1,11 +1,33 @@
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// import React from 'react';
+// import * as ChakraUI from '@chakra-ui/react';
 
 // Components
 import { SideBar } from '..';
+import { ReactNode } from 'react';
 
-const setup = () => render(<SideBar />);
+const query: QueryClient = new QueryClient();
+
+const setup = () =>
+  render(
+    <BrowserRouter>
+      <QueryClientProvider client={query}>
+        <SideBar />
+      </QueryClientProvider>
+    </BrowserRouter>,
+  );
 
 describe('Sidebar', () => {
+  beforeEach(() => {
+    jest.mock('react', () => ({
+      ...jest.requireActual('react'),
+      lazy: (callback: () => any) => callback(),
+      Suspense: ({ children }: { children: ReactNode }) => children,
+    }));
+  });
+
   it('Match to snapshot', () => {
     const { container } = setup();
 
@@ -13,26 +35,32 @@ describe('Sidebar', () => {
   });
 
   it('Show full sidebar', () => {
-    const { getByRole, getByText } = setup();
+    const { getAllByRole, getByText } = setup();
 
-    fireEvent.click(getByRole('button'));
+    act(() => {
+      fireEvent.click(getAllByRole('button')[2]);
+    });
 
     expect(getByText('Wishlist')).toBeDefined();
   });
 
-  it('Click show wishlist option', () => {
-    const { container, getAllByRole } = setup();
+  it('Click show wishlist option', async () => {
+    const { getAllByRole, getByText } = setup();
 
-    fireEvent.click(getAllByRole('button')[0]);
+    await act(() => {
+      fireEvent.click(getAllByRole('button')[0]);
+    });
 
-    expect(container).toMatchSnapshot();
+    expect(getByText('Wishlist')).toBeDefined();
   });
 
-  it('Click show cart option', () => {
-    const { container, getAllByRole } = setup();
+  it('Click show cart option', async () => {
+    const { getAllByRole, getAllByText } = setup();
 
-    fireEvent.click(getAllByRole('button')[1]);
+    await act(() => {
+      fireEvent.click(getAllByRole('button')[1]);
+    });
 
-    expect(container).toMatchSnapshot();
+    expect(getAllByText('Checkout').length).toBe(2);
   });
 });

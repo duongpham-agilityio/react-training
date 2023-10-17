@@ -27,5 +27,6 @@ export const filterOptions: IFilterOption[] = [
 
 export const filterBarProps: TFilterBarProps = {
   value: '',
+  currentOption: '',
   onChange: () => {},
 };

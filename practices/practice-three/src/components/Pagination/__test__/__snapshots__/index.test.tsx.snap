@@ -6,56 +6,56 @@ exports[`Pagination Match to snapshot 1`] = `
     class="chakra-stack css-17qdwnb"
   >
     <button
-      class="chakra-button css-1hp9g1x"
+      class="chakra-button css-wjktab"
       disabled=""
       type="button"
     >
       Prev
     </button>
     <button
-      class="chakra-button css-1qnxh0p"
+      class="chakra-button css-fv8jc9"
       type="button"
     >
       1
     </button>
     <button
-      class="chakra-button css-1hp9g1x"
+      class="chakra-button css-wjktab"
       type="button"
     >
       2
     </button>
     <button
-      class="chakra-button css-1hp9g1x"
+      class="chakra-button css-wjktab"
       type="button"
     >
       3
     </button>
     <button
-      class="chakra-button css-1hp9g1x"
+      class="chakra-button css-wjktab"
       type="button"
     >
       4
     </button>
     <button
-      class="chakra-button css-1hp9g1x"
+      class="chakra-button css-wjktab"
       type="button"
     >
       5
     </button>
     <button
-      class="chakra-button css-1hp9g1x"
+      class="chakra-button css-wjktab"
       type="button"
     >
       6
     </button>
     <button
-      class="chakra-button css-1hp9g1x"
+      class="chakra-button css-wjktab"
       type="button"
     >
       7
     </button>
     <button
-      class="chakra-button css-1hp9g1x"
+      class="chakra-button css-wjktab"
       type="button"
     >
       Next

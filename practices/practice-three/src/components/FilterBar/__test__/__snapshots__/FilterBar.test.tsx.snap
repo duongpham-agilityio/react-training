@@ -132,11 +132,11 @@ exports[`Filteroptions Match to snapshot 1`] = `
 exports[`SearchBar Match to snapshot 1`] = `
 <div>
   <div
-    class="chakra-input__group css-y1t468"
+    class="chakra-input__group css-viwvyh"
     data-group="true"
   >
     <input
-      class="chakra-input css-a7r4yx"
+      class="chakra-input css-190aajt"
       placeholder="Search"
       value=""
     />

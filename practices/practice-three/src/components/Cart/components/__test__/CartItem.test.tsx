@@ -23,7 +23,7 @@ describe('CartItem', () => {
         {...{
           ...cartItemProps,
           data: {
-            ...cartItemProps.data,
+            ...cartItemProps,
             name: 'Duong',
           },
         }}

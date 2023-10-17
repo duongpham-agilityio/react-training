@@ -10,6 +10,7 @@ import { FilterBar, TFilterBarProps } from '..';
 const onChange = jest.fn();
 const defaultProps: TFilterBarProps = {
   value: '',
+  currentOption: '',
   onChange,
 };
 const setup = (props = defaultProps) => render(<FilterBar {...props} />);

@@ -60,6 +60,8 @@ export const useProduct = (): TUseProduct => {
 
         return true;
       } catch (error) {
+        console.log(error);
+
         return false;
       }
     },
@@ -83,6 +85,7 @@ export const useProduct = (): TUseProduct => {
 
   const onRemoveProduct = useCallback(
     async (id: number): Promise<boolean> => {
+      console.log(123);
       try {
         await productAPI.removeById(id);
         queryClient.invalidateQueries([ENDPOINT_SERVICES.PRODUCTS]);

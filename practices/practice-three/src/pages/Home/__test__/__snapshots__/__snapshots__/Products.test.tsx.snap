@@ -9,14 +9,14 @@ exports[`Products Match to snapshot 1`] = `
       class="css-1gvp5h0"
     >
       <a
-        class="chakra-card css-frav00"
+        class="chakra-card css-1wt50ai"
         href="/detail/1"
       >
         <div
           class="chakra-stack css-m4lmkl"
         >
           <div
-            class="css-1c7m7lf"
+            class="css-1ql0rgo"
           >
             <img
               alt="Tasty Plastic Mouse"
@@ -34,20 +34,20 @@ exports[`Products Match to snapshot 1`] = `
                 class="css-13rbvqk"
               >
                 <h2
-                  class="chakra-heading css-micy4r"
+                  class="chakra-heading css-n93nk6"
                 >
                   Tasty Plastic Mouse
                 </h2>
                 <p
-                  class="chakra-text css-bmhbsm"
+                  class="chakra-text css-1286dop"
                 >
                   Quos tempora adipisci quidem ipsum.
                 </p>
                 <span
-                  class="chakra-badge css-ovswd3"
+                  class="chakra-badge css-1dm3gsd"
                 >
                   <div
-                    class="css-1ky2ef1"
+                    class="css-artlef"
                   >
                     available
                   </div>
@@ -57,7 +57,7 @@ exports[`Products Match to snapshot 1`] = `
                 class="chakra-stack css-bot922"
               >
                 <p
-                  class="chakra-text css-7sjuw3"
+                  class="chakra-text css-17nnq38"
                 >
                   $
                   430
@@ -92,7 +92,7 @@ exports[`Products Match to snapshot 1`] = `
                   </button>
                   <button
                     aria-label="Button add to favorite"
-                    class="chakra-button css-p7mkev"
+                    class="chakra-button css-15eygc7"
                     type="button"
                   >
                     <svg
@@ -122,14 +122,14 @@ exports[`Products Match to snapshot 1`] = `
       class="css-1gvp5h0"
     >
       <a
-        class="chakra-card css-frav00"
+        class="chakra-card css-1wt50ai"
         href="/detail/2"
       >
         <div
           class="chakra-stack css-m4lmkl"
         >
           <div
-            class="css-1c7m7lf"
+            class="css-1ql0rgo"
           >
             <img
               alt="Tasty Wooden Chair"
@@ -147,20 +147,20 @@ exports[`Products Match to snapshot 1`] = `
                 class="css-13rbvqk"
               >
                 <h2
-                  class="chakra-heading css-micy4r"
+                  class="chakra-heading css-n93nk6"
                 >
                   Tasty Wooden Chair
                 </h2>
                 <p
-                  class="chakra-text css-bmhbsm"
+                  class="chakra-text css-1286dop"
                 >
                   Ab repellat ullam autem. Esse facere facere debitis dicta quidem nihil. Saepe suscipit ex.
                 </p>
                 <span
-                  class="chakra-badge css-ovswd3"
+                  class="chakra-badge css-1dm3gsd"
                 >
                   <div
-                    class="css-1ky2ef1"
+                    class="css-artlef"
                   >
                     available
                   </div>
@@ -170,7 +170,7 @@ exports[`Products Match to snapshot 1`] = `
                 class="chakra-stack css-bot922"
               >
                 <p
-                  class="chakra-text css-7sjuw3"
+                  class="chakra-text css-17nnq38"
                 >
                   $
                   430
@@ -205,7 +205,7 @@ exports[`Products Match to snapshot 1`] = `
                   </button>
                   <button
                     aria-label="Button add to favorite"
-                    class="chakra-button css-p7mkev"
+                    class="chakra-button css-15eygc7"
                     type="button"
                   >
                     <svg

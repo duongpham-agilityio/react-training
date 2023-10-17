@@ -46,6 +46,7 @@ const Component = (): JSX.Element => {
   const handleRenderProduct = useCallback(
     (product: IProduct): JSX.Element => {
       const { id, imageURL, name, description, price, quantity } = product;
+
       const info: TProductCard = {
         id,
         imageURL,
