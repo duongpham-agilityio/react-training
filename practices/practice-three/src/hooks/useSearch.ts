@@ -59,21 +59,18 @@ export const useSearch = (data: IProduct[]): TUseSearch => {
   );
 
   // Handle update search param
-  const handleSetSearchParam = useCallback(
-    (value: string) => {
-      setSearchParam((prev) => {
-        if (!value) {
-          prev.delete(SEARCH_PARAMS.NAME);
+  const handleSetSearchParam = useCallback((value: string) => {
+    setSearchParam((prev) => {
+      if (!value) {
+        prev.delete(SEARCH_PARAMS.NAME);
 
-          return prev;
-        }
-
-        prev.set(SEARCH_PARAMS.NAME, value);
         return prev;
-      });
-    },
-    [setSearchParam],
-  );
+      }
+
+      prev.set(SEARCH_PARAMS.NAME, value);
+      return prev;
+    });
+  }, []);
 
   // Create debounce handler
   const searchParamDebounce = useDebounce(handleSetSearchParam);
