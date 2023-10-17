@@ -114,7 +114,7 @@ const FormAddComponent = ({
   }, [formData, onSubmit]);
 
   return (
-    <VStack h="full" justifyContent="space-between">
+    <VStack h="full" justifyContent="space-between" overflowY="scroll" px={5}>
       <VStack w="full" gap={5}>
         <Box w="full" minH={90} flex={1}>
           <InputForm
@@ -241,7 +241,14 @@ const FormAddComponent = ({
         </Flex>
       </VStack>
 
-      <Button w="full" color="primary" bg="teal.300" onClick={handleSubmit}>
+      <Button
+        w="full"
+        color="primary"
+        bg="teal.300"
+        mt={10}
+        py={5}
+        onClick={handleSubmit}
+      >
         Submit
       </Button>
     </VStack>
