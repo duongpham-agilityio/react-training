@@ -8,16 +8,14 @@ import { withIsAuth } from '@/hocs';
 import { Header } from './Header';
 import { Body } from './Body';
 
-const MainLayoutComponent = () => {
-  return (
-    <Container>
-      <VStack>
-        <Header />
-        <Divider />
-        <Body />
-      </VStack>
-    </Container>
-  );
-};
+const MainLayoutComponent = () => (
+  <Container>
+    <VStack>
+      <Header />
+      <Divider />
+      <Body />
+    </VStack>
+  </Container>
+);
 
 export const MainLayout = memo(withIsAuth(MainLayoutComponent));

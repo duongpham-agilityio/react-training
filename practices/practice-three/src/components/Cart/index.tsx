@@ -21,7 +21,7 @@ import { TCartStore, useCartStore } from '@/stores';
 // Types
 import { ICartData, TResponse } from '@/interface';
 
-const Component = (): JSX.Element => {
+const CartComponent = (): JSX.Element => {
   const queryClient: QueryClient = useQueryClient();
 
   // Toast
@@ -136,6 +136,6 @@ const Component = (): JSX.Element => {
   );
 };
 
-const Cart = memo(Component);
+const Cart = memo(CartComponent);
 
 export default Cart;

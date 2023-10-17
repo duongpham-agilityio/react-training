@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import isEqual from 'react-fast-compare';
 import { VStack } from '@chakra-ui/react';
 
 // Constants
@@ -12,7 +11,10 @@ import { CartItem, TCartItemProps } from '..';
 // Types
 import { ICartData } from '@/interface';
 
-export type TListCartItemProps = Omit<TCartItemProps, 'data'> & {
+export type TListCartItemProps = Pick<
+  TCartItemProps,
+  'onChangeQuantity' | 'onRemove'
+> & {
   data: ICartData[];
 };
 
@@ -28,9 +30,9 @@ const ListComponent = ({
           <CartItem
             key={item.productId}
             // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
-            data={item}
             onChangeQuantity={onChangeQuantity}
             onRemove={onRemove}
+            {...item}
           />
         ),
       )
@@ -40,4 +42,4 @@ const ListComponent = ({
   </VStack>
 );
 
-export const ListCartItem = memo(ListComponent, isEqual);
+export const ListCartItem = memo(ListComponent);

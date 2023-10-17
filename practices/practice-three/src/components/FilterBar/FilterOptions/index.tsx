@@ -16,13 +16,15 @@ export const FilterOptions = memo(
     <List display="flex" gap={5} py={5}>
       {filterOptions.map((option: IFilterOption): JSX.Element => {
         const { name, value } = option;
+        const isActive =
+          currentOption === value || (currentOption === '' && value === 'all');
 
         return (
           <FilterButton
             key={value}
             value={value}
             title={name}
-            isActive={currentOption === value}
+            isActive={isActive}
           />
         );
       })}
