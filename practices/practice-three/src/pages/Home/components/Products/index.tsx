@@ -34,7 +34,7 @@ export const Products = memo(
     const handleRenderProduct = useCallback(
       (product: IProduct): JSX.Element => {
         const { id, imageURL, name, description, price, quantity } = product;
-        const isLessThanTwo = quantity <= 2;
+        const isLessThanTwo = quantity < 2;
 
         const info: TProductCard = {
           id,
