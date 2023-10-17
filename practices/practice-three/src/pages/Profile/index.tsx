@@ -21,7 +21,7 @@ import { ShowProducts } from './components/Products';
 // Services
 import { productAPI } from '@/services/apis';
 
-// Lazy com
+// Lazy components
 const Dialog = lazy(() => import('@/components/Dialog'));
 const FormAdd = lazy(() => import('./components/FormAdd'));
 
