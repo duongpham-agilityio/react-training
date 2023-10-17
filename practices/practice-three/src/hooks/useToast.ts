@@ -14,6 +14,7 @@ export const useToast = (defaultOptions?: UseToastOptions): TUseToast => {
       toast({
         ...options,
         duration: TIMES.TOAST,
+        position: 'top-right',
         ...defaultOptions,
       }),
     [],
