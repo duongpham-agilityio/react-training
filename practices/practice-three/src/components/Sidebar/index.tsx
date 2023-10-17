@@ -8,7 +8,6 @@ import {
   ListItem,
   Spinner,
   Square,
-  Switch,
   SystemStyleObject,
   VStack,
   useDisclosure,
@@ -31,7 +30,6 @@ import {
   ArrowRight,
   CartFill,
   HeartSideBarFill,
-  LightMode,
   PersonCircle,
 } from '@/assets/icons';
 import { ROUTES } from '@/constants';
@@ -179,38 +177,7 @@ export const SideBar = memo((): JSX.Element => {
         boxShadow="base"
         justifyContent="space-between"
       >
-        <List>
-          {renderOptions}
-          <ListItem position="relative" h={20}>
-            <Square
-              as={Button}
-              aria-label="Button change theme"
-              justifyContent={isShowFullSidebar ? 'flex-start' : 'center'}
-              gap={5}
-              mt={{
-                xl: 38,
-                '2xl': 22,
-              }}
-              fontSize={{
-                '2xl': '3xl',
-                xl: 'md',
-              }}
-            >
-              {/*
-             Mode Icon
-
-            // Todo: Update when apply change mode   
-            */}
-              <LightMode />
-              {isShowFullSidebar && (
-                <>
-                  Light
-                  <Switch size="lg" />
-                </>
-              )}
-            </Square>
-          </ListItem>
-        </List>
+        <List>{renderOptions}</List>
         <Square>
           <IconButton
             w={58}
