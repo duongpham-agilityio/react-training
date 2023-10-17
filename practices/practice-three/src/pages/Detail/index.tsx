@@ -7,8 +7,6 @@ import {
   Heading,
   IconButton,
   Image,
-  Spinner,
-  Square,
   Text,
   VStack,
 } from '@chakra-ui/react';
@@ -24,6 +22,10 @@ import { productAPI } from '@/services/apis';
 
 // Constants
 import { MESSAGES, PARAM, ROUTES, TITLES } from '@/constants';
+
+// Components
+import { Spinner } from '@/components';
+import { FetchingMessage } from '@/components/common';
 
 // Images
 import SocialImage from '@/assets/images/social.png';
@@ -76,19 +78,10 @@ const Component = (): JSX.Element => {
     }
   }, [handleAddProductToCart, params, showToast]);
 
-  if (isLoading)
-    return (
-      <Square size="full">
-        <Spinner />
-      </Square>
-    );
+  if (isLoading) return <Spinner />;
 
   if (isError || !data)
-    return (
-      <Square size="full">
-        <Text>{MESSAGES.FAIL_TO_FETCH}</Text>
-      </Square>
-    );
+    return <FetchingMessage message={MESSAGES.FAIL_TO_FETCH} />;
 
   //Destructure to get property
   const { name, description, price, imageURL } = data;

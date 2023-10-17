@@ -5,8 +5,6 @@ import {
   Grid,
   GridItem,
   IconButton,
-  Spinner,
-  Square,
   Text,
   VStack,
   useDisclosure,
@@ -30,8 +28,9 @@ import {
 
 // Components
 import FormAdd, { IFormAddData } from './components/FormAdd';
-import { TProductCard, Pagination, ProductCard } from '@/components';
+import { TProductCard, Pagination, ProductCard, Spinner } from '@/components';
 import ModalCustom from '@/components/Modal';
+import { FetchingMessage } from '@/components/common';
 
 // Services
 import { productAPI } from '@/services/apis';
@@ -206,19 +205,9 @@ const ProfileComponent = () => {
     [handleOpenFormUpdate, handleSubmitRemove],
   );
 
-  if (isLoading)
-    return (
-      <Square size="full">
-        <Spinner />
-      </Square>
-    );
+  if (isLoading) return <Spinner />;
 
-  if (isError)
-    return (
-      <Square size="full">
-        <Text>{MESSAGES.FAIL_TO_FETCH}</Text>
-      </Square>
-    );
+  if (isError) return <FetchingMessage message={MESSAGES.FAIL_TO_FETCH} />;
 
   return (
     <VStack>
