@@ -9,6 +9,7 @@ import { ProductPayload, productAPI } from '@/services/apis';
 
 // Constants
 import { ENDPOINT_SERVICES } from '@/constants';
+import { formatPayloadProduct } from '@/helpers';
 
 export type TUseProduct = {
   onAddProduct: (data: IFormAddData) => Promise<boolean>;
@@ -29,7 +30,8 @@ export const useProduct = (): TUseProduct => {
           ...data,
           isLiked: false,
         };
-        await productAPI.add(product);
+
+        await productAPI.add(formatPayloadProduct(product) as ProductPayload);
 
         queryClient.invalidateQueries([ENDPOINT_SERVICES.PRODUCTS]);
 
@@ -44,7 +46,8 @@ export const useProduct = (): TUseProduct => {
   const onUpdateProduct = useCallback(
     async (id: number, product: Partial<ProductPayload>): Promise<boolean> => {
       try {
-        await productAPI.update(id, product);
+        await productAPI.update(id, formatPayloadProduct(product));
+
         queryClient.invalidateQueries([ENDPOINT_SERVICES.PRODUCTS]);
 
         return true;

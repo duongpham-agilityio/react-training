@@ -9,21 +9,31 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-// Types
-import { ICartData } from '@/interface';
-
 // Icons
 import { Decrease, Increase, Trash } from '@/assets/icons';
 
 export type TCartItemProps = {
-  data: ICartData;
+  name: string;
+  imageURL: string;
+  description: string;
+  price: number;
+  productId: number;
+  quantity: number;
   onRemove: (productId: number) => void;
   onChangeQuantity: (productId: number, currentQuantity: number) => void;
 };
 
 const CartItemComponent = (props: TCartItemProps): JSX.Element => {
-  const { data, onChangeQuantity, onRemove } = props;
-  const { name, description, imageURL, productId, price, quantity } = data;
+  const {
+    name,
+    description,
+    imageURL,
+    productId,
+    price,
+    quantity,
+    onChangeQuantity,
+    onRemove,
+  } = props;
 
   const handleIncrease = useCallback((): void => {
     onChangeQuantity(productId, quantity + 1);
