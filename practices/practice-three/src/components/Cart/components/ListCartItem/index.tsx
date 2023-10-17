@@ -1,5 +1,5 @@
-import { memo } from 'react';
 import { VStack } from '@chakra-ui/react';
+import { memo } from 'react';
 
 // Constants
 import { MESSAGES } from '@/constants';
@@ -29,7 +29,6 @@ const ListComponent = ({
         (item: ICartData): JSX.Element => (
           <CartItem
             key={item.productId}
-            // !Issues: There is a problem when comparing two objects, even though the value is new, it is not re-rendered.
             onChangeQuantity={onChangeQuantity}
             onRemove={onRemove}
             {...item}
