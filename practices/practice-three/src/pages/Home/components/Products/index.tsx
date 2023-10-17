@@ -10,10 +10,10 @@ import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
 
 // Components
 import { TProductCard, ProductCard, TProductCardProps } from '@/components';
+import { Message } from '@/components/common';
 
 // Types
 import { IProduct } from '@/interface';
-import { Message } from '@/components/common';
 
 export interface ProductsProps extends Omit<TProductCardProps, 'info'> {
   data: IProduct[];
@@ -34,6 +34,8 @@ export const Products = memo(
     const handleRenderProduct = useCallback(
       (product: IProduct): JSX.Element => {
         const { id, imageURL, name, description, price, quantity } = product;
+        const isLessThanTwo = quantity < 2;
+
         const info: TProductCard = {
           id,
           imageURL,
@@ -41,7 +43,7 @@ export const Products = memo(
           description,
           title: name,
           status: quantity <= LIMIT_QUANTITY,
-          statusMessage: `Only ${quantity} left`,
+          statusMessage: `Only ${quantity} ${isLessThanTwo ? 'left' : 'lefts'}`,
           isLiked: isLiked(id),
         };
 

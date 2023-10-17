@@ -15,9 +15,10 @@
       "description": "Ab repellat ullam autem. Esse facere facere debitis dicta quidem nihil. Saepe suscipit ex.",
       "imageURL": "https://loremflickr.com/640/480/fashion",
       "price": "373.00",
-      "quantity": 0,
+      "quantity": "00000000001",
       "isLiked": false,
-      "id": 2
+      "id": 2,
+      "category": "electrics"
     },
     {
       "name": "Generic Frozen Ball",

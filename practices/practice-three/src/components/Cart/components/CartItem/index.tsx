@@ -40,9 +40,9 @@ const CartItemComponent = (props: TCartItemProps): JSX.Element => {
   return (
     <Flex
       w="full"
-      border="1px solid"
+      border="1px"
       borderColor="gray.300"
-      borderRadius={10}
+      borderRadius="md"
       py={2}
       px={3}
     >
@@ -51,25 +51,26 @@ const CartItemComponent = (props: TCartItemProps): JSX.Element => {
           src={imageURL}
           objectFit="cover"
           boxSize="80px"
-          borderRadius={5}
+          borderRadius="sm"
         />
 
         {/* Show info */}
         <Box>
           <Heading
             fontSize={{
-              base: 14,
-              xl: 18,
+              base: 'sm',
+              xl: 'lg',
             }}
           >
             {name}
           </Heading>
           <Text
             fontSize={{
-              base: 12,
-              xl: 14,
+              base: 'xs',
+              xl: 'sm',
             }}
             fontWeight="regular"
+            noOfLines={2}
           >
             {description}
           </Text>

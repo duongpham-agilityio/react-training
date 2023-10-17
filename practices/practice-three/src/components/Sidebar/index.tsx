@@ -87,7 +87,7 @@ export const SideBar = memo((): JSX.Element => {
         icon: HeartSideBarFill,
         title: 'Wishlist',
         isShowPseudo: true,
-        pseudoColor: 'red.20',
+        pseudoColor: 'errorToLight',
         pseudoValue: favoriteSize,
         onClick: onToggleWishlist,
       },
@@ -95,7 +95,7 @@ export const SideBar = memo((): JSX.Element => {
         icon: CartFill,
         title: 'Cart',
         isShowPseudo: true,
-        pseudoColor: 'blue.alpha.10',
+        pseudoColor: 'infoRGB',
         pseudoValue: quantityCart,
         onClick: onToggleCart,
       },
@@ -132,8 +132,8 @@ export const SideBar = memo((): JSX.Element => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            borderRadius: '100%',
-            fontSize: '14px',
+            borderRadius: 'full',
+            fontSize: 'md',
             fontWeight: 'regular',
             color: 'white',
           }
@@ -148,12 +148,12 @@ export const SideBar = memo((): JSX.Element => {
             gap={5}
             mt={22}
             p={0}
-            color="black"
+            color="primary"
             fontWeight="regular"
             justifyContent={isShowFullSidebar ? 'flex-start' : 'center'}
             fontSize={{
-              '2xl': 26,
-              xl: 18,
+              '2xl': '4xl',
+              xl: 'lg',
             }}
             onClick={onClick}
           >
@@ -170,12 +170,12 @@ export const SideBar = memo((): JSX.Element => {
     <>
       <VStack
         minW={104}
-        borderRadius={30}
+        borderRadius="2xl"
         px={5}
         py={7}
         w="fit-content"
-        border="1px solid"
-        borderColor="gray.alpha.10"
+        border="1px"
+        borderColor="darkRGB"
         boxShadow="base"
         justifyContent="space-between"
       >
@@ -192,8 +192,8 @@ export const SideBar = memo((): JSX.Element => {
                 '2xl': 22,
               }}
               fontSize={{
-                '2xl': 24,
-                xl: 16,
+                '2xl': '3xl',
+                xl: 'md',
               }}
             >
               {/*
@@ -216,8 +216,7 @@ export const SideBar = memo((): JSX.Element => {
             w={58}
             h={58}
             borderRadius="full"
-            border="1px solid"
-            borderColor="blackAlpha.300"
+            border="1px"
             boxShadow="base"
             aria-label="Search database"
             icon={isShowFullSidebar ? <ArrowRight /> : <ArrowLeft />}

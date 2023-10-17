@@ -188,10 +188,10 @@ const FormAddComponent = ({
               base: 120,
               '2xl': 200,
             }}
-            borderRadius={5}
+            borderRadius="sm"
             borderStyle="dotted"
             borderWidth={2}
-            fontSize={14}
+            fontSize="sm"
             position="relative"
             bgImg={formData.imageURL}
             bgPosition="center"
@@ -241,7 +241,7 @@ const FormAddComponent = ({
         </Flex>
       </VStack>
 
-      <Button w="full" color="black" bg="teal.300" onClick={handleSubmit}>
+      <Button w="full" color="primary" bg="teal.300" onClick={handleSubmit}>
         Submit
       </Button>
     </VStack>

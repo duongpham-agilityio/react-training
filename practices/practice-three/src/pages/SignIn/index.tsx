@@ -63,15 +63,15 @@ const Component = () => {
       <>
         {/* Heading */}
         <Center h="fit-content" gap={2} py={6}>
-          <Box w="1.5" h={39} bg="yellow.10" />
-          <Heading fontSize={32}>CRUD OPERATIONS</Heading>
+          <Box w="1.5" h={39} bg="warningToLight" />
+          <Heading fontSize="6xl">CRUD OPERATIONS</Heading>
         </Center>
         {/* Title */}
         <Box textAlign="center" py={4}>
-          <Heading fontSize={22} py={1}>
+          <Heading fontSize="2xl" py={1}>
             Sign In
           </Heading>
-          <Text color="gray.20" fontSize={14} fontWeight="regular">
+          <Text color="darkGrey30" fontSize="sm" fontWeight="regular">
             Enter your credentials to access your account
           </Text>
         </Box>
@@ -81,11 +81,11 @@ const Component = () => {
   );
 
   return (
-    <Square bg="yellow.20" minH="100vh">
+    <Square bg="warning" minH="100vh">
       <Box
         w={475}
         h={550}
-        borderRadius={20}
+        borderRadius="lg"
         p={18}
         boxShadow="base"
         bg="white"
@@ -119,10 +119,10 @@ const Component = () => {
         {/* Submit */}
         <Button
           w="full"
-          bg="yellow.20"
+          bg="warning"
           textTransform="uppercase"
           fontWeight="regular"
-          fontSize={14}
+          fontSize="sm"
           _hover={{
             boxShadow: 'base',
           }}

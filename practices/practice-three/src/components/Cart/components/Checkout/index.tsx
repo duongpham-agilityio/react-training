@@ -22,8 +22,8 @@ export const Checkout = memo(
         <Heading
           textAlign="center"
           fontSize={{
-            base: 16,
-            xl: 22,
+            base: 'md',
+            xl: '2xl',
           }}
           textTransform="uppercase"
           padding={5}
@@ -38,11 +38,11 @@ export const Checkout = memo(
           <Text>Total: {`$${total}`}</Text>
           <Button
             textTransform="uppercase"
-            bg="green.10"
+            bg="successToLight"
             w="full"
             mt={5}
             _hover={{
-              bg: 'green.20',
+              bg: 'success',
             }}
             isDisabled={!total}
             onClick={onCheckout}

@@ -100,7 +100,7 @@ const Component = (): JSX.Element => {
       <Flex flex={1} minH={250} justifyContent="flex-end">
         <Box maxW={448}>
           <Heading
-            fontSize={50}
+            fontSize="7xl"
             py={{
               base: 2,
               '2xl': 6,
@@ -111,14 +111,14 @@ const Component = (): JSX.Element => {
           </Heading>
           <Text
             fontSize={{
-              base: 16,
-              '2xl': 20,
+              base: 'md',
+              '2xl': 'xl',
             }}
             lineHeight={{
               base: 6,
               '2xl': 8,
             }}
-            color="gray.20"
+            color="darkGrey30"
             noOfLines={4}
           >
             {description}
@@ -133,7 +133,7 @@ const Component = (): JSX.Element => {
             transform="rotate(-90deg)"
             textTransform="uppercase"
             fontWeight="regular"
-            fontSize={16}
+            fontSize="md"
             letterSpacing={2}
           >
             Scroll down
@@ -158,11 +158,11 @@ const Component = (): JSX.Element => {
           <Center>
             <Button
               height="fit-content"
-              color="black"
+              color="primary"
               display="flex"
               flexDirection="column"
             >
-              <Text fontSize={18} py={2} fontWeight="regular">
+              <Text fontSize="lg" py={2} fontWeight="regular">
                 Prev
               </Text>
               <ArrowLeftOutline />
@@ -170,11 +170,11 @@ const Component = (): JSX.Element => {
 
             <Button
               height="fit-content"
-              color="black"
+              color="primary"
               display="flex"
               flexDirection="column"
             >
-              <Text fontSize={18} py={2} fontWeight="regular">
+              <Text fontSize="lg" py={2} fontWeight="regular">
                 Next
               </Text>
               <ArrowRightOutline />
@@ -189,16 +189,16 @@ const Component = (): JSX.Element => {
               size="lg"
               icon={<Increase />}
             />
-            <Text fontSize={18} fontWeight="regular" color="gray.30">
+            <Text fontSize="lg" fontWeight="regular" color="darkGrey40">
               Play video
             </Text>
           </Flex>
 
           <Button
-            color="black"
+            color="primary"
             textTransform="uppercase"
             _hover={{
-              color: 'gray.20',
+              color: 'darkGrey30',
             }}
             p="unset"
             onClick={handleAddToCart}

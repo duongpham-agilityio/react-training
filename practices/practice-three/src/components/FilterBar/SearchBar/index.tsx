@@ -21,13 +21,13 @@ export const SearchBar = memo(({ value, onChange }: TSearchBarProps) => {
 
   return (
     <InputGroup
-      borderRadius={30}
       border="1px"
       borderColor="gray.300"
       alignItems="center"
+      borderRadius="md"
     >
       <Input
-        fontSize={18}
+        fontSize="lg"
         placeholder="Search"
         borderColor="transparent"
         focusBorderColor="transparent"

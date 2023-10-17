@@ -181,16 +181,16 @@ const ProfileComponent = () => {
               <Flex gap={2}>
                 <IconButton
                   aria-label="Button remove product"
-                  color="black"
+                  color="primary"
                   icon={<Trash fill="white" />}
-                  bg="red.10"
+                  bg="error"
                   variant="hoverShadow"
                   onClick={handleRemove}
                 />
 
                 <IconButton
                   aria-label="Button remove product"
-                  color="black"
+                  color="primary"
                   icon={<Pencil />}
                   bg="gray.700"
                   variant="hoverShadow"
@@ -233,7 +233,7 @@ const ProfileComponent = () => {
           products.map(handleRenderProduct)
         ) : (
           <Center>
-            <Text fontSize={18} fontWeight="bold">
+            <Text fontSize="lg" fontWeight="bold">
               {MESSAGES.EMPTY}
             </Text>
           </Center>

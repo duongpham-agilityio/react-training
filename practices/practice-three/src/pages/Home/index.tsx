@@ -39,6 +39,7 @@ const Component = (): JSX.Element => {
   const {
     data: filterProducts,
     searchValue,
+    category,
     onChangeSearchInput,
   } = useSearch(data);
 
@@ -89,10 +90,14 @@ const Component = (): JSX.Element => {
 
   return (
     <>
-      <FilterBar value={searchValue} onChange={onChangeSearchInput} />
+      <FilterBar
+        value={searchValue}
+        onChange={onChangeSearchInput}
+        currentOption={category}
+      />
 
       {/* Title for filter by option */}
-      <Heading fontSize={32} py={10} color="gray.40">
+      <Heading fontSize="6xl" py={10} color="dark">
         Trending Items
       </Heading>
 
