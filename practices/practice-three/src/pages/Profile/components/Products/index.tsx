@@ -35,6 +35,7 @@ const ProductsComponent = ({
   const handleRenderProduct = useCallback(
     (product: IProduct): JSX.Element => {
       const { id, imageURL, name, description, price, quantity } = product;
+      const isLessThanTwo = quantity < 2;
 
       const info: TProductCard = {
         id,
@@ -43,7 +44,7 @@ const ProductsComponent = ({
         description,
         title: name,
         status: quantity <= LIMIT_QUANTITY,
-        statusMessage: `Only ${quantity} left`,
+        statusMessage: `Only ${quantity} ${isLessThanTwo ? 'left' : 'lefts'}`,
       };
 
       const handleEdit = (e: MouseEvent): void => {

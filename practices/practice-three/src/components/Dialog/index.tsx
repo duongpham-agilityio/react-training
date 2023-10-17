@@ -21,7 +21,7 @@ export type TDialogProps = {
 
 const DialogComponent = (props: TDialogProps) => {
   const { title, description, isOpen, onClose, onAccept, onCancel } = props;
-  const cancelRef = useRef(null);
+  const cancelRef = useRef<HTMLButtonElement>(null);
 
   return (
     <AlertDialog
