@@ -1,15 +1,5 @@
-import {
-  Button,
-  Center,
-  Flex,
-  Grid,
-  GridItem,
-  IconButton,
-  Text,
-  VStack,
-  useDisclosure,
-} from '@chakra-ui/react';
-import { memo, useCallback, useState, MouseEvent } from 'react';
+import { Button, Flex, VStack, useDisclosure } from '@chakra-ui/react';
+import { Suspense, lazy, memo, useCallback, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 // HOCs
@@ -19,27 +9,24 @@ import { withIsAuth } from '@/hocs';
 import { usePagination, useProduct, useToast } from '@/hooks';
 
 // Constants
-import {
-  ENDPOINT_SERVICES,
-  LIMIT_QUANTITY,
-  MESSAGES,
-  TITLES,
-} from '@/constants';
+import { ENDPOINT_SERVICES, MESSAGES, TITLES } from '@/constants';
 
 // Components
-import FormAdd, { IFormAddData } from './components/FormAdd';
-import { TProductCard, Pagination, ProductCard, Spinner } from '@/components';
+import { IFormAddData } from './components/FormAdd';
+import { Pagination, Spinner } from '@/components';
 import ModalCustom from '@/components/Modal';
 import { FetchingMessage } from '@/components/common';
+import { ShowProducts } from './components/Products';
 
 // Services
 import { productAPI } from '@/services/apis';
 
-// Types
-import { IProduct } from '@/interface';
+// Lazy com
+const Dialog = lazy(() => import('@/components/Dialog'));
+const FormAdd = lazy(() => import('./components/FormAdd'));
 
-// Icons
-import { Pencil, Trash } from '@/assets/icons';
+//Types
+import { IProduct } from '@/interface';
 
 const ProfileComponent = () => {
   const {
@@ -59,26 +46,46 @@ const ProfileComponent = () => {
     onChangePage,
   } = usePagination(data);
   const { isOpen: isOpenFormAdd, onToggle: onToggleForm } = useDisclosure();
-  const [edit, setEdit] = useState<IFormAddData>();
+  const { isOpen: isOpenRemove, onToggle: onToggleRemoveDialog } =
+    useDisclosure();
+  const [productId, setProductId] = useState<number>();
 
   const { showToast } = useToast();
 
   const { onAddProduct, onUpdateProduct, onRemoveProduct } = useProduct();
 
+  // Handle open form
   const handleOpenFormUpdate = useCallback(
-    (product: IFormAddData) => {
+    (productId: number) => {
       onToggleForm();
-      setEdit(product);
+      setProductId(productId);
     },
     [onToggleForm],
   );
 
+  // Handle close form
   const handleCloseModal = useCallback(() => {
     onToggleForm();
-    setEdit(undefined);
+    setProductId(undefined);
   }, [onToggleForm]);
 
-  const handleSubmitAdd = useCallback(
+  // Handle open Dialog
+  const handleOpenDialog = useCallback(
+    (productId: number) => {
+      onToggleRemoveDialog();
+      setProductId(productId);
+    },
+    [onToggleRemoveDialog],
+  );
+
+  // Handle close Dialog
+  const handleCloseDialog = useCallback(() => {
+    onToggleRemoveDialog();
+    setProductId(undefined);
+  }, [onToggleRemoveDialog]);
+
+  // Handle create new product
+  const handleCreateProduct = useCallback(
     async (product: IFormAddData) => {
       const isSuccess: boolean = await onAddProduct(product);
 
@@ -95,7 +102,8 @@ const ProfileComponent = () => {
     [handleCloseModal, onAddProduct, showToast],
   );
 
-  const handleSubmitUpdate = useCallback(
+  // Handle submit update product
+  const handleUpdateProduct = useCallback(
     async (id: number, product: IFormAddData) => {
       const isSuccess = await onUpdateProduct(id, product);
 
@@ -112,98 +120,54 @@ const ProfileComponent = () => {
     [handleCloseModal, onUpdateProduct, showToast],
   );
 
-  const handleSubmitRemove = useCallback(
-    async (id: number): Promise<void> => {
-      const isSuccess: boolean = await onRemoveProduct(id);
+  // Handle submit remove product
+  const handleSubmitRemove = useCallback(async (): Promise<void> => {
+    if (!productId) return;
 
-      showToast({
-        title: TITLES.REMOVE,
-        description: isSuccess
-          ? MESSAGES.REMOVE_PRODUCT_SUCCESS
-          : MESSAGES.REMOVE_PRODUCT_FAIL,
-        status: isSuccess ? 'success' : 'error',
-      });
-    },
-    [onRemoveProduct, showToast],
-  );
+    const isSuccess: boolean = await onRemoveProduct(productId);
 
+    onToggleRemoveDialog();
+    showToast({
+      title: TITLES.REMOVE,
+      description: isSuccess
+        ? MESSAGES.REMOVE_PRODUCT_SUCCESS
+        : MESSAGES.REMOVE_PRODUCT_FAIL,
+      status: isSuccess ? 'success' : 'error',
+    });
+  }, [onRemoveProduct, onToggleRemoveDialog, productId, showToast]);
+
+  // Handle submit form
   const handleSubmit = useCallback(
     async (product: IFormAddData, id?: number) => {
-      if (!edit) return handleSubmitAdd(product);
+      if (!productId) return handleCreateProduct(product);
 
-      return handleSubmitUpdate(id || 0, product);
+      return handleUpdateProduct(id || 0, product);
     },
-    [edit, handleSubmitAdd, handleSubmitUpdate],
+    [handleCreateProduct, handleUpdateProduct, productId],
   );
 
-  const handleRenderProduct = useCallback(
-    (product: IProduct): JSX.Element => {
-      const { id, imageURL, name, description, price, quantity, category } =
-        product;
+  // Get the information that needs to be updated by productID
+  const infoProductWhenUpdate: IFormAddData | undefined = useMemo(() => {
+    const product: IProduct | undefined = products.find(
+      (product) => product.id === productId,
+    );
 
-      const editData: IFormAddData = {
-        id,
-        imageURL,
-        name,
-        description,
-        price,
-        quantity,
-        category,
-      };
+    if (!product) return;
 
-      const info: TProductCard = {
-        id,
-        imageURL,
-        price,
-        description,
-        title: name,
-        status: quantity <= LIMIT_QUANTITY,
-        statusMessage: `Only ${quantity} left`,
-      };
+    const { id, name, description, category, imageURL, price, quantity } =
+      product;
+    const infoUpdate: IFormAddData = {
+      id,
+      name,
+      description,
+      category,
+      imageURL,
+      price,
+      quantity,
+    };
 
-      const handleEdit = (e: MouseEvent): void => {
-        e.preventDefault();
-
-        handleOpenFormUpdate(editData);
-      };
-
-      const handleRemove = (e: MouseEvent): void => {
-        e.preventDefault();
-
-        handleSubmitRemove(id);
-      };
-
-      return (
-        <GridItem key={id}>
-          <ProductCard
-            info={info}
-            renderIcon={() => (
-              <Flex gap={2}>
-                <IconButton
-                  aria-label="Button remove product"
-                  color="primary"
-                  icon={<Trash fill="white" />}
-                  bg="error"
-                  variant="hoverShadow"
-                  onClick={handleRemove}
-                />
-
-                <IconButton
-                  aria-label="Button remove product"
-                  color="primary"
-                  icon={<Pencil />}
-                  bg="gray.700"
-                  variant="hoverShadow"
-                  onClick={handleEdit}
-                />
-              </Flex>
-            )}
-          />
-        </GridItem>
-      );
-    },
-    [handleOpenFormUpdate, handleSubmitRemove],
-  );
+    return infoUpdate;
+  }, [productId, products]);
 
   if (isLoading) return <Spinner />;
 
@@ -221,24 +185,12 @@ const ProfileComponent = () => {
           Create
         </Button>
       </Flex>
-      <Grid
-        templateColumns={{
-          base: '1fr',
-          xl: '1fr 1fr',
-        }}
-        gap={6}
-        py={5}
-      >
-        {products.length ? (
-          products.map(handleRenderProduct)
-        ) : (
-          <Center>
-            <Text fontSize="lg" fontWeight="bold">
-              {MESSAGES.EMPTY}
-            </Text>
-          </Center>
-        )}
-      </Grid>
+
+      <ShowProducts
+        data={products}
+        onEdit={handleOpenFormUpdate}
+        onRemove={handleOpenDialog}
+      />
 
       {/* Pagination */}
       <Pagination
@@ -251,15 +203,27 @@ const ProfileComponent = () => {
         onPreviousPage={onChangePage}
       />
 
-      {isOpenFormAdd && (
-        <ModalCustom
-          title={edit ? TITLES.UPDATE_PRODUCT : TITLES.CREATE_PRODUCT}
-          isOpen
-          onClose={handleCloseModal}
-        >
-          <FormAdd onSubmit={handleSubmit} data={edit} />
-        </ModalCustom>
-      )}
+      <Suspense fallback={<Spinner />}>
+        {isOpenFormAdd && (
+          <ModalCustom
+            title={productId ? TITLES.UPDATE_PRODUCT : TITLES.CREATE_PRODUCT}
+            isOpen
+            onClose={handleCloseModal}
+          >
+            <FormAdd onSubmit={handleSubmit} data={infoProductWhenUpdate} />
+          </ModalCustom>
+        )}
+
+        {isOpenRemove && (
+          <Dialog
+            title="Delete product"
+            description="Are you sure?"
+            isOpen={isOpenRemove}
+            onClose={handleCloseDialog}
+            onAccept={handleSubmitRemove}
+          />
+        )}
+      </Suspense>
     </VStack>
   );
 };
