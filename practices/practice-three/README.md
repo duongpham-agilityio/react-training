@@ -25,7 +25,8 @@
 
 ### Targets
 
-- Apply HTML/CSS/TypeScript/ReactJs trained knowledge to build a website
+- Apply TypeScript/ReactJs trained knowledge to build a website
+- ChakraUI
 - Unit test
 - Storybook
 - Zustand
