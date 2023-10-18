@@ -22,7 +22,7 @@ export const formatPayloadProduct = (
 };
 
 export const formatProductCardProps = (product: IProduct): TProductCard => {
-  const { id, imageURL, name, description, price, quantity } = product;
+  const { id, imageURL, name, description, price, quantity, isLiked } = product;
   const isLessThanTwo = quantity < 2;
 
   const info: TProductCard = {
@@ -33,6 +33,7 @@ export const formatProductCardProps = (product: IProduct): TProductCard => {
     title: name,
     status: quantity <= LIMIT_QUANTITY,
     statusMessage: `Only ${quantity} ${isLessThanTwo ? 'left' : 'lefts'}`,
+    isLiked,
   };
 
   return info;

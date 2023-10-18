@@ -75,7 +75,7 @@ exports[`Checkout onCheckout 1`] = `
         >
           Checkout
         </button>,
-        "timeStamp": 1697568371812,
+        "timeStamp": 1697598174434,
         "type": "click",
         "view": null,
       },

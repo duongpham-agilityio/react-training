@@ -29,7 +29,7 @@ describe('ProductCard', () => {
       ...productCardProps,
       info: {
         ...productCardProps.info,
-        status: true,
+        status: false,
         statusMessage: '',
       },
     });

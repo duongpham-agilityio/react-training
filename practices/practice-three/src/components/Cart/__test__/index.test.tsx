@@ -89,8 +89,6 @@ describe('Cart', () => {
       'button[aria-label="Button increase quantity"]',
     );
 
-    console.log(changeButtons[0]);
-
     fireEvent.click(changeButtons[0]);
   });
 
