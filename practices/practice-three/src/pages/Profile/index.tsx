@@ -13,10 +13,9 @@ import { ENDPOINT_SERVICES, MESSAGES, TITLES } from '@/constants';
 
 // Components
 import { IFormAddData } from './components/FormAdd';
-import { Pagination, Spinner } from '@/components';
+import { Pagination, Products, Spinner } from '@/components';
 import ModalCustom from '@/components/Modal';
 import { FetchingMessage } from '@/components/common';
-import { ShowProducts } from './components/Products';
 
 // Services
 import { productAPI } from '@/services/apis';
@@ -186,10 +185,11 @@ const ProfileComponent = () => {
         </Button>
       </Flex>
 
-      <ShowProducts
+      <Products
+        isUpdateMode
         data={products}
-        onEdit={handleOpenFormUpdate}
-        onRemove={handleOpenDialog}
+        onAddToCart={handleOpenFormUpdate}
+        onAddToFavorite={handleOpenDialog}
       />
 
       {/* Pagination */}

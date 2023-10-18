@@ -1,36 +1,41 @@
-import { Box, Grid, GridItem } from '@chakra-ui/react';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 
 // Hooks
-import { useFavorite } from '@/hooks';
+import { useFavorite, useHandleCart, useToast } from '@/hooks';
 
 // Stores
 import { TFavoriteStore, useFavoriteStore } from '@/stores';
 
 // Constants
-import { MESSAGES } from '@/constants';
+import { MESSAGES, TITLES } from '@/constants';
 
 // Components
-import { TProductCard, ProductCard } from '@/components';
-import { Message } from '@/components/common';
+import { Products } from '@/components';
 
 // Types
 import { IProduct } from '@/interface';
-import { formatProductCardProps } from '@/helpers';
 
 const Component = (): JSX.Element => {
   const favorites = useFavoriteStore((state: TFavoriteStore) => state.data);
   const { onToggleFavorite } = useFavorite();
+  // Show toast
+  const { showToast } = useToast();
+  // Get handle add to cart
+  const { handleAddProductToCart } = useHandleCart();
 
-  // Check for product is liked
-  const isLiked = useCallback(
-    (id: number): boolean => {
-      return !!favorites.find((item) => id === item.id);
-    },
+  const formatFavorites: IProduct[] = useMemo(
+    () =>
+      favorites.map((product) => {
+        return {
+          ...product,
+          isLiked: true,
+        };
+      }),
     [favorites],
   );
 
-  const handleAddToFavorite = useCallback(
+  // Handle toggle favorite
+  const handleToggleFavorite = useCallback(
     (id: number) => {
       const product: IProduct | undefined = favorites.find(
         (item) => item.id === id,
@@ -41,50 +46,34 @@ const Component = (): JSX.Element => {
     [favorites, onToggleFavorite],
   );
 
-  // Todo: Update to late
-  const handleAddToCart = useCallback(() => {}, []);
+  // Filter and handle add product to cart
+  const handleAddToCart = useCallback(
+    (id: number): void => {
+      const product: IProduct = formatFavorites.find(
+        (product) => product.id === id,
+      ) as IProduct;
 
-  const handleRenderProduct = useCallback(
-    (product: IProduct): JSX.Element => {
-      const { id } = product;
+      const isAddSuccess: boolean = handleAddProductToCart(product);
 
-      const info: TProductCard = {
-        ...formatProductCardProps(product),
-        isLiked: isLiked(id),
-      };
-
-      return (
-        <GridItem key={id}>
-          <ProductCard
-            info={info}
-            onLike={handleAddToFavorite}
-            onAddToCart={handleAddToCart}
-          />
-        </GridItem>
-      );
+      showToast({
+        title: isAddSuccess ? TITLES.ADD : TITLES.REMOVE,
+        description: isAddSuccess
+          ? MESSAGES.ADD_TO_CART_SUCCESS
+          : MESSAGES.ADD_TO_CART_FAIL,
+        status: isAddSuccess ? 'success' : 'error',
+        duration: 1000,
+      });
     },
-    [handleAddToCart, handleAddToFavorite, isLiked],
+    [formatFavorites, handleAddProductToCart, showToast],
   );
-
   return (
-    <Box overflowY="scroll" h="full" py={5}>
-      <Grid
-        gridTemplateColumns={{
-          base: '1fr',
-          '2xl': '1fr 1fr',
-        }}
-        gap={5}
-      >
-        {favorites.length ? (
-          favorites.map(handleRenderProduct)
-        ) : (
-          <Message message={MESSAGES.EMPTY} />
-        )}
-      </Grid>
-    </Box>
+    <Products
+      data={formatFavorites}
+      onAddToCart={handleAddToCart}
+      onAddToFavorite={handleToggleFavorite}
+    />
   );
 };
-
 const Wishlist = memo(Component);
 
 export default Wishlist;

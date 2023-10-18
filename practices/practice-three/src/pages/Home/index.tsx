@@ -1,9 +1,9 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { Heading } from '@chakra-ui/react';
 
 // Components
 import { FilterBar, Pagination, Spinner } from '@/components';
-import { Products } from '@/pages/Home/components';
+import { Products } from '@/components';
 import { FetchingMessage } from '@/components/common';
 
 // Hooks
@@ -21,11 +21,12 @@ import { MESSAGES, TITLES } from '@/constants';
 
 // Types
 import { IProduct } from '@/interface';
+import { TFavoriteStore, useFavoriteStore } from '@/stores';
 
 const Component = (): JSX.Element => {
   // Get products
   const { isLoading, isError, data = [] } = useProducts();
-
+  const favorites = useFavoriteStore((state: TFavoriteStore) => state.data);
   // Get handler from favorite store
   const { onToggleFavorite } = useFavorite();
 
@@ -84,6 +85,23 @@ const Component = (): JSX.Element => {
     [handleAddProductToCart, products, showToast],
   );
 
+  const isLiked = useCallback(
+    (id: number): boolean => {
+      return !!favorites.find((item) => id === item.id);
+    },
+    [favorites],
+  );
+
+  // Format list product
+  const formatShowListProduct: IProduct[] = useMemo(
+    () =>
+      products.map((product) => ({
+        ...product,
+        isLiked: isLiked(product.id),
+      })),
+    [isLiked, products],
+  );
+
   if (isLoading) return <Spinner />;
 
   if (isError) return <FetchingMessage message={MESSAGES.FAIL_TO_FETCH} />;
@@ -103,8 +121,8 @@ const Component = (): JSX.Element => {
 
       {/* Render products */}
       <Products
-        data={products}
-        onLike={handleSelectFavorite}
+        data={formatShowListProduct}
+        onAddToFavorite={handleSelectFavorite}
         onAddToCart={handleAddToCart}
       />
 
