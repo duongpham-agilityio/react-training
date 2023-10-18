@@ -104,7 +104,7 @@ const ProductsComponent = (props: TProductsProps) => {
 
   const render = isUpdateMode ? handleShowUpdateMode : handleShowNoInUpdateMode;
 
-  return (
+  return data.length ? (
     <Grid
       templateColumns={{
         base: '1fr',
@@ -113,16 +113,14 @@ const ProductsComponent = (props: TProductsProps) => {
       gap={6}
       py={5}
     >
-      {data.length ? (
-        data.map(render)
-      ) : (
-        <Center>
-          <Text fontSize="lg" fontWeight="bold">
-            {MESSAGES.EMPTY}
-          </Text>
-        </Center>
-      )}
+      {data.map(render)}
     </Grid>
+  ) : (
+    <Center>
+      <Text fontSize="lg" fontWeight="bold">
+        {MESSAGES.EMPTY}
+      </Text>
+    </Center>
   );
 };
 
