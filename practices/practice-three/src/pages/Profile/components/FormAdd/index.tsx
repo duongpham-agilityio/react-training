@@ -94,7 +94,10 @@ const FormAddComponent = ({
 
       data.append('image', file);
       mutate(data, {
-        onSuccess: (data: string) => onChange(data, 'imageURl'),
+        onSuccess: (data: string) => {
+          console.log(data);
+          onChange(data, 'imageURL');
+        },
       });
     },
     [mutate, onChange],
