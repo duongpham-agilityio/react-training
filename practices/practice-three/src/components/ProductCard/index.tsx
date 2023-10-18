@@ -113,7 +113,13 @@ const Component = (props: TProductCardProps): JSX.Element => {
     >
       <HStack h="full" gap="unset" borderRadius="inherit" overflow="hidden">
         <Center w="50%" h="full" bg="darkToLight">
-          <Image src={imageURL} w="full" alt={title} />
+          <Image
+            src={imageURL}
+            w="full"
+            htmlWidth={285}
+            htmlHeight={250}
+            alt={title}
+          />
         </Center>
         <CardBody w="50%" px={6} py={7} h="full">
           <VStack h="full" justifyContent="space-between">

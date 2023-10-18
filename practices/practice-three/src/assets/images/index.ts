@@ -1,4 +1,4 @@
-import Logo from './logo.png';
+import Logo from './book.webp';
 import Social from './social.png';
 import Shoes from './shoes.png';
 
