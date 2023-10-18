@@ -6,14 +6,15 @@ import { Grid, GridItem } from '@chakra-ui/react';
 import { TFavoriteStore, useFavoriteStore } from '@/stores';
 
 // Constants
-import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
+import { MESSAGES } from '@/constants';
 
 // Components
-import { TProductCard, ProductCard, TProductCardProps } from '@/components';
+import { ProductCard, TProductCardProps } from '@/components';
 import { Message } from '@/components/common';
 
 // Types
 import { IProduct } from '@/interface';
+import { formatProductCardProps } from '@/helpers';
 
 export interface ProductsProps extends Omit<TProductCardProps, 'info'> {
   data: IProduct[];
@@ -33,22 +34,13 @@ export const Products = memo(
 
     const handleRenderProduct = useCallback(
       (product: IProduct): JSX.Element => {
-        const { id, imageURL, name, description, price, quantity } = product;
-        const isLessThanTwo = quantity < 2;
-
-        const info: TProductCard = {
-          id,
-          imageURL,
-          price,
-          description,
-          title: name,
-          status: quantity <= LIMIT_QUANTITY,
-          statusMessage: `Only ${quantity} ${isLessThanTwo ? 'left' : 'lefts'}`,
-          isLiked: isLiked(id),
+        const info = {
+          ...formatProductCardProps(product),
+          isLiked: isLiked(product.id),
         };
 
         return (
-          <GridItem key={id}>
+          <GridItem key={product.id}>
             <ProductCard
               info={info}
               onAddToCart={onAddToCart}

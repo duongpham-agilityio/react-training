@@ -8,7 +8,7 @@ import { useFavorite } from '@/hooks';
 import { TFavoriteStore, useFavoriteStore } from '@/stores';
 
 // Constants
-import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
+import { MESSAGES } from '@/constants';
 
 // Components
 import { TProductCard, ProductCard } from '@/components';
@@ -16,6 +16,7 @@ import { Message } from '@/components/common';
 
 // Types
 import { IProduct } from '@/interface';
+import { formatProductCardProps } from '@/helpers';
 
 const Component = (): JSX.Element => {
   const favorites = useFavoriteStore((state: TFavoriteStore) => state.data);
@@ -45,16 +46,10 @@ const Component = (): JSX.Element => {
 
   const handleRenderProduct = useCallback(
     (product: IProduct): JSX.Element => {
-      const { id, imageURL, name, description, price, quantity } = product;
+      const { id } = product;
 
       const info: TProductCard = {
-        id,
-        imageURL,
-        price,
-        description,
-        title: name,
-        status: quantity <= LIMIT_QUANTITY,
-        statusMessage: `Only ${quantity} left`,
+        ...formatProductCardProps(product),
         isLiked: isLiked(id),
       };
 

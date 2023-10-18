@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 
 // Constants
-import { LIMIT_QUANTITY, MESSAGES } from '@/constants';
+import { MESSAGES } from '@/constants';
 
 // Components
 import { ProductCard, TProductCard } from '@/components';
@@ -20,6 +20,7 @@ import { IProduct } from '@/interface';
 
 // Icons
 import { Pencil, Trash } from '@/assets/icons';
+import { formatProductCardProps } from '@/helpers';
 
 export type TProfileProductsProps = {
   data: IProduct[];
@@ -34,18 +35,8 @@ const ProductsComponent = ({
 }: TProfileProductsProps) => {
   const handleRenderProduct = useCallback(
     (product: IProduct): JSX.Element => {
-      const { id, imageURL, name, description, price, quantity } = product;
-      const isLessThanTwo = quantity < 2;
-
-      const info: TProductCard = {
-        id,
-        imageURL,
-        price,
-        description,
-        title: name,
-        status: quantity <= LIMIT_QUANTITY,
-        statusMessage: `Only ${quantity} ${isLessThanTwo ? 'left' : 'lefts'}`,
-      };
+      const { id } = product;
+      const info: TProductCard = formatProductCardProps(product);
 
       const handleEdit = (e: MouseEvent): void => {
         e.preventDefault();
