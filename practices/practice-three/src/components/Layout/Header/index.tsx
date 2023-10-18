@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 
 // Images
-import { Logo } from '@/assets/images';
+import { Shoes } from '@/assets/images';
 
 export const Header = memo(
   (): JSX.Element => (
@@ -21,7 +21,7 @@ export const Header = memo(
       <Image
         w={45}
         h={45}
-        src={Logo}
+        src={Shoes}
         objectFit="cover"
         borderRadius="sm"
         alt="Logo for website"
