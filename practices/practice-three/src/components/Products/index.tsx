@@ -67,7 +67,7 @@ const ProductsComponent = (props: TProductsProps) => {
                   />
 
                   <IconButton
-                    aria-label="Button remove product"
+                    aria-label="Button edit product"
                     color="primary"
                     icon={<Pencil />}
                     bg="gray.700"
@@ -102,6 +102,8 @@ const ProductsComponent = (props: TProductsProps) => {
     [onAddToCart, onAddToFavorite],
   );
 
+  const render = isUpdateMode ? handleShowUpdateMode : handleShowNoInUpdateMode;
+
   return (
     <Grid
       templateColumns={{
@@ -112,7 +114,7 @@ const ProductsComponent = (props: TProductsProps) => {
       py={5}
     >
       {data.length ? (
-        data.map(isUpdateMode ? handleShowUpdateMode : handleShowNoInUpdateMode)
+        data.map(render)
       ) : (
         <Center>
           <Text fontSize="lg" fontWeight="bold">
