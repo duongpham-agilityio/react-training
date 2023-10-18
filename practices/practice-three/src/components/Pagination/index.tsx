@@ -31,7 +31,7 @@ export const Pagination = memo((props: TPaginationProps): JSX.Element => {
     onNextPage(currentPage + 1);
   }, [currentPage, onNextPage]);
 
-  if (!data.length) return <></>;
+  if (!data.length || data.length === 1) return <></>;
 
   return (
     <HStack justifyContent="center" py={10}>
